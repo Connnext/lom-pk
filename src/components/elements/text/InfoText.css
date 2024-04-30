@@ -1,0 +1,12 @@
+.info__subtitle {
+  font-size: 32px;
+  font-weight: 400;
+  width: 600px;
+}
+.info__text {
+  margin-top: 10px;
+  font-size: 20px;
+}
+/* .info__wrapper {
+  margin-bottom: 20px;
+} */

@@ -1,0 +1,38 @@
+/* BackToTopButton.css */
+
+.btn-up {
+  position: fixed;
+  background-color: rgb(133, 10, 10);
+  right: 50px;
+  bottom: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.15s ease-in-out, transform 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out; /* добавлено свойство transition для box-shadow */
+  width: 50px;
+  height: 50px;
+  opacity: 1;
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); /* добавлено свойство box-shadow */
+}
+.btn-up_hide {
+  display: none;
+}
+.btn-up_hiding {
+  opacity: 0;
+  transform: translateY(100px);
+}
+.btn-up-icon {
+  width: 40px;
+  height: 40px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn-up:hover {
+    background-color: #ac0909;
+    transition: background-color 0.3s ease-in-out;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* увеличиваем тень при наведении */
+  }
+}

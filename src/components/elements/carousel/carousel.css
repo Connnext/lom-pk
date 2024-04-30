@@ -1,0 +1,90 @@
+.carousel {
+  max-width: 1400px;
+  margin-bottom: 50px;
+  margin: 0 auto;
+}
+.carousel-image {
+  min-width: 100%;
+  display: block;
+}
+.custom-arrow-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.arrow-circle {
+  background-color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.custom-arrow-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.custom-bottom-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 7px;
+}
+
+.custom-bottom-button {
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 5px;
+  transition: all 0.6s ease;
+}
+
+.custom-bottom-button.active {
+  color: #fff;
+  border-color: transparent;
+}
+
+.custom-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  border-radius: 50%;
+  display: inline-block;
+  transition: 0.5s;
+}
+
+.custom-bottom-button.active .custom-dot {
+  background-color: #333;
+}
+
+.carousel__container {
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.arrow__icon--right {
+  margin-right: 20px;
+}
+.arrow__icon--left {
+  margin-left: 20px;
+}
+.arrow__brandicon--right {
+  margin-right: 20px;
+  right: -60px;
+}
+.arrow__brandicon--left {
+  margin-left: 20px;
+  right: 60px;
+}
+.slider-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.carousel__stocks {
+  margin-bottom: 40px;
+}

@@ -1,0 +1,55 @@
+/* .poppins-regular {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+} */
+.city__wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 7px;
+}
+.city__img {
+  width: 30px;
+  height: 28px;
+}
+.contacts {
+  background: rgb(55, 43, 43);
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav__bar {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+}
+.nav__items {
+  display: flex;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.nav__link {
+  transition: 0.5s;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.5px;
+  font-size: 15px;
+}
+.nav__link:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+.nav__phone {
+  display: flex;
+  justify-content: space-between;
+  gap: 7px;
+  align-items: center;
+}
