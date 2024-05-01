@@ -10,7 +10,7 @@
   justify-content: center;
   opacity: 0;
   pointer-events: none;
-  transition: 1s;
+  transition: 0.5s;
   z-index: 10;
 }
 
@@ -25,4 +25,12 @@
 }
 .modal__content.active {
   transform: scale(1);
+  background-color: white;
+  border-radius: 20px;
+  padding: 15px;
+  z-index: 0;
+}
+.modal__button {
+  display: flex;
+  justify-content: flex-end;
 }

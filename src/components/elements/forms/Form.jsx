@@ -7,9 +7,13 @@ import CloseButton from "../buttons/CloseButton";
 import FormInput from "../inputs/FormInput";
 import FormButton from "../buttons/FormButton";
 import FormLinks from "../links/FormLinks";
+import { useDispatch, useSelector } from "react-redux";
+import { setShowModal } from "store/slices/modalSlice";
 
 const Form = ({ handleSubmit }) => {
+  const dispatch = useDispatch();
   const location = useLocation();
+  const showModal = useSelector((state) => state.modal.showModal);
   const isRecoverPassword = location.pathname === FORGOT_PASSWORD_ROUTE;
   const isRegister = location.pathname === REGISTER_ROUTE;
   const [email, setEmail] = useState("");
@@ -23,7 +27,6 @@ const Form = ({ handleSubmit }) => {
     "Пароль не может быть пустым"
   );
   const [confirmError, setConfirmError] = useState("Пароли должны совпадать");
-  const [modalActive, setModalActive] = useState("false");
   const [formValid, setFormValid] = useState(false);
 
   const blurHandler = (e) => {
@@ -45,11 +48,9 @@ const Form = ({ handleSubmit }) => {
     e.preventDefault();
     handleSubmit(email, password);
   };
-  const handleCloseModal = () => {
-    setModalActive(false);
-  };
+
   const handleForgotPassword = () => {
-    setModalActive(true);
+    dispatch(setShowModal(false));
   };
   const emailHandler = (e) => {
     setEmail(e.target.value);
@@ -71,7 +72,6 @@ const Form = ({ handleSubmit }) => {
     } else {
       setPasswordError("");
     }
-    // Проверяем совпадение паролей
     if (isRegister && confirmPassword && e.target.value !== confirmPassword) {
       setConfirmError("Пароли не совпадают");
     } else {
@@ -80,13 +80,13 @@ const Form = ({ handleSubmit }) => {
   };
   const confirmHandler = (e) => {
     setConfirmPassword(e.target.value);
-    // Проверяем совпадение паролей
     if (isRegister && password && e.target.value !== password) {
       setConfirmError("Пароли не совпадают");
     } else {
       setConfirmError("");
     }
   };
+
   useEffect(() => {
     if (
       isRegister &&
@@ -110,12 +110,13 @@ const Form = ({ handleSubmit }) => {
     confirmPassword,
   ]);
   useEffect(() => {
-    if (modalActive) {
+    if (showModal) {
       document.body.classList.add("modal-open");
     } else {
       document.body.classList.remove("modal-open");
     }
-  }, [modalActive]);
+  }, [showModal]);
+
   const getTitle = (isRegister, isRecoverPassword) => {
     return isRegister
       ? "Регистрация"
@@ -125,13 +126,12 @@ const Form = ({ handleSubmit }) => {
   };
 
   return (
-    <Modal active={modalActive} setActive={setModalActive}>
+    <Modal>
       <div className="form-wrapper">
         <div className="form__head">
           <h2 className="form__title">
             {getTitle(isRegister, isRecoverPassword)}
           </h2>
-          <CloseButton onClick={handleCloseModal} />
         </div>
         <form className="form-container" onSubmit={handleFormSubmit}>
           <FormInput

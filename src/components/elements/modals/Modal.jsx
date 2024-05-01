@@ -1,20 +1,28 @@
-import React, { useRef, useCallback, useLayoutEffect } from "react";
+import React, { useCallback, useLayoutEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setShowModal } from "store/slices/modalSlice";
 import "./modal.css";
+import CloseButton from "../buttons/CloseButton";
 
-export default function Modal({ active, setActive, children }) {
-  const modalRef = useRef(null);
+export default function Modal({ children }) {
+  const dispatch = useDispatch();
+  const showModal = useSelector((state) => state.modal.showModal);
+  console.log(`modaleddddddddddd ${showModal}`);
+  const handleCloseModal = (event) => {
+    if (event) {
+      event.stopPropagation();
+    }
+    dispatch(setShowModal(false));
+  };
 
-  const handleClickOutside = useCallback(
-    (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        setActive(false);
-      }
-    },
-    [setActive]
-  );
+  const handleClickOutside = useCallback((event) => {
+    if (!event.target.closest(".modal__content")) {
+      handleCloseModal();
+    }
+  }, []);
 
   useLayoutEffect(() => {
-    if (active) {
+    if (showModal) {
       document.addEventListener("mousedown", handleClickOutside);
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -22,14 +30,13 @@ export default function Modal({ active, setActive, children }) {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [active, setActive, handleClickOutside]);
-
+  }, [showModal, handleClickOutside]);
   return (
-    <div className={active ? "modal active" : "modal"}>
-      <div
-        className={active ? "modal_content active" : "modal_content"}
-        ref={modalRef}
-      >
+    <div className={showModal ? "modal active" : "modal"}>
+      <div className={showModal ? "modal__content active" : "modal__content"}>
+        <div className="modal__button">
+          <CloseButton onClick={handleCloseModal} />
+        </div>
         {children}
       </div>
     </div>

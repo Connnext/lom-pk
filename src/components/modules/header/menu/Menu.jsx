@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import SearchBar from "../../searchBar/SearchBar";
 import Logo from "../../../elements/logo/Logo";
@@ -15,13 +15,14 @@ import {
 } from "utils/constants";
 import "./menu.css";
 import Login from "components/modules/auth/login/Login";
+import { setShowModal } from "store/slices/modalSlice";
 
 export default function Menu() {
+  const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
-  const [showLogin, setShowLogin] = useState(false);
-
-  const handleLoginClick = () => {
-    setShowLogin((prevState) => !prevState);
+  const handleLoginClick = (event) => {
+    event.stopPropagation();
+    dispatch(setShowModal(true));
   };
 
   return (
@@ -45,21 +46,18 @@ export default function Menu() {
             <Link to={COMPARE_ROUTE}>
               <img className="menu__image" src={compare} alt="compare" />
             </Link>
-            <Link to={BASKET_ROUTE} className="menu__basket">
+            <Link to={BASKET_ROUTE}>
               <img className="menu__image" src={basket} alt="basket" />
             </Link>
-            <img
-              style={{ cursor: "pointer" }}
-              className="menu__image"
-              src={account}
-              alt="account"
-              onClick={handleLoginClick}
-            />
-            {showLogin && !isAuthenticated && <Login />}
-            {isAuthenticated && (
+            {isAuthenticated ? (
               <Link to={ACCOUNT_ROUTE}>
                 <img className="menu__image" src={account} alt="account" />
               </Link>
+            ) : (
+              <div onClick={handleLoginClick}>
+                <img className="menu__image" src={account} alt="account" />
+                <Login />
+              </div>
             )}
           </div>
         </div>

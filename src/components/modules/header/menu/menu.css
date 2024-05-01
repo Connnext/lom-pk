@@ -25,6 +25,7 @@
 .menu__image {
   width: 35px;
   height: 35px;
+  cursor: pointer;
 }
 .logo {
   height: 75px;
