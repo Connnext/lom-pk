@@ -5,6 +5,7 @@ import YaMap from "../components/elements/map/YaMap";
 import SliderStocks from "../components/elements/carousel/SliderStocks";
 import { MAIL_ADRESS, PHONE_NUMBER } from "../utils/constants";
 import { Link } from "react-router-dom";
+import Layout from "components/modules/layouts/Layout";
 export default function Contacts() {
   const listStyle = {
     paddingLeft: "30px",
@@ -60,48 +61,50 @@ export default function Contacts() {
   );
   return (
     <>
-      <div className="container">
-        <SliderStocks />
-        <InfoTitle title={title} />
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            gap: "20px",
-          }}
-          className="contacts__wrapper"
-        >
-          <div className="contacts__information">
-            <InfoText subtitle={subtitle3} text={text3} />
-            <div style={{ marginBottom: "20px" }}></div>
-            <InfoText subtitle={subtitle4} text={text4} />
-            <div style={{ marginBottom: "20px" }}></div>
-            <InfoText
-              subtitle={"Адрес"}
-              text={
-                "Россия, Санкт-Петербург, г. Ломоносов, ул. Привокзальная, д. 2, 2 этаж"
-              }
-            />
-            <div style={{ marginBottom: "20px" }}></div>
-            <YaMap width={"659px"} height={"400px"} />
-          </div>
+      <Layout>
+        <div className="container">
+          <SliderStocks />
+          <InfoTitle title={title} />
           <div
             style={{
-              borderLeft: "1px solid #ced4d7",
-              height: "auto",
+              display: "flex",
+              justifyContent: "space-between",
+              gap: "20px",
             }}
-          ></div>
-          <div className="contacts__requisites">
-            <InfoText subtitle={subtitle1} text={text1} />
-            <div style={{ marginBottom: "20px" }}></div>
-            <InfoText subtitle={subtitle2} text={text2} />
-            <div style={{ marginBottom: "20px" }}></div>
-          </div>
+            className="contacts__wrapper"
+          >
+            <div className="contacts__information">
+              <InfoText subtitle={subtitle3} text={text3} />
+              <div style={{ marginBottom: "20px" }}></div>
+              <InfoText subtitle={subtitle4} text={text4} />
+              <div style={{ marginBottom: "20px" }}></div>
+              <InfoText
+                subtitle={"Адрес"}
+                text={
+                  "Россия, Санкт-Петербург, г. Ломоносов, ул. Привокзальная, д. 2, 2 этаж"
+                }
+              />
+              <div style={{ marginBottom: "20px" }}></div>
+              <YaMap width={"659px"} height={"400px"} />
+            </div>
+            <div
+              style={{
+                borderLeft: "1px solid #ced4d7",
+                height: "auto",
+              }}
+            ></div>
+            <div className="contacts__requisites">
+              <InfoText subtitle={subtitle1} text={text1} />
+              <div style={{ marginBottom: "20px" }}></div>
+              <InfoText subtitle={subtitle2} text={text2} />
+              <div style={{ marginBottom: "20px" }}></div>
+            </div>
 
-          <div style={{ marginBottom: "40px" }}></div>
+            <div style={{ marginBottom: "40px" }}></div>
+          </div>
         </div>
-      </div>
-      <div style={{ marginBottom: "20px" }}></div>
+        <div style={{ marginBottom: "20px" }}></div>
+      </Layout>
     </>
   );
 }

@@ -8,5 +8,6 @@ export default function Register() {
   const handleRegister = (email, password) => {
     dispatch(registerUser({ email, password }));
   };
-  return <Form handleSubmit={handleRegister} />;
+  const title = "register";
+  return <Form title={title} handleSubmit={handleRegister} />;
 }

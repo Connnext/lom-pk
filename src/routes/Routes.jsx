@@ -28,13 +28,13 @@ import {
   GUARANTEES_ROUTE,
   REGISTER_ROUTE,
   LOGIN_ROUTE,
-  FORGOT_PASSWORD_ROUTE,
+  RECOVER_PASSWORD_ROUTE,
 } from "./../utils/constants";
 import Guarantees from "../pages/Guarantees";
 import Contacts from "../pages/Contacts";
 import Register from "./../components/modules/auth/register/Register";
 import Login from "./../components/modules/auth/login/Login";
-import ForgotPassword from "./../components/modules/auth/forgotPassword/ForgotPassword";
+import RecoverPassword from "./../components/modules/auth/forgotPassword/RecoverPassword";
 
 export default function AppRoutes() {
   return (
@@ -54,7 +54,7 @@ export default function AppRoutes() {
       <Route path={GUARANTEES_ROUTE} element={<Guarantees />} />
       <Route path={REGISTER_ROUTE} element={<Register />} />
       <Route path={LOGIN_ROUTE} element={<Login />} />
-      <Route path={FORGOT_PASSWORD_ROUTE} element={<ForgotPassword />} />
+      <Route path={RECOVER_PASSWORD_ROUTE} element={<RecoverPassword />} />
       <Route path="*" element={<Shop />} />
     </Routes>
   );

@@ -1,128 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./form.css";
-import { useLocation } from "react-router-dom";
-import { FORGOT_PASSWORD_ROUTE, REGISTER_ROUTE } from "utils/constants";
 import Modal from "../modals/Modal";
-import CloseButton from "../buttons/CloseButton";
-import FormInput from "../inputs/FormInput";
-import FormButton from "../buttons/FormButton";
-import FormLinks from "../links/FormLinks";
-import { useDispatch, useSelector } from "react-redux";
-import { setShowModal } from "store/slices/modalSlice";
+import RecoverPasswordForm from "./RecoverPasswordForm";
+import RegisterForm from "./RegisterForm";
+import LoginForm from "./LoginForm";
 
 const Form = ({ handleSubmit }) => {
-  const dispatch = useDispatch();
-  const location = useLocation();
-  const showModal = useSelector((state) => state.modal.showModal);
-  const isRecoverPassword = location.pathname === FORGOT_PASSWORD_ROUTE;
-  const isRegister = location.pathname === REGISTER_ROUTE;
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [emailDirty, setEmailDirty] = useState(false);
-  const [passwordDirty, setPasswordDirty] = useState(false);
-  const [confirmDirty, setConfirmDirty] = useState(false);
-  const [emailError, setEmailError] = useState("Email не может быть пустым");
-  const [passwordError, setPasswordError] = useState(
-    "Пароль не может быть пустым"
-  );
-  const [confirmError, setConfirmError] = useState("Пароли должны совпадать");
-  const [formValid, setFormValid] = useState(false);
+  const [formType, setFormType] = useState("login");
 
-  const blurHandler = (e) => {
-    switch (e.target.name) {
-      case "email":
-        setEmailDirty(true);
-        break;
-      case "password":
-        setPasswordDirty(true);
-        break;
-      case "confirmPassword":
-        setConfirmDirty(true);
-        break;
-      default:
-        break;
-    }
-  };
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    handleSubmit(email, password);
-  };
-
-  const handleForgotPassword = () => {
-    dispatch(setShowModal(false));
-  };
-  const emailHandler = (e) => {
-    setEmail(e.target.value);
-    const re =
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (!re.test(String(e.target.value).toLowerCase())) {
-      setEmailError("Некорректный email*");
-    } else {
-      setEmailError("");
-    }
-  };
-  const passwordHandler = (e) => {
-    setPassword(e.target.value);
-    if (e.target.value.length < 6) {
-      setPasswordError("Пароль должен быть больше 6 символов*");
-      if (!e.target.value) {
-        setPasswordError("Пароль не может быть пустым");
-      }
-    } else {
-      setPasswordError("");
-    }
-    if (isRegister && confirmPassword && e.target.value !== confirmPassword) {
-      setConfirmError("Пароли не совпадают");
-    } else {
-      setConfirmError("");
-    }
-  };
-  const confirmHandler = (e) => {
-    setConfirmPassword(e.target.value);
-    if (isRegister && password && e.target.value !== password) {
-      setConfirmError("Пароли не совпадают");
-    } else {
-      setConfirmError("");
-    }
-  };
-
-  useEffect(() => {
-    if (
-      isRegister &&
-      (emailError ||
-        passwordError ||
-        confirmError ||
-        password !== confirmPassword)
-    ) {
-      setFormValid(false);
-    } else if (!isRegister && (emailError || passwordError)) {
-      setFormValid(false);
-    } else {
-      setFormValid(true);
-    }
-  }, [
-    isRegister,
-    emailError,
-    passwordError,
-    confirmError,
-    password,
-    confirmPassword,
-  ]);
-  useEffect(() => {
-    if (showModal) {
-      document.body.classList.add("modal-open");
-    } else {
-      document.body.classList.remove("modal-open");
-    }
-  }, [showModal]);
-
-  const getTitle = (isRegister, isRecoverPassword) => {
-    return isRegister
-      ? "Регистрация"
-      : isRecoverPassword
-      ? "Восстановление пароля"
-      : "Вход";
+  const handleFormChange = (newFormType) => {
+    setFormType(newFormType);
   };
 
   return (
@@ -130,50 +17,35 @@ const Form = ({ handleSubmit }) => {
       <div className="form-wrapper">
         <div className="form__head">
           <h2 className="form__title">
-            {getTitle(isRegister, isRecoverPassword)}
+            {formType === "register"
+              ? "Регистрация"
+              : formType === "recoverPassword"
+              ? "Восстановление пароля"
+              : "Вход"}
           </h2>
         </div>
-        <form className="form-container" onSubmit={handleFormSubmit}>
-          <FormInput
-            title="Email:"
-            name="email"
-            value={email}
-            onChange={emailHandler}
-            onBlur={blurHandler}
-            error={emailDirty && emailError}
-            placeholder="lom@mail.ru"
-          />
-          {!isRecoverPassword && (
-            <FormInput
-              title="Пароль:"
-              name="password"
-              value={password}
-              onChange={passwordHandler}
-              onBlur={blurHandler}
-              error={passwordDirty && passwordError}
-              placeholder="abc1234"
+        <form className="form-container">
+          {formType === "login" && (
+            <LoginForm
+              formType={formType}
+              handleFormChange={handleFormChange}
+              handleSubmit={handleSubmit}
             />
           )}
-          {isRegister && (
-            <FormInput
-              title="Подтвердите пароль"
-              name="confirmPassword"
-              value={confirmPassword}
-              onChange={confirmHandler}
-              onBlur={blurHandler}
-              error={confirmDirty && confirmError}
-              placeholder="abc1234"
+          {formType === "register" && (
+            <RegisterForm
+              formType={formType}
+              handleFormChange={handleFormChange}
+              handleSubmit={handleSubmit}
             />
           )}
-          <FormLinks
-            isRegister={isRegister}
-            isRecoverPassword={isRecoverPassword}
-            handleForgotPassword={handleForgotPassword}
-          />
-          <FormButton
-            disabled={!formValid}
-            text={isRegister ? "Зарегистрироваться" : "Войти"}
-          />
+          {formType === "recoverPassword" && (
+            <RecoverPasswordForm
+              formType={formType}
+              handleFormChange={handleFormChange}
+              handleSubmit={handleSubmit}
+            />
+          )}
         </form>
       </div>
     </Modal>

@@ -30,11 +30,11 @@ import {
   GUARANTEES_ROUTE,
   REGISTER_ROUTE,
   LOGIN_ROUTE,
-  FORGOT_PASSWORD_ROUTE,
+  RECOVER_PASSWORD_ROUTE,
 } from "../utils/constants";
 import Login from "components/modules/auth/login/Login";
 import Register from "components/modules/auth/register/Register";
-import ForgotPassword from "components/modules/auth/forgotPassword/ForgotPassword";
+import RecoverPassword from "components/modules/auth/forgotPassword/RecoverPassword";
 
 export const authRoutes = [
   {
@@ -104,7 +104,7 @@ export const publicRoutes = [
     Component: Login,
   },
   {
-    path: FORGOT_PASSWORD_ROUTE,
-    Component: ForgotPassword,
+    path: RECOVER_PASSWORD_ROUTE,
+    Component: RecoverPassword,
   },
 ];

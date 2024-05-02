@@ -7,7 +7,6 @@ import CloseButton from "../buttons/CloseButton";
 export default function Modal({ children }) {
   const dispatch = useDispatch();
   const showModal = useSelector((state) => state.modal.showModal);
-  console.log(`modaleddddddddddd ${showModal}`);
   const handleCloseModal = (event) => {
     if (event) {
       event.stopPropagation();

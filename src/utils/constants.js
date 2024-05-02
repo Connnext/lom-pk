@@ -14,7 +14,7 @@ export const CONTACTS_ROUTE = "/contacts";
 export const GUARANTEES_ROUTE = "/guarantees";
 export const REGISTER_ROUTE = "/register";
 export const LOGIN_ROUTE = "/login";
-export const FORGOT_PASSWORD_ROUTE = "/forgot";
+export const RECOVER_PASSWORD_ROUTE = "/forgot";
 
 export const PHONE_NUMBER = "tel:88129579756";
 export const MAIL_ADRESS = "mailto:info@lom-pk.ru";

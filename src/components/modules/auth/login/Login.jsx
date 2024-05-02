@@ -8,6 +8,7 @@ export default function Login() {
   const handleLogin = (email, password) => {
     dispatch(loginUser({ email, password }));
   };
+  const title = "login";
 
-  return <Form handleSubmit={handleLogin} />;
+  return <Form title={title} handleSubmit={handleLogin} />;
 }

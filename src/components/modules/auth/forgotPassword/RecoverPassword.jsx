@@ -5,8 +5,9 @@ import { recoverPassword } from "store/slices/userSlice";
 
 export default function RecoverPassword() {
   const dispatch = useDispatch();
-  const handleRecoveryPassword = (email) => {
-    dispatch(recoverPassword(email)); // Отправляем запрос на сервер
+  const handleRecoverPassword = (email) => {
+    dispatch(recoverPassword({ email }));
   };
-  return <Form handleSubmit={(email) => handleRecoveryPassword(email)} />;
+  const title = "recoverPassword";
+  return <Form title={title} handleSubmit={handleRecoverPassword} />;
 }
