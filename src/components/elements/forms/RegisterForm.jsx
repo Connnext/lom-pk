@@ -37,6 +37,7 @@ const RegisterForm = ({ handleSubmit }) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    console.log({ email, password });
     handleSubmit({ email, password });
   };
 

@@ -29,9 +29,9 @@ const LoginForm = ({ handleSubmit }) => {
     }
   };
 
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    handleSubmit({ email, password }); // Передача объекта с введенными данными
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    handleSubmit({ email, password });
   };
 
   const emailHandler = (e) => {

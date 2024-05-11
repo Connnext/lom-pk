@@ -34,12 +34,12 @@
   display: flex;
   justify-content: center;
   margin-bottom: 7px;
+  gap: 7px;
 }
 
 .custom-bottom-button {
   cursor: pointer;
   font-size: 16px;
-  padding: 10px 5px;
   transition: all 0.6s ease;
 }
 

@@ -5,37 +5,35 @@ import {
   loginAdmin,
   loginUser,
 } from "./../../../../redux/store/slices/userSlice";
-import { useLocation, useNavigate } from "react-router-dom";
 import { useAuthMutation } from "./../../../../redux/services/userService";
+import { errorMessage, successMessageCustomer } from "utils/messages";
 
 export default function Login() {
-  // const { data = [], isLoading } = useGetUsersQuery();
   const [auth, { isLoading }] = useAuthMutation();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const fromPage = location.state?.from?.pathname || "/";
-  const isAuth = useSelector((state) => state.user.auth);
-  const isAuthAdmin = useSelector((state) => state.user.authAdmin);
+  // const isAuth = useSelector((state) => state.user.auth);
+  // const isAuthAdmin = useSelector((state) => state.user.authAdmin);
   const handleLogin = async (data) => {
-    // if (isAuth === true || isAuthAdmin === true) {
-    //   // errorUserLogIn()
-    //   console.log("error");
-    // }
-    console.log(data);
-    const username = data.email;
-    const password = data.password;
-    console.log(username);
     try {
-      await auth({ username, password }).unwrap();
-      // await triggerCurrentQuery()
+      const response = await auth(data).unwrap();
+
+      // Need correct role
+
+      // const role = response.data.role;
+      // role === "admin"
+      //   ? dispatch(loginAdmin(data))
+      //   : (dispatch(loginUser(data)), successMessageCustomer());
+
+      // Optional
+
       dispatch(loginUser(data));
-      navigate(fromPage);
+      successMessageCustomer();
     } catch (err) {
       // if (hasErrorField(err)) {
       //   setError(err.data.error)
       // }
       console.log(err);
+      errorMessage();
     }
   };
   if (isLoading) {
