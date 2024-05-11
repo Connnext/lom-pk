@@ -139,6 +139,15 @@ export default function Delivery() {
       </p>
     </>
   );
+  const textAdress = (
+    <>
+      <p>
+        Россия, Санкт-Петербург, г. Ломоносов, ул. Привокзальная, д. 2, 2 этаж
+      </p>
+      <p>Пн - Пт с 11:00 до 19:00</p>
+      <p>Суббота с 11:00 до 18:00</p>
+    </>
+  );
   return (
     <Layout>
       <div className="container">
@@ -161,12 +170,7 @@ export default function Delivery() {
         <div style={{ marginBottom: "20px" }}></div>
         <InfoText subtitle={subtitle4} text={text4} />
         <div style={{ marginBottom: "20px" }}></div>
-        <InfoText
-          subtitle={"Самовывоз"}
-          text={
-            "Россия, Санкт-Петербург, г. Ломоносов, ул. Привокзальная, д. 2, 2 этаж"
-          }
-        />
+        <InfoText subtitle={"Самовывоз"} text={textAdress} />
         <div style={{ marginBottom: "20px" }}></div>
         <YaMap width={"1400px"} height={"600px"} />
         <div style={{ marginBottom: "40px" }}></div>

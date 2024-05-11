@@ -1,6 +1,13 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setFormType } from "./../../../redux/store/slices/modalSlice";
 
-const FormLinks = ({ formType, handleFormChange }) => {
+const FormLinks = () => {
+  const dispatch = useDispatch();
+  const formType = useSelector((state) => state.modal.formType);
+  const handleFormChange = (newFormType) => {
+    dispatch(setFormType(newFormType));
+  };
   return (
     <div className="extra-links">
       {formType === "login" && (
@@ -26,7 +33,12 @@ const FormLinks = ({ formType, handleFormChange }) => {
         </div>
       )}
       {formType === "register" && (
-        <span onClick={() => handleFormChange("login")}>
+        <span
+          onClick={() => {
+            handleFormChange("login");
+          }}
+          style={{ textAlign: "right", display: "inline-flex", gap: "3px" }}
+        >
           Авторизация{" "}
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -40,7 +52,12 @@ const FormLinks = ({ formType, handleFormChange }) => {
         </span>
       )}
       {formType === "recoverPassword" && (
-        <span onClick={() => handleFormChange("login")}>
+        <span
+          onClick={() => {
+            handleFormChange("login");
+          }}
+          style={{ textAlign: "right", display: "inline-flex", gap: "3px" }}
+        >
           Авторизация{" "}
           <svg
             xmlns="http://www.w3.org/2000/svg"

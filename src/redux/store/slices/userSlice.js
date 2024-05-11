@@ -2,24 +2,35 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   user: null,
-  isAuthenticated: false,
+  lkUser: [],
+  loading: false,
+  auth: false,
+  authAdmin: false,
 };
 
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    loginUser(state, action) {
-      state.user = action.payload;
-      state.isAuthenticated = true;
-    },
     registerUser(state, action) {
       state.user = action.payload;
-      state.isAuthenticated = true;
+    },
+    loginUser(state, action) {
+      state.user = action.payload;
+      state.auth = true;
+      state.lkUser = action.payload;
     },
     logoutUser(state) {
       state.user = null;
-      state.isAuthenticated = false;
+      state.auth = false;
+      state.authAdmin = false;
+      state.lkUser = [];
+    },
+    loginAdmin(state, action) {
+      state.user = action.payload;
+      state.auth = true;
+      state.authAdmin = true;
+      state.lkUser = action.payload;
     },
     recoverPassword(state, action) {
       // Здесь можно добавить логику для обработки восстановления пароля
@@ -28,8 +39,13 @@ const userSlice = createSlice({
   },
 });
 
-export const { loginUser, logoutUser, registerUser, recoverPassword } =
-  userSlice.actions;
+export const {
+  loginUser,
+  logoutUser,
+  registerUser,
+  recoverPassword,
+  loginAdmin,
+} = userSlice.actions;
 
 export default userSlice.reducer;
 

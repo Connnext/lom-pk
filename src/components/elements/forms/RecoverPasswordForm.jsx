@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Modal from "../modals/Modal";
 import FormInput from "../inputs/FormInput";
 import FormButton from "../buttons/FormButton";
 import FormLinks from "../links/FormLinks";
-import { useDispatch, useSelector } from "react-redux";
-import { setShowModal } from "store/slices/modalSlice";
+import { useSelector } from "react-redux";
 
 const RecoverPasswordForm = ({ handleSubmit }) => {
-  const dispatch = useDispatch();
   const showModal = useSelector((state) => state.modal.showModal);
   const [email, setEmail] = useState("");
   const [emailDirty, setEmailDirty] = useState(false);
@@ -26,7 +23,7 @@ const RecoverPasswordForm = ({ handleSubmit }) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    handleSubmit(email);
+    handleSubmit({ email });
   };
 
   const emailHandler = (e) => {
@@ -57,7 +54,7 @@ const RecoverPasswordForm = ({ handleSubmit }) => {
   }, [showModal]);
 
   return (
-    <>
+    <form onSubmit={handleFormSubmit} className="form-container">
       <FormInput
         title="Email:"
         name="email"
@@ -69,7 +66,7 @@ const RecoverPasswordForm = ({ handleSubmit }) => {
       />
       <FormLinks />
       <FormButton disabled={!formValid} text="Отправить запрос" />
-    </>
+    </form>
   );
 };
 

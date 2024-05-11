@@ -15,9 +15,12 @@ export const GUARANTEES_ROUTE = "/guarantees";
 export const REGISTER_ROUTE = "/register";
 export const LOGIN_ROUTE = "/login";
 export const RECOVER_PASSWORD_ROUTE = "/forgot";
-
 export const PHONE_NUMBER = "tel:88129579756";
 export const MAIL_ADRESS = "mailto:info@lom-pk.ru";
+
+export const ADMIN_EMAIL = "lom@mail.ru";
+export const ADMIN_PASSWORD = "123456";
+
 export const ADDRESS = (
   <>
     Россия, Санкт-Петербург,

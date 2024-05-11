@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Modal from "../modals/Modal";
 import FormInput from "../inputs/FormInput";
 import FormButton from "../buttons/FormButton";
 import FormLinks from "../links/FormLinks";
-import { useDispatch, useSelector } from "react-redux";
-import { setShowModal } from "store/slices/modalSlice";
+import { useSelector } from "react-redux";
 
-const RegisterForm = ({ formType, handleFormChange, handleSubmit }) => {
-  const dispatch = useDispatch();
+const RegisterForm = ({ handleSubmit }) => {
   const showModal = useSelector((state) => state.modal.showModal);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -40,7 +37,7 @@ const RegisterForm = ({ formType, handleFormChange, handleSubmit }) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    handleSubmit(email, password);
+    handleSubmit({ email, password });
   };
 
   const emailHandler = (e) => {
@@ -102,7 +99,7 @@ const RegisterForm = ({ formType, handleFormChange, handleSubmit }) => {
   }, [showModal]);
 
   return (
-    <>
+    <form onSubmit={handleFormSubmit} className="form-container">
       <FormInput
         title="Email:"
         name="email"
@@ -130,9 +127,9 @@ const RegisterForm = ({ formType, handleFormChange, handleSubmit }) => {
         error={confirmDirty && confirmError}
         placeholder="abc1234"
       />
-      <FormLinks formType={formType} handleFormChange={handleFormChange} />
+      <FormLinks />
       <FormButton disabled={!formValid} text="Зарегистрироваться" />
-    </>
+    </form>
   );
 };
 

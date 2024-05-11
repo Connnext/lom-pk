@@ -68,7 +68,7 @@
   justify-content: space-between;
 }
 
-.extra-links a {
+.extra-links span {
   margin: 0px 3px;
   text-decoration: none;
   color: #000000;
@@ -76,6 +76,7 @@
   font-weight: 500;
   line-height: 25px;
   letter-spacing: -2%;
+  cursor: pointer;
 }
 .extra__links--auth button {
   margin: 0px 3px;
@@ -89,7 +90,7 @@
 .extra__links--auth button:hover {
   text-decoration: underline;
 }
-.extra-links a:hover {
+.extra-links span:hover {
   text-decoration: underline;
 }
 .form__input--title {

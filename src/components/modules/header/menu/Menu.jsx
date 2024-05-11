@@ -15,11 +15,11 @@ import {
 } from "utils/constants";
 import "./menu.css";
 import Login from "components/modules/auth/login/Login";
-import { setShowModal } from "store/slices/modalSlice";
+import { setShowModal } from "./../../../../redux/store/slices/modalSlice";
 
 export default function Menu() {
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const isAuth = useSelector((state) => state.user.auth);
   const handleLoginClick = (event) => {
     event.stopPropagation();
     dispatch(setShowModal(true));
@@ -49,7 +49,7 @@ export default function Menu() {
             <Link to={BASKET_ROUTE}>
               <img className="menu__image" src={basket} alt="basket" />
             </Link>
-            {isAuthenticated ? (
+            {isAuth ? (
               <Link to={ACCOUNT_ROUTE}>
                 <img className="menu__image" src={account} alt="account" />
               </Link>

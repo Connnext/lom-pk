@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./form.css";
 import Modal from "../modals/Modal";
 import RecoverPasswordForm from "./RecoverPasswordForm";
 import RegisterForm from "./RegisterForm";
 import LoginForm from "./LoginForm";
+import { useSelector } from "react-redux";
 
 const Form = ({ handleSubmit }) => {
-  const [formType, setFormType] = useState("login");
-
-  const handleFormChange = (newFormType) => {
-    setFormType(newFormType);
-  };
-
+  const formType = useSelector((state) => state.modal.formType);
   return (
     <Modal>
       <div className="form-wrapper">
@@ -24,29 +20,13 @@ const Form = ({ handleSubmit }) => {
               : "Вход"}
           </h2>
         </div>
-        <form className="form-container">
-          {formType === "login" && (
-            <LoginForm
-              formType={formType}
-              handleFormChange={handleFormChange}
-              handleSubmit={handleSubmit}
-            />
-          )}
-          {formType === "register" && (
-            <RegisterForm
-              formType={formType}
-              handleFormChange={handleFormChange}
-              handleSubmit={handleSubmit}
-            />
-          )}
-          {formType === "recoverPassword" && (
-            <RecoverPasswordForm
-              formType={formType}
-              handleFormChange={handleFormChange}
-              handleSubmit={handleSubmit}
-            />
-          )}
-        </form>
+        {formType === "login" && <LoginForm handleSubmit={handleSubmit} />}
+        {formType === "register" && (
+          <RegisterForm handleSubmit={handleSubmit} />
+        )}
+        {formType === "recoverPassword" && (
+          <RecoverPasswordForm handleSubmit={handleSubmit} />
+        )}
       </div>
     </Modal>
   );

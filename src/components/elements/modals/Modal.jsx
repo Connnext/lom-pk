@@ -1,6 +1,6 @@
 import React, { useCallback, useLayoutEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setShowModal } from "store/slices/modalSlice";
+import { setShowModal } from "./../../../redux/store/slices/modalSlice";
 import "./modal.css";
 import CloseButton from "../buttons/CloseButton";
 
