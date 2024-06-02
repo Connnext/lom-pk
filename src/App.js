@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import "./styles/reset.css";
 import "./styles/main.css";
 import AppRoutes from "./routes/Routes.jsx";
-import BackToTopButton from "./components/elements/buttons/BackToTopButton.jsx";
+import BackToTopButton from "./components/elements/buttons/backToTopButton/BackToTopButton.jsx";
 
 function App() {
   return (

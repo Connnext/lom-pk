@@ -5,6 +5,10 @@ import YaMap from "../components/elements/map/YaMap";
 import SliderStocks from "../components/elements/carousel/SliderStocks";
 import SliderBrands from "../components/elements/carousel/SliderBrands";
 import Layout from "components/modules/layouts/Layout";
+import {
+  useGetUserMeQuery,
+  useUserDeleteMutation,
+} from "./../redux/services/userService";
 
 export default function Delivery() {
   const paragraphStyle = {
@@ -148,6 +152,7 @@ export default function Delivery() {
       <p>Суббота с 11:00 до 18:00</p>
     </>
   );
+
   return (
     <Layout>
       <div className="container">

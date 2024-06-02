@@ -52,9 +52,9 @@ export default function Footer() {
               <Link className="footer__link" to={ABOUT_ROUTE}>
                 О компании
               </Link>
-              <Link className="footer__link" to={NEWS_ROUTE}>
+              {/* <Link className="footer__link" to={NEWS_ROUTE}>
                 Новости
-              </Link>
+              </Link> */}
               <Link className="footer__link" to={GUARANTEES_ROUTE}>
                 Гарантия и возврат
               </Link>

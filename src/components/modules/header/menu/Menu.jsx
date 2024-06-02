@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import SearchBar from "../../searchBar/SearchBar";
@@ -14,17 +14,34 @@ import {
   FAVORITES_ROUTE,
 } from "utils/constants";
 import "./menu.css";
-import Login from "components/modules/auth/login/Login";
-import { setShowModal } from "./../../../../redux/store/slices/modalSlice";
+import {
+  setFormType,
+  setShowCatalogModal,
+  setShowModal,
+} from "./../../../../redux/store/slices/modalSlice";
+import Form from "components/elements/forms/Form";
+import Catalog from "components/modules/catalog/Catalog";
 
 export default function Menu() {
   const dispatch = useDispatch();
-  const isAuth = useSelector((state) => state.user.auth);
-  const handleLoginClick = (event) => {
-    event.stopPropagation();
+  const roleFromRedux = useSelector((state) => state.user.role);
+  const role = localStorage.getItem("role") || roleFromRedux;
+  const showModal = useSelector((state) => state.modal.showCatalogModal);
+  const handleLoginClick = (e) => {
+    e.stopPropagation();
     dispatch(setShowModal(true));
+    dispatch(setFormType("login"));
   };
-
+  const handleBasketClick = (e) => {
+    e.stopPropagation();
+    dispatch(setShowModal(true));
+    dispatch(setFormType("emptyBasket"));
+  };
+  const handleCatalogClick = (e) => {
+    e.stopPropagation();
+    dispatch(setShowCatalogModal(true));
+  };
+  console.log(role);
   return (
     <div className="menu">
       <div className="container">
@@ -36,7 +53,10 @@ export default function Menu() {
                 Ломоносовcкий <br /> печной клуб
               </span>
             </div>
-            <button className="menu__catalog">Каталог</button>
+            <button onClick={handleCatalogClick} className="menu__catalog">
+              Каталог
+            </button>
+            {showModal && <Catalog />}
             <SearchBar />
           </div>
           <div className="menu__actions">
@@ -46,17 +66,24 @@ export default function Menu() {
             <Link to={COMPARE_ROUTE}>
               <img className="menu__image" src={compare} alt="compare" />
             </Link>
-            <Link to={BASKET_ROUTE}>
-              <img className="menu__image" src={basket} alt="basket" />
-            </Link>
-            {isAuth ? (
+            {basket > 0 ? (
+              <Link to={BASKET_ROUTE}>
+                <img className="menu__image" src={basket} alt="basket" />
+              </Link>
+            ) : (
+              <div onClick={handleBasketClick}>
+                <img className="menu__image" src={basket} alt="basket" />
+                <Form />
+              </div>
+            )}
+            {role != null ? (
               <Link to={ACCOUNT_ROUTE}>
                 <img className="menu__image" src={account} alt="account" />
               </Link>
             ) : (
               <div onClick={handleLoginClick}>
                 <img className="menu__image" src={account} alt="account" />
-                <Login />
+                <Form />
               </div>
             )}
           </div>

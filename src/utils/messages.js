@@ -28,7 +28,10 @@ export const successRemove = () => {
   message.success("Товар успешно удален!", [1]);
 };
 export const successAdd = () => {
-  message.success("+1", [1]);
+  message.success("Товар добавлен в корзину", [1]);
+};
+export const successDelete = () => {
+  message.success("Товар удален из корзины", [1]);
 };
 export const successChangeGoods = () => {
   message.success("Товар отредактирован!", [1]);
@@ -38,6 +41,12 @@ export const successMessageAdmin = () => {
 };
 export const successMessageCustomer = () => {
   message.success("Вы пошли как пользователь", [1]);
+};
+export const successMessageSignUp = () => {
+  message.success("Вы успешно зарегестрировались", [1]);
+};
+export const error = (string) => {
+  message.error(`${string}`, [1]);
 };
 export const errorMessage = () => {
   message.error("Введите коректный логин и пароль или зарегестрирустесь", [1]);

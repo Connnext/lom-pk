@@ -1,0 +1,16 @@
+.sort-products {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.sort-products label {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.sort-products select {
+  padding: 5px;
+  font-size: 16px;
+}

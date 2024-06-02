@@ -4,19 +4,40 @@
   gap: 4px;
   justify-content: center;
 }
-
+.img__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  position: relative;
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
 .card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   width: 300px;
   margin: 10px;
-  padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: 0.5s ease all;
+  transition: 0.3s ease-in-out all;
+}
+.card__is-hit {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: bold;
 }
 .card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* transform: scale(1.01); */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.401);
 }
 
 .link {
@@ -25,7 +46,7 @@
 }
 
 .card__image {
-  width: 100%;
+  width: 200px;
   height: 200px;
   object-fit: cover;
   border-radius: 5px;
@@ -33,27 +54,64 @@
 
 .card__title {
   font-size: 1rem;
-  margin: 10px 0px 5px 0px;
   text-decoration: none;
   color: #333;
+  width: 240px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
+.card__title.long-title {
+  height: 60px;
+}
+
+.card__title.short-title {
+  height: 30px;
+}
+.card__info--main {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
 .card__category {
   font-size: 0.875rem;
   color: #828b8d;
-  margin-bottom: 10px;
   line-height: 25px;
   font-weight: 500;
 }
 
 .card__price--wrapper {
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   align-items: center;
+  gap: 10px;
 }
 
 .card__price {
   font-size: 1.12rem;
   text-decoration: none;
   color: #333;
+}
+
+.card__price {
+  color: black;
+  font-weight: 600;
+  font-size: 26px;
+}
+.card__oldprice {
+  color: rgba(255, 0, 0, 0.555);
+  font-size: 14px;
+  margin-left: 10px;
+}
+.card__brand {
+  color: blueviolet;
+}
+.card__info--content {
+  height: 180px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.card__link {
+  padding: 0px 18px;
 }

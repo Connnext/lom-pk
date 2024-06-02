@@ -1,6 +1,6 @@
 // BackToTopButton.jsx
 import React, { useState, useEffect } from "react";
-import arrow from "./../../../img/arrow_top.svg";
+import arrow from "./../../../../img/arrow_top.svg";
 import "./BackToTopButton.css";
 
 const BackToTopButton = () => {

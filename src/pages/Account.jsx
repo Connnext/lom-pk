@@ -1,13 +1,20 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "./../redux/store/slices/userSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function Account() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const hadleLogout = () => {
+    dispatch(logoutUser());
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    navigate("/");
+  };
   return (
     <>
-      <h1>Welcome</h1>
-      <button onClick={() => dispatch(logoutUser())}>Log out from email</button>
+      <button onClick={() => hadleLogout()}>Log out</button>
     </>
   );
 }

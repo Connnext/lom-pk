@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import FormInput from "../inputs/FormInput";
-import FormButton from "../buttons/FormButton";
+import FormButton from "../buttons/formButton/FormButton";
 import FormLinks from "../links/FormLinks";
 import { useSelector } from "react-redux";
 
@@ -91,46 +91,41 @@ const RegisterForm = ({ handleSubmit }) => {
     }
   }, [emailError, passwordError, confirmError, password, confirmPassword]);
 
-  useEffect(() => {
-    if (showModal) {
-      document.body.classList.add("modal-open");
-    } else {
-      document.body.classList.remove("modal-open");
-    }
-  }, [showModal]);
-
   return (
-    <form onSubmit={handleFormSubmit} className="form-container">
-      <FormInput
-        title="Email:"
-        name="email"
-        value={email}
-        onChange={emailHandler}
-        onBlur={blurHandler}
-        error={emailDirty && emailError}
-        placeholder="lom@mail.ru"
-      />
-      <FormInput
-        title="Пароль:"
-        name="password"
-        value={password}
-        onChange={passwordHandler}
-        onBlur={blurHandler}
-        error={passwordDirty && passwordError}
-        placeholder="abc1234"
-      />
-      <FormInput
-        title="Подтвердите пароль"
-        name="confirmPassword"
-        value={confirmPassword}
-        onChange={confirmHandler}
-        onBlur={blurHandler}
-        error={confirmDirty && confirmError}
-        placeholder="abc1234"
-      />
-      <FormLinks />
-      <FormButton disabled={!formValid} text="Зарегистрироваться" />
-    </form>
+    <>
+      <h2 className="form__title">Регистрация</h2>
+      <form onSubmit={handleFormSubmit} className="form-container">
+        <FormInput
+          title="Email:"
+          name="email"
+          value={email}
+          onChange={emailHandler}
+          onBlur={blurHandler}
+          error={emailDirty && emailError}
+          placeholder="lom@mail.ru"
+        />
+        <FormInput
+          title="Пароль:"
+          name="password"
+          value={password}
+          onChange={passwordHandler}
+          onBlur={blurHandler}
+          error={passwordDirty && passwordError}
+          placeholder="abc1234"
+        />
+        <FormInput
+          title="Подтвердите пароль"
+          name="confirmPassword"
+          value={confirmPassword}
+          onChange={confirmHandler}
+          onBlur={blurHandler}
+          error={confirmDirty && confirmError}
+          placeholder="abc1234"
+        />
+        <FormLinks />
+        <FormButton disabled={!formValid} text="Зарегистрироваться" />
+      </form>
+    </>
   );
 };
 

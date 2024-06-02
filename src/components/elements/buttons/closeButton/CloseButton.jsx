@@ -1,15 +1,8 @@
 import React from "react";
-
+import "./CloseButton";
 const CloseButton = ({ onClick }) => {
   return (
-    <button
-      style={{
-        cursor: "pointer",
-        display: "flex",
-        alignItems: "center",
-      }}
-      onClick={onClick}
-    >
+    <button className="close__button" onClick={onClick}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"

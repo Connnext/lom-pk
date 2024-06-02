@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import { useSearchQuery } from "./../../../redux/services/productService";
+
 let search = (
   <svg
     className="search__img"
@@ -12,31 +14,72 @@ let search = (
   </svg>
 );
 
-const SearchBar = ({ onSearch }) => {
+const debounce = (func, delay) => {
+  let timeout;
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      func(...args);
+    }, delay);
+  };
+};
+
+const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [queryData, setQueryData] = useState(null);
+  const { data, error, isLoading } = useSearchQuery(queryData, {
+    skip: !queryData || queryData.query.length < 3,
+  });
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
+  const debouncedSearch = useCallback(
+    debounce((query) => {
+      if (query.length >= 3) {
+        setQueryData({ query });
+      }
+    }, 500),
+    []
+  );
+
+  useEffect(() => {
+    debouncedSearch(searchTerm);
+  }, [searchTerm, debouncedSearch]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSearch(searchTerm);
+    if (searchTerm.length >= 3) {
+      setQueryData({ query: searchTerm });
+    }
   };
 
   return (
-    <form className="search-form" onSubmit={handleSubmit}>
-      <input
-        type="text"
-        className="search-input"
-        placeholder="Введите название товара"
-        value={searchTerm}
-        onChange={handleChange}
-      />
-      <button type="submit" className="search-button">
-        {search}
-      </button>
-    </form>
+    <div className="search-bar">
+      <form className="search-form" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          className="search-input"
+          placeholder="Введите название товара"
+          value={searchTerm}
+          onChange={handleChange}
+        />
+        <button type="submit" className="search-button">
+          {search}
+        </button>
+      </form>
+      {console.log(data)}
+      {isLoading && <div>Loading...</div>}
+      {error && <div>Error fetching data</div>}
+      {data && (
+        <ul className="search-results">
+          {data.results.map((item) => (
+            <li key={item.id}>{item.name}</li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 };
 

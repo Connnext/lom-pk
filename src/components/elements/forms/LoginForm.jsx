@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import FormInput from "../inputs/FormInput";
-import FormButton from "../buttons/FormButton";
+import FormButton from "../buttons/formButton/FormButton";
 import FormLinks from "../links/FormLinks";
 import { useSelector } from "react-redux";
 
@@ -65,37 +65,32 @@ const LoginForm = ({ handleSubmit }) => {
     }
   }, [emailError, passwordError]);
 
-  useEffect(() => {
-    if (showModal) {
-      document.body.classList.add("modal-open");
-    } else {
-      document.body.classList.remove("modal-open");
-    }
-  }, [showModal]);
-
   return (
-    <form onSubmit={handleFormSubmit} className="form-container">
-      <FormInput
-        title="Email:"
-        name="email"
-        value={email}
-        onChange={emailHandler}
-        onBlur={blurHandler}
-        error={emailDirty && emailError}
-        placeholder="lom@mail.ru"
-      />
-      <FormInput
-        title="Пароль:"
-        name="password"
-        value={password}
-        onChange={passwordHandler}
-        onBlur={blurHandler}
-        error={passwordDirty && passwordError}
-        placeholder="abc1234"
-      />
-      <FormLinks />
-      <FormButton disabled={!formValid} text="Войти" />
-    </form>
+    <>
+      <h2 className="form__title">Вход</h2>
+      <form onSubmit={handleFormSubmit} className="form-container">
+        <FormInput
+          title="Email:"
+          name="email"
+          value={email}
+          onChange={emailHandler}
+          onBlur={blurHandler}
+          error={emailDirty && emailError}
+          placeholder="lom@mail.ru"
+        />
+        <FormInput
+          title="Пароль:"
+          name="password"
+          value={password}
+          onChange={passwordHandler}
+          onBlur={blurHandler}
+          error={passwordDirty && passwordError}
+          placeholder="abc1234"
+        />
+        <FormLinks />
+        <FormButton disabled={!formValid} text="Войти" />
+      </form>
+    </>
   );
 };
 

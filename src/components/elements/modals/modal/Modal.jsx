@@ -1,8 +1,8 @@
-import React, { useCallback, useLayoutEffect } from "react";
+import React, { useCallback, useEffect, useLayoutEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setShowModal } from "./../../../redux/store/slices/modalSlice";
+import { setShowModal } from "./../../../../redux/store/slices/modalSlice";
+import CloseButton from "../../buttons/closeButton/CloseButton";
 import "./modal.css";
-import CloseButton from "../buttons/CloseButton";
 
 export default function Modal({ children }) {
   const dispatch = useDispatch();
@@ -19,7 +19,17 @@ export default function Modal({ children }) {
       handleCloseModal();
     }
   }, []);
+  useEffect(() => {
+    if (showModal) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
 
+    return () => {
+      document.body.classList.remove("no-scroll");
+    };
+  }, [showModal]);
   useLayoutEffect(() => {
     if (showModal) {
       document.addEventListener("mousedown", handleClickOutside);

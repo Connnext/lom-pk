@@ -1,20 +1,9 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { api } from "./api";
 
-export const userApi = createApi({
-  reducerPath: "userApi",
+export const userApi = api.injectEndpoints({
+  // reducerPath: "userApi",
   tagTypes: ["User"],
-  baseQuery: fetchBaseQuery({
-    baseUrl: "https://2832-178-67-70-180.ngrok-free.app/",
-  }),
   endpoints: (build) => ({
-    // getUsers: build.query({
-    //   query: () => `/users`,
-    //   providesTags: (result) => ["User"],
-    // }),
-    // getSingleUser: build.query({
-    //   query: (id) => `/users/${id}`,
-    //   providesTags: (result) => ["User"],
-    // }),
     auth: build.mutation({
       query: (data) => ({
         url: "/auth",
@@ -27,6 +16,7 @@ export const userApi = createApi({
           "Content-Type": "application/x-www-form-urlencoded",
         },
       }),
+      invalidatesTags: ["User"],
     }),
     signUp: build.mutation({
       query: (data) => ({
@@ -39,30 +29,54 @@ export const userApi = createApi({
       }),
       invalidatesTags: ["User"],
     }),
-    // addUser: build.mutation({
-    //   query: (body) => ({
-    //     url: `/users`,
-    //     method: "POST",
-    //     body: {
-    //       email: body.email,
-    //       password: body.password,
-    //       name: body.name,
-    //       role: body.role,
-    //       basket: {
-    //         item: [],
-    //       },
-    //       history: {},
-    //     },
-    //   }),
-    //   invalidatesTags: ["User"],
-    // }),
+    userUpdate: build.mutation({
+      query: (data) => ({
+        url: "/users/update",
+        method: "POST",
+        body: {
+          name: data.name,
+          surname: data.surname,
+          patronymic: data.patronymic,
+          address: {
+            region: data.address.region,
+            city: data.address.city,
+            street: data.address.street,
+            num_of_house: data.address.num_of_house,
+            postcode: data.address.postcode,
+          },
+        },
+        headers: {
+          accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }),
+      invalidatesTags: ["User"],
+    }),
+    getUserMe: build.query({
+      query: () => ({
+        url: "users/me",
+      }),
+      providesTags: ["User"],
+    }),
+    userDelete: build.mutation({
+      query: (data) => ({
+        url: `/users/${data.user_id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["User"],
+    }),
+    confirmEmail: build.query({
+      query: (token) => `/confirm/${token}`,
+      providesTags: ["User"],
+    }),
   }),
 });
 
 export const {
-  useGetUsersQuery,
-  useGetSingleUserQuery,
-  useAddUserMutation,
+  useGetUserMeQuery,
   useAuthMutation,
   useSignUpMutation,
+  useUserUpdateMutation,
+  useUserDeleteMutation,
+  useConfirmEmailQuery,
 } = userApi;

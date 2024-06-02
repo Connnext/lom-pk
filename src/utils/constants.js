@@ -1,5 +1,6 @@
+export const HOME_ROUTE = "/";
 export const ADMIN_ROUTE = "/admin";
-export const SHOP_ROUTE = "/";
+export const SHOP_ROUTE = "/shop";
 export const BASKET_ROUTE = "/basket";
 export const ITEM_ROUTE = "/item";
 export const ABOUT_ROUTE = "/about";
@@ -12,14 +13,11 @@ export const COMPARE_ROUTE = "/compare";
 export const NEWS_ROUTE = "/news";
 export const CONTACTS_ROUTE = "/contacts";
 export const GUARANTEES_ROUTE = "/guarantees";
-export const REGISTER_ROUTE = "/register";
-export const LOGIN_ROUTE = "/login";
-export const RECOVER_PASSWORD_ROUTE = "/forgot";
+export const CONFIRM_ROUTE = "/confirm/:token";
+
 export const PHONE_NUMBER = "tel:88129579756";
 export const MAIL_ADRESS = "mailto:info@lom-pk.ru";
-
-export const ADMIN_EMAIL = "lom@mail.ru";
-export const ADMIN_PASSWORD = "123456";
+export const API = "http://localhost:8000/";
 
 export const ADDRESS = (
   <>

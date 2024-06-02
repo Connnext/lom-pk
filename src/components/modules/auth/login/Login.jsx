@@ -1,43 +1,39 @@
 import React from "react";
-import Form from "components/elements/forms/Form";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  loginAdmin,
-  loginUser,
-} from "./../../../../redux/store/slices/userSlice";
+import { loginUser } from "./../../../../redux/store/slices/userSlice";
 import { useAuthMutation } from "./../../../../redux/services/userService";
-import { errorMessage, successMessageCustomer } from "utils/messages";
+import {
+  errorMessage,
+  successMessageAdmin,
+  successMessageCustomer,
+} from "utils/messages";
+import LoginForm from "components/elements/forms/LoginForm";
+import { setShowModal } from "./../../../../redux/store/slices/modalSlice";
+import Spinner from "components/elements/spinners/Spinner";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-  const [auth, { isLoading }] = useAuthMutation();
+  const [auth, { isLoading, isError }] = useAuthMutation();
   const dispatch = useDispatch();
-  // const isAuth = useSelector((state) => state.user.auth);
-  // const isAuthAdmin = useSelector((state) => state.user.authAdmin);
+  const navigate = useNavigate();
   const handleLogin = async (data) => {
     try {
       const response = await auth(data).unwrap();
-
-      // Need correct role
-
-      // const role = response.data.role;
-      // role === "admin"
-      //   ? dispatch(loginAdmin(data))
-      //   : (dispatch(loginUser(data)), successMessageCustomer());
-
-      // Optional
-
-      dispatch(loginUser(data));
-      successMessageCustomer();
-    } catch (err) {
-      // if (hasErrorField(err)) {
-      //   setError(err.data.error)
-      // }
-      console.log(err);
+      const access = response?.access_token;
+      const role = response?.role;
+      console.log(role);
+      dispatch(setShowModal(false));
+      if (access && role) {
+        localStorage.setItem("token", access);
+        localStorage.setItem("role", role);
+        dispatch(loginUser(role));
+        role === "admin" ? successMessageAdmin() : successMessageCustomer();
+        navigate("/");
+      }
+    } catch {
       errorMessage();
     }
   };
-  if (isLoading) {
-    return <h1>loading...</h1>;
-  }
-  return <Form handleSubmit={handleLogin} />;
+  if (isLoading) return <Spinner />;
+  return <LoginForm handleSubmit={handleLogin} />;
 }

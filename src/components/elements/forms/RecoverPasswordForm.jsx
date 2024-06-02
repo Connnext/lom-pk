@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import FormInput from "../inputs/FormInput";
-import FormButton from "../buttons/FormButton";
+import FormButton from "../buttons/formButton/FormButton";
 import FormLinks from "../links/FormLinks";
 import { useSelector } from "react-redux";
 
@@ -45,28 +45,23 @@ const RecoverPasswordForm = ({ handleSubmit }) => {
     }
   }, [emailError]);
 
-  useEffect(() => {
-    if (showModal) {
-      document.body.classList.add("modal-open");
-    } else {
-      document.body.classList.remove("modal-open");
-    }
-  }, [showModal]);
-
   return (
-    <form onSubmit={handleFormSubmit} className="form-container">
-      <FormInput
-        title="Email:"
-        name="email"
-        value={email}
-        onChange={emailHandler}
-        onBlur={blurHandler}
-        error={emailDirty && emailError}
-        placeholder="lom@mail.ru"
-      />
-      <FormLinks />
-      <FormButton disabled={!formValid} text="Отправить запрос" />
-    </form>
+    <>
+      <h2 className="form__title">Восстановление пароля</h2>
+      <form onSubmit={handleFormSubmit} className="form-container">
+        <FormInput
+          title="Email:"
+          name="email"
+          value={email}
+          onChange={emailHandler}
+          onBlur={blurHandler}
+          error={emailDirty && emailError}
+          placeholder="lom@mail.ru"
+        />
+        <FormLinks />
+        <FormButton disabled={!formValid} text="Отправить запрос" />
+      </form>
+    </>
   );
 };
 

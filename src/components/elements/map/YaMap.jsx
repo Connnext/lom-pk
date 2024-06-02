@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
-
 export default function YaMap({ width, height }) {
   const [isOverlayVisible, setIsOverlayVisible] = useState(true);
   const [isSvgVisible, setIsSvgVisible] = useState(false);

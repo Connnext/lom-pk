@@ -1,0 +1,21 @@
+.show__more--wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 95px;
+  padding-top: 10px;
+}
+
+.show__more--button {
+  color: black;
+  transition: 0.5s color;
+}
+.show__more--button:hover {
+  color: #850a0a;
+}
+.show__more--button::after {
+  content: "→";
+  position: absolute;
+
+  margin-left: 5px;
+  font-weight: bold;
+}
