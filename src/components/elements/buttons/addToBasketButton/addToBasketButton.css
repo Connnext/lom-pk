@@ -2,37 +2,45 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin-bottom: 20px;
 }
 
-.decrement-button,
+.decrement-button {
+  background-color: #850a0a;
+  border-radius: 5px;
+  width: 50px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  height: 44px;
+  transition: 0.1s;
+}
+
 .increment-button {
   background-color: #850a0a;
   border-radius: 5px;
-  width: 80px;
+  width: 50px;
   border: none;
   color: white;
-  padding: 10px;
   cursor: pointer;
   font-size: 16px;
-  height: 50px;
+  height: 44px;
+  transition: 0.1s;
 }
+
 .decrement-button:hover {
   background-color: #6e0505;
 }
-
 .increment-button:hover {
   background-color: #6e0505;
 }
 
-.decrement-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
 .count {
-  margin: 0 10px;
   font-size: 25px;
+  border: 2px solid grey;
+  border-radius: 10px;
+  width: 50px;
+  text-align: center;
 }
 .add__product {
   background: #850a0a;
@@ -44,4 +52,10 @@
 }
 .add__product:hover {
   background-color: #6e0505;
+}
+.quantity-control-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }

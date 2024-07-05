@@ -1,0 +1,14 @@
+.clear__basket--button {
+  border: #850a0a 2px solid;
+  background: white;
+  color: black;
+  border-radius: 5px;
+  width: 268px;
+  height: 50px;
+  text-align: center;
+  transition: 0.4s all ease-in-out;
+}
+.clear__basket--button:hover {
+  background: #850a0a;
+  color: white;
+}

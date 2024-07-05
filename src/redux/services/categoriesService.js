@@ -1,6 +1,6 @@
 import { api } from "./api";
 
-export const userApi = api.injectEndpoints({
+export const categoriesApi = api.injectEndpoints({
   // reducerPath: "categoriesApi",
   tagTypes: ["Categories"],
   endpoints: (build) => ({
@@ -66,4 +66,4 @@ export const {
   useUpdateCategoryMutation,
   useDeleteCategoryMutation,
   useChangeSorOrderCategoryMutation,
-} = userApi;
+} = categoriesApi;

@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   showModal: false,
   showCatalogModal: false,
-  formType: "login",
+  formType: null,
 };
 
 const modalSlice = createSlice({

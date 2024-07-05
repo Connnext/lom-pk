@@ -1,0 +1,40 @@
+.sliderCard__is-hit {
+  background-color: red;
+  position: absolute;
+  top: 0px;
+  left: -35px;
+  color: white;
+  padding: 2px 10px;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: bold;
+}
+.sliderCard__is-new {
+  background-color: rgb(17, 255, 0);
+  position: absolute;
+  top: 0px;
+  left: -35px;
+  color: white;
+  padding: 2px 10px;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: bold;
+}
+.sliderCard__is-promo {
+  background-color: rgb(255, 251, 0);
+  position: absolute;
+  top: 0px;
+  left: -35px;
+  color: white;
+  padding: 2px 10px;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: bold;
+}
+.productItem__img--wrapper {
+  position: relative;
+}
+
+.big__Icon {
+  font-size: 18px;
+}

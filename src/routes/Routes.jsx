@@ -1,16 +1,21 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Basket from "pages/Basket";
-import ItemPage from "pages/ItemPage";
-import Compare from "pages/Compare";
-import Account from "pages/Account";
-import Favorites from "pages/Favorites";
-import Pay from "pages/Pay";
-import Delivery from "pages/Delivery";
-import News from "pages/News";
-import AboutUs from "pages/AboutUs";
-import Admin from "pages/Admin";
-
+import Basket from "pages/basket/Basket";
+import ItemPage from "pages/itemPage/ItemPage";
+import Compare from "pages/compare/Compare";
+import Account from "pages/account/Account";
+import Favorites from "pages/favorites/Favorites";
+import Pay from "pages/pay/Pay";
+import Delivery from "pages/delivery/Delivery";
+import AboutUs from "pages/aboutUs/AboutUs";
+import Admin from "pages/admin/Admin";
+import Guarantees from "pages/guarantees/Guarantees";
+import Contacts from "pages/contacts/Contacts";
+import Home from "pages/home/Home";
+import Shop from "pages/shop/Shop";
+import Confirm from "pages/confirm/Confirm";
+import Order from "pages/order/Order";
+import Reset from "pages/reset/Reset";
 import {
   ABOUT_ROUTE,
   ACCOUNT_ROUTE,
@@ -27,16 +32,14 @@ import {
   GUARANTEES_ROUTE,
   SHOP_ROUTE,
   CONFIRM_ROUTE,
+  ORDER_ROUTE,
+  RESET_ROUTE,
 } from "./../utils/constants";
-import Guarantees from "pages/Guarantees";
-import Contacts from "pages/Contacts";
-import Home from "pages/Home";
-import Shop from "pages/Shop";
-import Confirm from "pages/Confirm";
 
 export default function AppRoutes() {
   return (
     <Routes>
+      <Route path="*" element={<Home />} />
       <Route path={HOME_ROUTE} element={<Home />} />
       <Route path={SHOP_ROUTE} element={<Shop />} />
       <Route path={ADMIN_ROUTE} element={<Admin />} />
@@ -48,11 +51,11 @@ export default function AppRoutes() {
       <Route path={PAY_ROUTE} element={<Pay />} />
       <Route path={DELIVERY_ROUTE} element={<Delivery />} />
       <Route path={ABOUT_ROUTE} element={<AboutUs />} />
-      <Route path={NEWS_ROUTE} element={<News />} />
       <Route path={CONTACTS_ROUTE} element={<Contacts />} />
       <Route path={GUARANTEES_ROUTE} element={<Guarantees />} />
       <Route path={CONFIRM_ROUTE} element={<Confirm />} />
-      <Route path="*" element={<Home />} />
+      <Route path={ORDER_ROUTE} element={<Order />} />
+      <Route path={RESET_ROUTE} element={<Reset />} />
     </Routes>
   );
 }

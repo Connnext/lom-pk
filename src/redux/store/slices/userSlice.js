@@ -1,30 +1,80 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  role: null,
+  items: [],
+  is_superuser: false,
+  is_verified: false,
+  is_active: false,
+  is_auth: false,
+  isValidDelivery: false,
+  isValidPersonal: false,
+  userData: {
+    shipping_method: "",
+    email: "",
+    password: "",
+    phone: "",
+    surname: "",
+    name: "",
+    patronymic: "",
+    area: "",
+    region: "",
+    city: "",
+    street: "",
+    num_of_house: "",
+    postcode: "",
+    ids: [],
+  },
 };
 
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    registerUser(state, action) {
-      state.role = action.payload;
-    },
-    loginUser(state, action) {
-      state.role = action.payload;
+    authUser(state) {
+      state.is_verified = true;
+      state.is_active = true;
+      state.is_auth = true;
     },
     logoutUser(state) {
-      state.role = null;
+      state.is_auth = false;
     },
-    recoverPassword(state, action) {
-      // Здесь можно добавить логику для обработки восстановления пароля
-      // Например, отправка запроса на сервер для восстановления пароля
+    setUserData(state, action) {
+      state.userData = {
+        ...state.userData,
+        ...action.payload,
+      };
+    },
+    setBasket(state, action) {
+      state.items = action.payload.items;
+    },
+    updateBasketItem(state, action) {
+      const { product_id, amount } = action.payload;
+      const itemIndex = state.items.findIndex(
+        (item) => item.product_id === product_id
+      );
+      if (itemIndex !== -1) {
+        state.items[itemIndex].amount = amount;
+      } else {
+        state.items.push({ product_id, amount });
+      }
+    },
+    orderDeliveryValid(state, action) {
+      state.isValidDelivery = action.payload;
+    },
+    orderPersonalValid(state, action) {
+      state.isValidPersonal = action.payload;
     },
   },
 });
 
-export const { loginUser, logoutUser, registerUser, recoverPassword } =
-  userSlice.actions;
+export const {
+  authUser,
+  logoutUser,
+  setUserData,
+  setBasket,
+  updateBasketItem,
+  orderDeliveryValid,
+  orderPersonalValid,
+} = userSlice.actions;
 
 export default userSlice.reducer;

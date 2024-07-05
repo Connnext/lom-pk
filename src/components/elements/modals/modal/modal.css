@@ -10,7 +10,7 @@
   justify-content: center;
   opacity: 0;
   pointer-events: none;
-  transition: 0.5s;
+  transition: 0.5s ease-in-out;
   z-index: 10;
 }
 
@@ -20,7 +20,6 @@
 }
 
 .modal__content {
-  transition: 0.4s;
   transform: scale(0.5);
 }
 .modal__content.active {
@@ -33,4 +32,13 @@
 .modal__button {
   display: flex;
   justify-content: flex-end;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  overflow: hidden;
 }

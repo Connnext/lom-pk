@@ -1,0 +1,33 @@
+.properties-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.properties-table th,
+.properties-table td {
+  border: 1px solid #ddd;
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.properties-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  color: #333;
+  font-size: 26px;
+}
+
+.properties-table tr:nth-child(even) {
+  background-color: #f1f1f1;
+}
+
+.properties-table tr:hover {
+  background-color: #ddd;
+}
+
+.properties-table td {
+  color: #555;
+}

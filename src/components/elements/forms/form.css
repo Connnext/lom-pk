@@ -18,6 +18,7 @@
   font-size: 24px;
   line-height: 35px;
   letter-spacing: -2%;
+  margin-bottom: 20px;
 }
 .close-btn {
   position: absolute;
@@ -28,7 +29,9 @@
 }
 
 .form-container {
-  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .form-input {
@@ -42,9 +45,7 @@
 }
 
 .extra-links {
-  margin-top: -15px;
   text-align: right;
-  margin-top: 15px;
 }
 .extra__links--auth {
   display: flex;
@@ -81,7 +82,7 @@
   line-height: 20px;
   letter-spacing: -2%;
   font-weight: 500;
-  margin: 25px 3px 4px 5px;
+  margin: 0px 3px 4px 5px;
   color: #828b8d;
 }
 .form-button[disabled] {

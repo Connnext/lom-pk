@@ -1,13 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useGetProductQuery } from "../../../../redux/services/productService";
+import { useGetProductsQuery } from "../../../../redux/services/productService";
 import Spinner from "../../spinners/Spinner";
 import "./showMoreButton.css";
 
 const ShowMoreButton = ({ filter }) => {
   const navigate = useNavigate();
-  const { data, isLoading } = useGetProductQuery({ filter });
-  console.log(filter);
+  const { data, isLoading } = useGetProductsQuery({ filter });
   const handleClick = () => {
     navigate(`/shop?filter=${filter}`);
   };

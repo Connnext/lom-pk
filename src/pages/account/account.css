@@ -1,0 +1,25 @@
+.account__button--exit {
+  color: #a50808;
+  padding: 2px 35px;
+  border: 2px solid #a50808;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+  transition: 0.3s all;
+}
+.account__button--exit:hover {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+}
+.account__buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 35px;
+}
+.account {
+  margin-bottom: 30px;
+}
+.account__forms {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}

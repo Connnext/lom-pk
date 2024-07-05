@@ -1,0 +1,56 @@
+.order__sum--title {
+  font-size: 28px;
+  font-weight: 600;
+}
+.order__price--title {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 19px;
+  color: #3d3c3c;
+  word-wrap: break-word;
+}
+.order__price--count {
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 35px;
+  word-wrap: break-word;
+}
+.order__sum {
+  /* display: flex;
+  flex-direction: column;
+  gap: 20px; */
+  width: 500px;
+}
+.order__sum--info {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 25px;
+  color: #7a7a7a;
+  word-wrap: break-word;
+}
+.order__main {
+  width: 827px;
+}
+.order__main--info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.order__item--title {
+  font-size: 20px;
+  width: 400px;
+  word-break: break-all;
+  color: #7a7a7a;
+}
+.order__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+.order__item__total {
+  margin: 0;
+  font-size: 16px;
+  color: #888;
+}

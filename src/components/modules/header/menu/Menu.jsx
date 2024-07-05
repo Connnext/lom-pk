@@ -3,17 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import SearchBar from "../../searchBar/SearchBar";
 import Logo from "../../../elements/logo/Logo";
-import basket from "./../../../../img/basket.png";
-import compare from "./../../../../img/compare.png";
-import favorites from "./../../../../img/favorites.png";
+import basketImg from "./../../../../img/basket.png";
+// import compare from "./../../../../img/compare.png";
+// import favorites from "./../../../../img/favorites.png";
 import account from "./../../../../img/account.png";
 import {
   ACCOUNT_ROUTE,
   BASKET_ROUTE,
-  COMPARE_ROUTE,
-  FAVORITES_ROUTE,
+  // COMPARE_ROUTE,
+  // FAVORITES_ROUTE,
 } from "utils/constants";
-import "./menu.css";
 import {
   setFormType,
   setShowCatalogModal,
@@ -21,16 +20,26 @@ import {
 } from "./../../../../redux/store/slices/modalSlice";
 import Form from "components/elements/forms/Form";
 import Catalog from "components/modules/catalog/Catalog";
+import { useGetBasketQuery } from "./../../../../redux/services/basketService";
+import "./menu.css";
 
 export default function Menu() {
   const dispatch = useDispatch();
-  const roleFromRedux = useSelector((state) => state.user.role);
-  const role = localStorage.getItem("role") || roleFromRedux;
+  const { data: dataBasket, isError, isLoading } = useGetBasketQuery();
+  console.log(dataBasket);
+  const formType = useSelector((state) => state.modal.formType);
   const showModal = useSelector((state) => state.modal.showCatalogModal);
+  const is_auth_FromRedux = useSelector((state) => state.user.is_auth);
+  const is_auth =
+    localStorage.getItem("is_auth") == "true" || is_auth_FromRedux;
+
+  const basket = (dataBasket?.items.length && is_auth) || 0;
+  console.log(basket);
+
   const handleLoginClick = (e) => {
     e.stopPropagation();
     dispatch(setShowModal(true));
-    dispatch(setFormType("login"));
+    if (!formType) dispatch(setFormType("login"));
   };
   const handleBasketClick = (e) => {
     e.stopPropagation();
@@ -41,7 +50,7 @@ export default function Menu() {
     e.stopPropagation();
     dispatch(setShowCatalogModal(true));
   };
-  console.log(role);
+
   return (
     <div className="menu">
       <div className="container">
@@ -60,32 +69,34 @@ export default function Menu() {
             <SearchBar />
           </div>
           <div className="menu__actions">
-            <Link to={FAVORITES_ROUTE}>
+            {/* <Link to={FAVORITES_ROUTE}>
               <img className="menu__image" src={favorites} alt="favorites" />
             </Link>
             <Link to={COMPARE_ROUTE}>
               <img className="menu__image" src={compare} alt="compare" />
-            </Link>
+            </Link> */}
             {basket > 0 ? (
               <Link to={BASKET_ROUTE}>
-                <img className="menu__image" src={basket} alt="basket" />
+                <img className="menu__image" src={basketImg} alt="basket" />
               </Link>
             ) : (
               <div onClick={handleBasketClick}>
-                <img className="menu__image" src={basket} alt="basket" />
-                <Form />
+                <img className="menu__image" src={basketImg} alt="basket" />
+                {/* <Form /> */}
               </div>
             )}
-            {role != null ? (
+
+            {is_auth ? (
               <Link to={ACCOUNT_ROUTE}>
                 <img className="menu__image" src={account} alt="account" />
               </Link>
             ) : (
               <div onClick={handleLoginClick}>
                 <img className="menu__image" src={account} alt="account" />
-                <Form />
+                {/* <Form /> */}
               </div>
             )}
+            {!is_auth || basket < 1 ? <Form /> : null}
           </div>
         </div>
       </div>

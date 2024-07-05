@@ -22,13 +22,22 @@ export const errorAddGoods = () => {
   message.error("Заполните все данные!", [1]);
 };
 export const successConfirm = () => {
-  message.success("Заказ успешно оформлен!", [1]);
+  message.success("Заказ успешно оформлен!", [3]);
 };
 export const successRemove = () => {
-  message.success("Товар успешно удален!", [1]);
+  message.success("Товар успешно удален!", [2]);
 };
 export const successAdd = () => {
-  message.success("Товар добавлен в корзину", [1]);
+  message.success("Товар добавлен в корзину", [2]);
+};
+export const successIncrement = () => {
+  message.success("+1", [2]);
+};
+export const successSaveChanges = () => {
+  message.success("Изменения успешно сохранены", [3]);
+};
+export const successDecrement = () => {
+  message.success("-1", [2]);
 };
 export const successDelete = () => {
   message.success("Товар удален из корзины", [1]);
@@ -36,21 +45,53 @@ export const successDelete = () => {
 export const successChangeGoods = () => {
   message.success("Товар отредактирован!", [1]);
 };
+export const successOrderCall = () => {
+  message.success("Заявка оставлена!", [1]);
+};
 export const successMessageAdmin = () => {
-  message.success("Вы пошли как администратор", [1]);
+  message.success("Вы вошли как администратор", [2]);
 };
 export const successMessageCustomer = () => {
-  message.success("Вы пошли как пользователь", [1]);
+  message.success("Вы вошли как пользователь", [2]);
 };
 export const successMessageSignUp = () => {
-  message.success("Вы успешно зарегестрировались", [1]);
+  message.success(
+    "Вы успешно зарегестрировались, необходимо войти, используя логин и пароль",
+    [8]
+  );
 };
-export const error = (string) => {
+export const successMessageResetPassword = () => {
+  message.success(
+    "Вы успешно изменили пароль, необходимо войти, используя логин и новый пароль",
+    [8]
+  );
+};
+export const successMessageLogout = () => {
+  message.success("Вы вышли из профиля", [2]);
+};
+export const successRequestVerifyMessage = (email) => {
+  message.success(`Письмо успешно отправлено, проверьте вашу почту ${email}`, [
+    5,
+  ]);
+};
+export const successRecoverPasswordMessage = (email) => {
+  message.success(
+    `Письмо для восстановления пароля успешно для отправлено, проверьте вашу почту ${email}`,
+    [5]
+  );
+};
+export const errorMessageAddToBasket = () => {
+  message.error("Количество не может быть меньше 1", [3]);
+};
+export const errorWithText = (string) => {
   message.error(`${string}`, [1]);
 };
+export const success = (string) => {
+  message.success(`${string}`, [1]);
+};
 export const errorMessage = () => {
-  message.error("Введите коректный логин и пароль или зарегестрирустесь", [1]);
+  message.error("Введите коректный логин и пароль или зарегестрирустесь", [2]);
 };
 export const errorUserLogIn = () => {
-  message.error("Сначала нужный выйти из профиля, чтобы зайти в новый", [1]);
+  message.error("Сначала нужно выйти из профиля, чтобы зайти в новый", [1]);
 };

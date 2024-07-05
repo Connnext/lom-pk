@@ -6,7 +6,7 @@ export const userApi = api.injectEndpoints({
   endpoints: (build) => ({
     getBasket: build.query({
       query: () => ({
-        url: `/basket/`,
+        url: `/baskets/`,
         headers: {
           accept: "application/json",
         },
@@ -15,7 +15,7 @@ export const userApi = api.injectEndpoints({
     }),
     updateBasket: build.mutation({
       query: (data) => ({
-        url: "/basket",
+        url: "/baskets/",
         method: "PUT",
         body: {
           product_id: data.product_id,
@@ -30,22 +30,21 @@ export const userApi = api.injectEndpoints({
     }),
     orderBasket: build.mutation({
       query: (data) => ({
-        url: `/basket/order`,
+        url: `/baskets/order/`,
         method: "POST",
         body: {
           shipping_method: data.shipping_method,
-          user_address: {
-            region: data.region,
-            city: data.city,
-            street: data.street,
-            num_of_house: data.num_of_house,
-            postcode: data.postcode,
-          },
-
           phone: data.phone,
           name: data.name,
           surname: data.surname,
           patronymic: data.patronymic,
+          area: data.area || "-",
+          region: data.region || "-",
+          city: data.city || "-",
+          street: data.street || "-",
+          num_of_house: data.num_of_house || "-",
+          postcode: data.postcode || 0,
+          ids: data.ids || [],
         },
         headers: {
           accept: "application/json",

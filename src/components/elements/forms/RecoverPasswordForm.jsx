@@ -4,8 +4,7 @@ import FormButton from "../buttons/formButton/FormButton";
 import FormLinks from "../links/FormLinks";
 import { useSelector } from "react-redux";
 
-const RecoverPasswordForm = ({ handleSubmit }) => {
-  const showModal = useSelector((state) => state.modal.showModal);
+export default function RecoverPasswordForm({ handleSubmit }) {
   const [email, setEmail] = useState("");
   const [emailDirty, setEmailDirty] = useState(false);
   const [emailError, setEmailError] = useState("Email не может быть пустым");
@@ -63,6 +62,4 @@ const RecoverPasswordForm = ({ handleSubmit }) => {
       </form>
     </>
   );
-};
-
-export default RecoverPasswordForm;
+}

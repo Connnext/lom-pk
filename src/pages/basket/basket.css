@@ -1,0 +1,22 @@
+.basket__items--wrapper {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 20px;
+}
+.basket__info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.basket__select--actions {
+  padding-bottom: 30px;
+  border-bottom: 1px solid #ccc;
+}
+.empty-basket-link {
+  transition: color 0.3s;
+  color: rgb(133, 10, 10);
+}
+.empty-basket-link:hover {
+  color: rgb(165, 8, 8);
+}

@@ -4,46 +4,32 @@ export const userApi = api.injectEndpoints({
   // reducerPath: "userApi",
   tagTypes: ["User"],
   endpoints: (build) => ({
-    auth: build.mutation({
-      query: (data) => ({
-        url: "/auth",
-        method: "POST",
-        body: new URLSearchParams({
-          username: data.email,
-          password: data.password,
-        }).toString(),
+    currentUser: build.query({
+      query: () => ({
+        url: "/users/me",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          accept: "application/json",
         },
       }),
-      invalidatesTags: ["User"],
+      providesTags: ["User"],
     }),
-    signUp: build.mutation({
+    patchCurrentUser: build.mutation({
       query: (data) => ({
-        url: "/sign-up",
-        method: "POST",
+        url: "/users/me",
+        method: "PATCH",
         body: {
-          email: data.email,
-          password: data.password,
-        },
-      }),
-      invalidatesTags: ["User"],
-    }),
-    userUpdate: build.mutation({
-      query: (data) => ({
-        url: "/users/update",
-        method: "POST",
-        body: {
+          phone: data.phone,
           name: data.name,
           surname: data.surname,
           patronymic: data.patronymic,
-          address: {
-            region: data.address.region,
-            city: data.address.city,
-            street: data.address.street,
-            num_of_house: data.address.num_of_house,
-            postcode: data.address.postcode,
-          },
+          email: data.email,
+          password: data.password,
+          area: data.area,
+          region: data.address.region,
+          city: data.address.city,
+          street: data.address.street,
+          num_of_house: data.address.num_of_house,
+          postcode: data.address.postcode,
         },
         headers: {
           accept: "application/json",
@@ -52,31 +38,47 @@ export const userApi = api.injectEndpoints({
       }),
       invalidatesTags: ["User"],
     }),
-    getUserMe: build.query({
-      query: () => ({
-        url: "users/me",
-      }),
+    user: build.query({
+      query: (id) => `/users/${id}`,
       providesTags: ["User"],
     }),
-    userDelete: build.mutation({
-      query: (data) => ({
-        url: `/users/${data.user_id}`,
-        method: "DELETE",
+    patchUser: build.mutation({
+      query: (id) => ({
+        url: `/users/${id}`,
+        method: "PATCH",
+        headers: {
+          accept: "application/json",
+        },
       }),
       invalidatesTags: ["User"],
     }),
-    confirmEmail: build.query({
-      query: (token) => `/confirm/${token}`,
+    deleteUser: build.mutation({
+      query: (id) => ({
+        url: `/users/${id}`,
+        method: "DELETE",
+        headers: {
+          accept: "application/json",
+        },
+      }),
+      invalidatesTags: ["User"],
+    }),
+    orderCall: build.query({
+      query: (data) => ({
+        url: `/order_call/?phone=${data?.phone}&name=${data?.name}`,
+        headers: {
+          accept: "application/json",
+        },
+      }),
       providesTags: ["User"],
     }),
   }),
 });
 
 export const {
-  useGetUserMeQuery,
-  useAuthMutation,
-  useSignUpMutation,
-  useUserUpdateMutation,
-  useUserDeleteMutation,
-  useConfirmEmailQuery,
+  useCurrentUserQuery,
+  usePatchCurrentUserMutation,
+  useUserQuery,
+  usePatchUserMutation,
+  useDeleteUserMutation,
+  useOrderCallQuery,
 } = userApi;

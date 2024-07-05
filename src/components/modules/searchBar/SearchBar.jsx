@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useSearchQuery } from "./../../../redux/services/productService";
 
-let search = (
+const search = (
   <svg
     className="search__img"
     xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +69,6 @@ const SearchBar = () => {
           {search}
         </button>
       </form>
-      {console.log(data)}
       {isLoading && <div>Loading...</div>}
       {error && <div>Error fetching data</div>}
       {data && (

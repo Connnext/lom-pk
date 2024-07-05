@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import FormInput from "../inputs/FormInput";
 import FormButton from "../buttons/formButton/FormButton";
 import FormLinks from "../links/FormLinks";
-import { useSelector } from "react-redux";
 
-const RegisterForm = ({ handleSubmit }) => {
-  const showModal = useSelector((state) => state.modal.showModal);
+export default function RegisterForm({ handleSubmit }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -37,7 +35,6 @@ const RegisterForm = ({ handleSubmit }) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    console.log({ email, password });
     handleSubmit({ email, password });
   };
 
@@ -127,6 +124,4 @@ const RegisterForm = ({ handleSubmit }) => {
       </form>
     </>
   );
-};
-
-export default RegisterForm;
+}

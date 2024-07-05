@@ -6,8 +6,8 @@ import React, {
 } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setShowCatalogModal } from "../../../../redux/store/slices/modalSlice";
-import "./modalCatalog.css";
 import CloseButton from "../../buttons/closeButton/CloseButton";
+import "./modalCatalog.css";
 
 export default function ModalCatalog({ children }) {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ export default function ModalCatalog({ children }) {
     setTimeout(() => {
       dispatch(setShowCatalogModal(false));
       setIsClosing(false);
-    }, 500); // Длительность анимации закрытия должна совпадать с CSS
+    }, 500);
   };
 
   const handleClickOutside = useCallback((event) => {
@@ -56,7 +56,9 @@ export default function ModalCatalog({ children }) {
 
   return (
     <>
-      {(showCatalogModal || isClosing) && <div className="overlay"></div>}
+      {(showCatalogModal || isClosing) && (
+        <div className="overlayCatalog"></div>
+      )}
       <div
         className={`${
           showCatalogModal && !isClosing

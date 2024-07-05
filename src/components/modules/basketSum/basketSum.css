@@ -1,0 +1,30 @@
+.basket__sum--title {
+  font-size: 28px;
+  font-weight: 600;
+}
+.basket__sum--subtitle {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 19px;
+  color: #3d3c3c;
+  word-wrap: break-word;
+}
+.basket__sum--price {
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 35px;
+  word-wrap: break-word;
+}
+.basket__sum {
+  display: flex;
+  flex-direction: column;
+  width: 268px;
+  gap: 20px;
+}
+.basket__sum--info {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 25px;
+  color: #7a7a7a;
+  word-wrap: break-word;
+}

@@ -27,7 +27,7 @@ let phone = (
 //import phone from "./../../../../img/phone.png";
 //import logo from "./../../img/logo.png";
 
-export default function Contacts() {
+export default function ContactsNav() {
   return (
     <>
       <div className="contacts">

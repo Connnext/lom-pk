@@ -4,7 +4,7 @@
   display: block;
   margin: 0 auto;
   width: 150px; /* Подберите нужный размер */
-  height: auto;
+  height: 150px;
 }
 
 .empty__basket--title {
@@ -25,11 +25,13 @@
 .empty__basket--button {
   margin-top: 30px;
   border: black solid 1px;
-  border-radius: 20px;
-  width: 100px;
+  border-radius: 5px;
+  padding: 2px 32px;
+  transition: background-color 0.2s ease-out;
 }
 .empty__basket--button:hover {
-  background-color: #bbbbbb;
+  background-color: #ced4d7;
+  border: 1px solid rgb(0, 0, 0);
 }
 .empty__basket--wrapper {
   display: flex;

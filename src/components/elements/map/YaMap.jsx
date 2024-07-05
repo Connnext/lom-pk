@@ -64,7 +64,7 @@ export default function YaMap({ width, height }) {
         >
           <Placemark
             modules={["geoObject.addon.balloon"]}
-            defaultGeometry={[59.91778530140486, 29.76726127976224]}
+            defaultGeometry={[59.917343576685305, 29.76772798413082]}
             properties={{
               balloonContentBody:
                 "Магазин печей и каминов «Ломоносовский печной клуб»",

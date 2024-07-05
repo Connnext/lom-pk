@@ -1,0 +1,16 @@
+.clear-all-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #ff6347;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: all 0.4s;
+}
+
+.clear-all-button:hover {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}

@@ -5,7 +5,6 @@ import FormLinks from "../links/FormLinks";
 import { useSelector } from "react-redux";
 
 const LoginForm = ({ handleSubmit }) => {
-  const showModal = useSelector((state) => state.modal.showModal);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailDirty, setEmailDirty] = useState(false);
