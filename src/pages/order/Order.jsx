@@ -97,6 +97,7 @@ export default function Order() {
               />
               {selectedOption === "СДЭК" && <OrderCdek />}
               {selectedOption === "Почта России" && <OrderPochta />}
+              {selectedOption === "Наша доставка" && <OrderPochta />}
               {selectedOption === "Самовывоз" && <OrderPickup />}
             </div>
             <div

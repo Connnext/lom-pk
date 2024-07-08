@@ -8,7 +8,7 @@
 .menu__actions {
   display: flex;
   justify-content: space-between;
-  gap: 40px;
+  gap: 30px;
   align-items: center;
 }
 .menu__logo--text {
@@ -95,4 +95,43 @@
 }
 .search__img {
   fill: white;
+}
+.menu__label {
+  display: block;
+  text-align: center;
+  margin-top: 6px;
+  font-size: 14px;
+  color: #000000;
+  font-weight: 600;
+}
+.menu__link {
+  position: relative;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.menu__link:hover .menu__image,
+.menu__link:hover .menu__label {
+  color: rgb(133, 10, 10);
+}
+.basket-icon {
+  position: relative;
+}
+
+.basket-count {
+  position: absolute;
+  bottom: -8px;
+  left: 37px;
+  background-color: rgb(133, 10, 10);
+  color: white;
+  border-radius: 20%;
+  padding: 3px 4px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+  min-width: 17px;
+  height: 18px;
 }

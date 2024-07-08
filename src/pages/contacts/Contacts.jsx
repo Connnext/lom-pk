@@ -111,11 +111,8 @@ export default function Contacts() {
               <InfoText subtitle={subtitle2} text={text2} />
               <div style={{ marginBottom: "20px" }}></div>
             </div>
-
-            <div style={{ marginBottom: "40px" }}></div>
           </div>
         </div>
-        <div style={{ marginBottom: "20px" }}></div>
       </Layout>
     </>
   );

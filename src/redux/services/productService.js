@@ -56,6 +56,12 @@ export const productsApi = api.injectEndpoints({
         if (data.is_hit) {
           queryObject.url += `&is_hit=${data.is_hit}`;
         }
+        if (data.is_new) {
+          queryObject.url += `&is_new=${data.is_new}`;
+        }
+        if (data.is_sale) {
+          queryObject.url += `&is_sale=${data.is_sale}`;
+        }
         if (data.sort_by && data.sort_order) {
           queryObject.url += `&sort_by=${data.sort_by}&sort_order=${data.sort_order}`;
         }
@@ -124,11 +130,11 @@ export const productsApi = api.injectEndpoints({
             accept: "application/json",
           },
         };
-        if (data.limit) {
-          queryObject.url += `&limit=${data.limit}`;
+        if (data.page_limit) {
+          queryObject.url += `&page_limit=${data.page_limit}`;
         }
-        if (data.offset) {
-          queryObject.url += `&offset=${data.offset}`;
+        if (data.page) {
+          queryObject.url += `&page=${data.page}`;
         }
         return queryObject;
       },

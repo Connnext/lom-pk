@@ -165,7 +165,6 @@ export default function Delivery() {
         <InfoText subtitle={"Самовывоз"} text={textAdress} />
         <div style={{ marginBottom: "20px" }}></div>
         <YaMap width={"1400px"} height={"600px"} />
-        <div style={{ marginBottom: "40px" }}></div>
       </div>
     </Layout>
   );

@@ -17,8 +17,8 @@ export default function ResetPassword() {
   const handleResetPassword = async ({ password }) => {
     try {
       await resetPassword({ token: token, password: password }).unwrap();
-      dispatch(setShowModal(false));
-      dispatch(setFormType(null));
+      // dispatch(setShowModal(false));
+      dispatch(setFormType("login"));
       successMessageResetPassword();
       navigate("/");
     } catch (error) {

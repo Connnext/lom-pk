@@ -11,7 +11,7 @@ const initialState = {
   userData: {
     shipping_method: "",
     email: "",
-    password: "",
+    // password: "",
     phone: "",
     surname: "",
     name: "",
@@ -21,7 +21,7 @@ const initialState = {
     city: "",
     street: "",
     num_of_house: "",
-    postcode: "",
+    postcode: 0,
     ids: [],
   },
 };

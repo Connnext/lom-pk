@@ -32,6 +32,7 @@
   justify-content: flex-end;
   align-items: center;
   gap: 20px;
+  width: 373px;
 }
 
 .basket__item--title {

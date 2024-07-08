@@ -66,6 +66,17 @@ export default function OrderSelectForm({ selectedOption, setSelectedOption }) {
           <input
             type="radio"
             name="shipping_method"
+            value="Наша доставка"
+            checked={selectedOption === "Наша доставка"}
+            onChange={handleOptionChange}
+            className="order__input"
+          />
+          Наша доставка
+        </label>
+        <label className="order__label">
+          <input
+            type="radio"
+            name="shipping_method"
             value="Самовывоз"
             checked={selectedOption === "Самовывоз"}
             onChange={handleOptionChange}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useSearchQuery } from "./../../../redux/services/productService";
+import Spinner from "components/elements/spinners/Spinner";
 
 const search = (
   <svg
@@ -50,6 +51,7 @@ const SearchBar = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    // navigate(`/shop?filter=${filter}`);
     if (searchTerm.length >= 3) {
       setQueryData({ query: searchTerm });
     }
@@ -69,8 +71,8 @@ const SearchBar = () => {
           {search}
         </button>
       </form>
-      {isLoading && <div>Loading...</div>}
-      {error && <div>Error fetching data</div>}
+      {isLoading && <Spinner />}
+      {error && console.log("error")}
       {data && (
         <ul className="search-results">
           {data.results.map((item) => (

@@ -1,44 +1,28 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { orderDeliveryValid } from "./../../../redux/store/slices/userSlice";
 import InfoText from "../text/InfoText";
 import FormInput from "../inputs/FormInput";
 import { useCurrentUserQuery } from "./../../../redux/services/userService";
-import { setUserData } from "./../../../redux/store/slices/userSlice";
 import Spinner from "../spinners/Spinner";
 import { useLocation } from "react-router-dom";
+import { ORDER_ROUTE } from "utils/constants";
+import { useFormData } from "hooks/useFormData";
 
 export default function DeliveryData() {
-  const dispatch = useDispatch();
   const location = useLocation();
-  const isOrderPage = location.pathname === "/order";
-  const userData = useSelector((state) => state.user.userData);
+  const isOrderPage = location.pathname === ORDER_ROUTE;
   const { data: currentUserData, isLoading } = useCurrentUserQuery();
 
-  useEffect(() => {
-    if (isOrderPage) {
-      const isFormValid =
-        userData.area.trim() !== "" &&
-        userData.region.trim() !== "" &&
-        userData.city.trim() !== "" &&
-        userData.street.trim() !== "" &&
-        userData.num_of_house.trim() !== "" &&
-        userData.postcode.trim() !== "";
-      dispatch(orderDeliveryValid(isFormValid));
-    }
-  }, [userData, isOrderPage, dispatch]);
+  const fieldsToValidate = isOrderPage
+    ? ["region", "city", "street", "num_of_house", "postcode"]
+    : [];
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    dispatch(
-      setUserData({
-        ...userData,
-        [name]: value,
-      })
-    );
-  };
+  const { userData, handleInputChange } = useFormData(
+    currentUserData,
+    fieldsToValidate
+  );
 
-  if (isLoading || !currentUserData) {
+  if (isLoading) {
     return <Spinner />;
   }
 
@@ -47,12 +31,12 @@ export default function DeliveryData() {
       <InfoText subtitle="Укажите ваши личные данные для доставки" />
       <form className="russian-post-form">
         <FormInput
-          title="Район:"
+          title="Район (необязательно):"
           className="form-input"
           type="text"
           placeholder="Кировский район"
           name="area"
-          value={currentUserData?.area || ""}
+          value={userData.area}
           onChange={handleInputChange}
         />
         <FormInput
@@ -61,7 +45,7 @@ export default function DeliveryData() {
           type="text"
           placeholder="Ленинградская область"
           name="region"
-          value={currentUserData?.region || ""}
+          value={userData.region}
           onChange={handleInputChange}
         />
         <FormInput
@@ -70,7 +54,7 @@ export default function DeliveryData() {
           type="text"
           placeholder="Санкт-Петербург"
           name="city"
-          value={currentUserData?.city || ""}
+          value={userData.city}
           onChange={handleInputChange}
         />
         <FormInput
@@ -79,7 +63,7 @@ export default function DeliveryData() {
           type="text"
           placeholder="Привокзальная"
           name="street"
-          value={currentUserData?.street || ""}
+          value={userData.street}
           onChange={handleInputChange}
         />
         <FormInput
@@ -88,7 +72,7 @@ export default function DeliveryData() {
           type="text"
           placeholder="2"
           name="num_of_house"
-          value={currentUserData?.houseNumber || ""}
+          value={userData.num_of_house}
           onChange={handleInputChange}
         />
         <FormInput
@@ -97,7 +81,7 @@ export default function DeliveryData() {
           type="text"
           placeholder="198412"
           name="postcode"
-          value={currentUserData?.postcode || ""}
+          value={userData.postcode}
           onChange={handleInputChange}
         />
       </form>

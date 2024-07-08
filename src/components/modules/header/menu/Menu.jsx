@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import SearchBar from "../../searchBar/SearchBar";
@@ -26,15 +26,19 @@ import "./menu.css";
 export default function Menu() {
   const dispatch = useDispatch();
   const { data: dataBasket, isError, isLoading } = useGetBasketQuery();
-  console.log(dataBasket);
   const formType = useSelector((state) => state.modal.formType);
   const showModal = useSelector((state) => state.modal.showCatalogModal);
   const is_auth_FromRedux = useSelector((state) => state.user.is_auth);
   const is_auth =
     localStorage.getItem("is_auth") == "true" || is_auth_FromRedux;
+  const basket = (is_auth && dataBasket?.items.length) || 0;
+  const [basketCount, setBasketcount] = useState(basket);
 
-  const basket = (dataBasket?.items.length && is_auth) || 0;
-  console.log(basket);
+  useEffect(() => {
+    if (is_auth && dataBasket?.items.length) {
+      setBasketcount(dataBasket?.items.length);
+    } else setBasketcount(0);
+  });
 
   const handleLoginClick = (e) => {
     e.stopPropagation();
@@ -75,25 +79,30 @@ export default function Menu() {
             <Link to={COMPARE_ROUTE}>
               <img className="menu__image" src={compare} alt="compare" />
             </Link> */}
+            {console.log(basket)}
             {basket > 0 ? (
-              <Link to={BASKET_ROUTE}>
-                <img className="menu__image" src={basketImg} alt="basket" />
+              <Link className="menu__link" to={BASKET_ROUTE}>
+                <div className="basket-icon">
+                  <img className="menu__image" src={basketImg} alt="basket" />
+                  <span className="basket-count">{basketCount}</span>
+                </div>
+                <span className="menu__label">Корзина</span>
               </Link>
             ) : (
-              <div onClick={handleBasketClick}>
+              <div className="menu__link" onClick={handleBasketClick}>
                 <img className="menu__image" src={basketImg} alt="basket" />
-                {/* <Form /> */}
+                <span className="menu__label">Корзина</span>
               </div>
             )}
-
             {is_auth ? (
-              <Link to={ACCOUNT_ROUTE}>
+              <Link className="menu__link" to={ACCOUNT_ROUTE}>
                 <img className="menu__image" src={account} alt="account" />
+                <span className="menu__label">Профиль</span>
               </Link>
             ) : (
-              <div onClick={handleLoginClick}>
+              <div className="menu__link" onClick={handleLoginClick}>
                 <img className="menu__image" src={account} alt="account" />
-                {/* <Form /> */}
+                <span className="menu__label">Войти</span>
               </div>
             )}
             {!is_auth || basket < 1 ? <Form /> : null}

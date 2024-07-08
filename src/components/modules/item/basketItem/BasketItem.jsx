@@ -72,8 +72,9 @@ export default function BasketItem({
       </Link>
       <Link to={ITEM_ROUTE.replace(":id", product_id)}>
         <h3 className="basket__item--title">
-          {category_name} {title[0]?.toLowerCase() + title?.slice(1)}{" "}
-          {brand[0]?.toLowerCase() + brand?.slice(1)}
+          {category_name}
+          {title ? `${title[0]?.toLowerCase() + title.slice(1)}` : ""}
+          {brand ? `${brand[0]?.toLowerCase() + brand.slice(1)}` : ""}
         </h3>
       </Link>
       <div className="basket__item--details">

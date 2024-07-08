@@ -169,11 +169,8 @@ export default function Guarantees() {
             <div style={{ marginBottom: "20px" }}></div>
             <InfoText subtitle={subtitle5} text={text5} />
           </div>
-
-          <div style={{ marginBottom: "40px" }}></div>
         </div>
       </div>
-      <div style={{ marginBottom: "20px" }}></div>
     </Layout>
   );
 }

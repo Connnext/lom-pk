@@ -18,7 +18,7 @@ const ImageWithFallback = ({ src, alt, style, item, isBig }) => {
     className = "sliderCard__is-new";
     isBig ? (className += " big__Icon") : (className += "");
     text = "Новинка";
-  } else if (item?.is_promo) {
+  } else if (item?.is_sale) {
     className = "sliderCard__is-promo";
     isBig ? (className += " big__Icon") : (className += "");
     text = "Акция";

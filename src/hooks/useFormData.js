@@ -1,27 +1,36 @@
 import { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { orderPersonalValid } from "./../redux/store/slices/userSlice";
-import { setUserData } from "./../redux/store/slices/userSlice";
+import {
+  orderPersonalValid,
+  orderDeliveryValid,
+  setUserData,
+} from "./../redux/store/slices/userSlice";
 import { useLocation } from "react-router-dom";
 import { ORDER_ROUTE } from "utils/constants";
 
-export const useFormData = (currentUserData, fieldsToValidate) => {
+export const useFormData = (currentUserData, initialFieldsToValidate) => {
   const location = useLocation();
+  const selectDelivery = useSelector(
+    (state) => state.user.userData.shipping_method
+  );
   const isOrderPage = location.pathname === ORDER_ROUTE;
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.user.userData);
-  const isValidPersonal = useSelector((state) => state.user.isValidPersonal);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordChanged, setPasswordChanged] = useState(false);
   const [errors, setErrors] = useState({
-    password: "Пароль не может быть пустым",
-    confirmPassword: "Пароли должны совпадать",
+    password: "",
+    confirmPassword: "",
   });
   const [dirty, setDirty] = useState({
     password: false,
     confirmPassword: false,
   });
-  console.log(userData);
+
+  const [fieldsToValidate, setFieldsToValidate] = useState(
+    initialFieldsToValidate
+  );
 
   useEffect(() => {
     if (currentUserData) {
@@ -32,6 +41,12 @@ export const useFormData = (currentUserData, fieldsToValidate) => {
           name: currentUserData.name || "",
           patronymic: currentUserData.patronymic || "",
           email: currentUserData.email || "",
+          area: currentUserData.area || "",
+          region: currentUserData.region || "",
+          city: currentUserData.city || "",
+          street: currentUserData.street || "",
+          num_of_house: currentUserData.num_of_house || "",
+          postcode: currentUserData.postcode || "",
         })
       );
     }
@@ -40,27 +55,44 @@ export const useFormData = (currentUserData, fieldsToValidate) => {
   useEffect(() => {
     const invalidFields = Object.entries(userData).reduce(
       (acc, [key, value]) => {
-        if (fieldsToValidate.includes(key) && value.trim() === "") {
-          acc.push(key);
+        if (fieldsToValidate.includes(key) && String(value).trim() === "") {
+          if (key !== "area") {
+            // Район не обязателен
+            acc.push(key);
+          }
         }
         return acc;
       },
       []
     );
 
-    if (fieldsToValidate.includes("password") && password.length < 6)
+    if (passwordChanged && password.length < 6 && password.length > 0)
       invalidFields.push("password");
-    if (
-      fieldsToValidate.includes("confirmPassword") &&
-      password !== confirmPassword
-    )
+    if (passwordChanged && password !== confirmPassword)
       invalidFields.push("confirmPassword");
-
-    console.log("Invalid fields:", invalidFields);
 
     const isFormValid = invalidFields.length === 0;
     dispatch(orderPersonalValid(isFormValid));
-  }, [userData, fieldsToValidate, password, confirmPassword, dispatch]);
+
+    if (isOrderPage && selectDelivery !== "Самовывоз") {
+      const isDeliveryValid =
+        userData.region.trim() !== "" &&
+        userData.city.trim() !== "" &&
+        userData.street.trim() !== "" &&
+        userData.num_of_house.trim() !== "" &&
+        String(userData.postcode).trim() !== "";
+      dispatch(orderDeliveryValid(isDeliveryValid));
+    }
+  }, [
+    userData,
+    fieldsToValidate,
+    password,
+    confirmPassword,
+    passwordChanged,
+    isOrderPage,
+    selectDelivery,
+    dispatch,
+  ]);
 
   const handleInputChange = useCallback(
     (event) => {
@@ -72,42 +104,46 @@ export const useFormData = (currentUserData, fieldsToValidate) => {
 
   const handlePasswordChange = useCallback(
     (event) => {
-      const { name, value } = event.target;
+      const { value } = event.target;
       setPassword(value);
+      setPasswordChanged(true);
       const newErrors = { ...errors };
 
-      if (value.length < 6) {
+      if (value.length < 6 && value.length > 0) {
         newErrors.password = "Пароль должен быть больше 6 символов";
-      } else if (!value) {
-        newErrors.password = "Пароль не может быть пустым";
       } else {
         newErrors.password = "";
       }
-
       if (confirmPassword && value !== confirmPassword) {
         newErrors.confirmPassword = "Пароли не совпадают";
       } else {
         newErrors.confirmPassword = "";
       }
-
       setErrors(newErrors);
-      if (!newErrors.password && !newErrors.confirmPassword) {
-        dispatch(setUserData({ [name]: value }));
-      }
+      console.log("Password in useFormData:", value);
     },
-    [confirmPassword, dispatch, errors]
+    [confirmPassword, errors]
   );
+
+  useEffect(() => {
+    localStorage.setItem("password__new", password);
+  }, [password]);
 
   const handleConfirmChange = useCallback(
     (event) => {
-      const { name, value } = event.target;
+      const { value } = event.target;
       setConfirmPassword(value);
-      setErrors({
-        ...errors,
-        confirmPassword: password !== value ? "Пароли не совпадают" : "",
-      });
+      const newErrors = { ...errors };
+      if (passwordChanged && (!password || password !== value)) {
+        newErrors.confirmPassword = password
+          ? "Пароли не совпадают"
+          : "Введите пароль сначала";
+      } else {
+        newErrors.confirmPassword = "";
+      }
+      setErrors(newErrors);
     },
-    [errors, password]
+    [errors, password, passwordChanged]
   );
 
   const handleBlur = useCallback((event) => {

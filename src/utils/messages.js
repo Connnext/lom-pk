@@ -54,6 +54,9 @@ export const successMessageAdmin = () => {
 export const successMessageCustomer = () => {
   message.success("Вы вошли как пользователь", [2]);
 };
+export const successMessageSaveUserData = () => {
+  message.success("Ваши данные успешно сохранены", [4]);
+};
 export const successMessageSignUp = () => {
   message.success(
     "Вы успешно зарегестрировались, необходимо войти, используя логин и пароль",

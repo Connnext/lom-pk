@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser, setUserData } from "./../../redux/store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
-import { successMessageLogout, successSaveChanges } from "utils/messages";
+import {
+  successMessageLogout,
+  successMessageSaveUserData,
+  successSaveChanges,
+} from "utils/messages";
 import { useLogoutMutation } from "./../../redux/services/authService";
 import FormInput from "components/elements/inputs/FormInput";
 import InfoText from "components/elements/text/InfoText";
@@ -16,44 +20,37 @@ import FormButton from "components/elements/buttons/formButton/FormButton";
 import PersonalData from "components/elements/forms/PersonalData";
 import "./account.css";
 import DeliveryData from "components/elements/forms/DeliveryData";
+import Spinner from "components/elements/spinners/Spinner";
 
 export default function Account() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const is_auth_FromRedux = useSelector((state) => state.user.is_auth);
+  useEffect(() => {
+    const is_auth = localStorage.getItem("is_auth") || is_auth_FromRedux;
+    if (!is_auth) navigate("/");
+  }, [navigate]);
   const isValidPersonal = useSelector((state) => state.user.isValidPersonal);
-  console.log(isValidPersonal);
-  const [logout] = useLogoutMutation();
+  const [logout, { isLoading: isLoadingUserLogout }] = useLogoutMutation();
   const userData = useSelector((state) => state.user.userData);
-  const { data: currentUserData, isLoading } = useCurrentUserQuery();
   const [patchCurrentUser] = usePatchCurrentUserMutation();
-  console.log(currentUserData);
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    dispatch(
-      setUserData({
-        ...userData,
-        [name]: value,
-      })
-    );
-    patchCurrentUser({
-      [name]: value,
-    });
-  };
-  // const handleFormSubmit = (data) => {
-  //   console.log(data);
-  //   patchCurrentUser(data);
-  //   successSaveChanges();
-  // };
   const handleSubmit = (userData) => {
     console.log(userData);
+    const dataToSubmit = { ...userData };
+    const password = localStorage.getItem("password__new");
+    if (password.length > 0) {
+      dataToSubmit.password = password;
+    }
     patchCurrentUser({
-      ...userData,
+      ...dataToSubmit,
     });
+    localStorage.removeItem("password__new");
   };
   const handleFormSubmit = () => {
     if (isValidPersonal) {
       handleSubmit(userData);
+      successMessageSaveUserData();
     } else {
       console.log("Форма не валидна");
     }
@@ -76,34 +73,38 @@ export default function Account() {
     <Layout>
       <div className="container">
         <InfoTitle title={"Настройки профиля"} />
-        <div className="account">
-          <div className="account__info">
-            <div className="account__forms">
-              <PersonalData />
-              <div
-                style={{
-                  borderLeft: "1px solid rgb(206, 212, 215)",
-                  height: "auto",
-                }}
+        {isLoadingUserLogout ? (
+          <Spinner />
+        ) : (
+          <div className="account">
+            <div className="account__info">
+              <div className="account__forms">
+                <PersonalData />
+                <div
+                  style={{
+                    borderLeft: "1px solid rgb(206, 212, 215)",
+                    height: "auto",
+                  }}
+                />
+                <DeliveryData />
+              </div>
+            </div>
+
+            <div className="account__buttons">
+              <FormButton
+                onClick={handleFormSubmit}
+                disabled={!isValidPersonal}
+                text="Сохранить данные"
               />
-              <DeliveryData />
+              <button
+                className="account__button--exit"
+                onClick={() => hadleLogout()}
+              >
+                Выйти
+              </button>
             </div>
           </div>
-
-          <div className="account__buttons">
-            <FormButton
-              onClick={handleFormSubmit}
-              disabled={!isValidPersonal}
-              text="Сохранить данные"
-            />
-            <button
-              className="account__button--exit"
-              onClick={() => hadleLogout()}
-            >
-              Выйти
-            </button>
-          </div>
-        </div>
+        )}
       </div>
     </Layout>
   );

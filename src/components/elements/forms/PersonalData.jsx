@@ -5,14 +5,14 @@ import { useCurrentUserQuery } from "./../../../redux/services/userService";
 import Spinner from "../spinners/Spinner";
 import InfoText from "../text/InfoText";
 import FormInput from "../inputs/FormInput";
+import { ACCOUNT_ROUTE } from "utils/constants";
 
 export default function PersonalData() {
   const location = useLocation();
-  const isAccountPage = location.pathname === "/account";
+  const isAccountPage = location.pathname === ACCOUNT_ROUTE;
   const { data: currentUserData, isLoading } = useCurrentUserQuery();
-
   const fieldsToValidate = isAccountPage
-    ? ["phone", "surname", "name", "patronymic", "password", "confirmPassword"]
+    ? []
     : ["phone", "surname", "name", "patronymic"];
 
   const {

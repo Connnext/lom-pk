@@ -15,9 +15,7 @@
   justify-content: space-between;
   gap: 35px;
 }
-.account {
-  margin-bottom: 30px;
-}
+
 .account__forms {
   display: flex;
   justify-content: space-between;

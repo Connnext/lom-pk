@@ -110,7 +110,7 @@ export default function OrderCall() {
           onChange={handleChange}
           onBlur={handleBlur}
           error={errors.phone}
-          placeholder="+71234567890"
+          placeholder="8 (812) 957-97-56"
         />
         <p className="order__call--text">
           Пожалуйста, оставьте свои контактные данные, чтобы наш менеджер мог с

@@ -48,6 +48,7 @@ export default function Shop() {
   const handleMoreProductsClick = () => {
     dispatch(addProducts());
   };
+
   if (isLoading) return <Spinner />;
   if (error)
     return (
@@ -66,7 +67,6 @@ export default function Shop() {
         <ItemCards data={data} />
         <MoreProductsButton onClick={handleMoreProductsClick} />
       </div>
-      <div style={{ marginBottom: "20px" }}></div>
     </Layout>
   );
 }

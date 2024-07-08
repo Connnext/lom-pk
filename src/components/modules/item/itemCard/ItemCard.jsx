@@ -15,6 +15,7 @@ const style = {
 };
 export default function ItemCard(item) {
   const isLongTitle = item.title.length > 23; // 23 если больше тогда одни стили а иначе меньше
+  console.log(item);
   return (
     <div className="card">
       <Link className="card__link" to={`${ITEM_ROUTE.replace(":id", item.id)}`}>
