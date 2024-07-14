@@ -1,6 +1,6 @@
 import React from "react";
-import "./itemCard/itemCard.css";
 import ItemCard from "./itemCard/ItemCard";
+import "./itemCard/itemCard.css";
 export default function ItemCards({ data }) {
   return (
     <div className="cards__wrapper">

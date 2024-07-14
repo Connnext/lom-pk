@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import InfoTitle from "../../components/elements/titles/InfoTitle";
 import InfoText from "../../components/elements/text/InfoText";
 import SliderBrands from "../../components/elements/carousel/SliderBrands";
@@ -19,7 +19,6 @@ function cleanUrl(url) {
 export default function ItemPage() {
   const { id } = useParams();
   const { data, isLoading } = useGetSingleProductQuery(id);
-  console.log(data?.description);
   const text = data?.description ? (
     <div
       className="item__page--text-decor"
@@ -41,8 +40,13 @@ export default function ItemPage() {
         {data.files.map((file, index) => {
           const cleanedUrl = cleanUrl(file.file);
           return (
-            <li key={index}>
-              <a href={cleanedUrl} target="_blank" rel="noopener noreferrer">
+            <li className="item__file" key={index}>
+              <a
+                className="item__file--link"
+                href={cleanedUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Скачать файл {index + 1}
               </a>
             </li>
@@ -50,7 +54,7 @@ export default function ItemPage() {
         })}
       </ul>
     ) : (
-      "Файлы отсутствуют"
+      "Документация отсутствует"
     );
 
   return (
@@ -94,12 +98,10 @@ export default function ItemPage() {
             <div style={{ marginBottom: "20px" }}></div>
             <InfoText subtitle={"Характеристики"} text={propertiesTable} />
             <div style={{ marginBottom: "20px" }}></div>
-            <InfoText subtitle={"Файлы"} text={filesList} />
-            <div style={{ marginBottom: "20px" }}></div>
+            <InfoText subtitle={"Документация"} text={filesList} />
           </div>
         </div>
       </div>
-      <div style={{ marginBottom: "20px" }}></div>
     </Layout>
   );
 }

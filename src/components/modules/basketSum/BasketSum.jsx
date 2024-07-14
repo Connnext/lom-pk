@@ -16,7 +16,7 @@ export default function BasketSum({ data, selectedItems }) {
     <div className="basket__sum">
       <h2 className="basket__sum--title">В корзине</h2>
       <p className="basket__sum--subtitle">{totalCount} товаров на сумму:</p>
-      <p className="basket__sum--price">{totalAmount}₽</p>
+      <p className="basket__sum--price">{totalAmount} ₽</p>
       <BasketToOrderButton selectedItems={selectedItems} />
       <p className="basket__sum--info">
         *Обращаем ваше внимание, что окончательная стоимость и состав заказа,

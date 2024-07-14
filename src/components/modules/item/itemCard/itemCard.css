@@ -1,8 +1,20 @@
+:root {
+  --primary-color: #850a0a;
+  --primary-dark: #6e0505;
+  --primary-light: #a61111;
+  --background-color: #f8f9fa;
+  --card-background: #ffffff;
+  --text-color: #333;
+  --text-light: #828b8d;
+  --border-radius: 12px;
+  --transition: all 0.3s ease;
+}
 .cards__wrapper {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: 20px;
   justify-content: center;
+  padding: 20px;
 }
 .img__wrapper {
   display: flex;
@@ -10,19 +22,19 @@
   justify-content: center;
   height: 200px;
   position: relative;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
 }
 .card {
+  gap: 20px;
+  transition: 0.3s ease-in-out all;
   display: flex;
   flex-direction: column;
-  gap: 20px;
   width: 300px;
   margin: 10px;
   padding-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: 0.3s ease-in-out all;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  background-color: var(--card-background);
 }
 /* .card__is-hit {
   position: absolute;
@@ -36,8 +48,8 @@
   font-weight: bold;
 } */
 .card:hover {
-  /* transform: scale(1.01); */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.401);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 .link {
@@ -53,16 +65,17 @@
 }
 
 .card__title {
-  font-size: 1rem;
-  text-decoration: none;
   color: #333;
-  width: 240px;
-  text-overflow: ellipsis;
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card__title.long-title {
-  height: 60px;
+  height: 70px;
 }
 
 .card__title.short-title {
@@ -74,9 +87,9 @@
   gap: 5px;
 }
 .card__category {
-  font-size: 0.875rem;
+  font-size: 0.705rem;
   color: #828b8d;
-  line-height: 25px;
+  text-transform: uppercase;
   font-weight: 500;
 }
 
@@ -95,21 +108,22 @@
 
 .card__price {
   color: black;
-  font-weight: 600;
-  font-size: 28px;
+  font-size: 1.5rem;
+  font-weight: 500;
 }
 .card__oldprice {
+  font-size: 1rem;
   text-decoration: line-through;
-  font-size: 26px;
   color: #999;
 }
 .card__newprice {
   text-decoration: line-through;
-  font-size: 26px;
+  font-size: 1.5rem;
   color: #999;
 }
 .card__brand {
-  color: blueviolet;
+  font-size: 0.9rem;
+  color: var(--text-light);
 }
 .card__info--content {
   height: 180px;
@@ -118,5 +132,7 @@
   flex-direction: column;
 }
 .card__link {
+  text-decoration: none;
   padding: 15px 18px 0px 18px;
+  color: var(--text-color);
 }

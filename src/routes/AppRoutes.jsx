@@ -34,7 +34,7 @@ import {
   CONFIRM_ROUTE,
   ORDER_ROUTE,
   RESET_ROUTE,
-} from "./../utils/constants";
+} from "../utils/constants";
 
 export default function AppRoutes() {
   return (

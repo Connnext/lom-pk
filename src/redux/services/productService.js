@@ -19,6 +19,8 @@ export const productsApi = api.injectEndpoints({
           old_price: data.old_price,
           price: data.price,
           is_hit: data.is_hit,
+          is_new: data.is_new,
+          is_sale: data.is_sale,
           article: data.article,
           properties: data.properties,
           images: data.images,
@@ -27,6 +29,7 @@ export const productsApi = api.injectEndpoints({
       }),
       invalidatesTags: ["Products"],
     }),
+
     getProducts: build.query({
       query: (data) => {
         let queryObject = {
@@ -35,41 +38,51 @@ export const productsApi = api.injectEndpoints({
             accept: "application/json",
           },
         };
+        const appendParam = (param, value) => {
+          if (queryObject.url.includes("?")) {
+            queryObject.url += `&${param}=${value}`;
+          } else {
+            queryObject.url += `?${param}=${value}`;
+          }
+        };
+
         if (data.page_limit) {
-          queryObject.url += `?page_limit=${data.page_limit}`;
+          appendParam("page_limit", data.page_limit);
         }
         if (data.min_price) {
-          queryObject.url += `&min_price=${data.min_price}`;
+          appendParam("min_price", data.min_price);
         }
         if (data.max_price) {
-          queryObject.url += `&max_price=${data.max_price}`;
+          appendParam("max_price", data.max_price);
         }
         if (data.page) {
-          queryObject.url += `&page=${data.page}`;
+          appendParam("page", data.page);
         }
-        if (data.brands) {
-          queryObject.url += `&brands=${data.brands}`;
-        }
+        // if (data.brands) {
+        //   appendParam("brands", data.brands);
+        // }
         if (data.categories) {
-          queryObject.url += `&categories=${data.categories}`;
+          data.categories.forEach((category) =>
+            appendParam("categories", category)
+          );
         }
         if (data.is_hit) {
-          queryObject.url += `&is_hit=${data.is_hit}`;
+          appendParam("is_hit", data.is_hit);
         }
         if (data.is_new) {
-          queryObject.url += `&is_new=${data.is_new}`;
+          appendParam("is_new", data.is_new);
         }
         if (data.is_sale) {
-          queryObject.url += `&is_sale=${data.is_sale}`;
+          appendParam("is_sale", data.is_sale);
         }
         if (data.sort_by && data.sort_order) {
-          queryObject.url += `&sort_by=${data.sort_by}&sort_order=${data.sort_order}`;
+          appendParam("sort_by", data.sort_by);
+          appendParam("sort_order", data.sort_order);
         }
         return queryObject;
       },
       providesTags: ["Products"],
     }),
-
     updateProduct: build.mutation({
       query: (data) => ({
         url: `/products/${data.id}`,
@@ -125,7 +138,7 @@ export const productsApi = api.injectEndpoints({
     search: build.query({
       query: (data) => {
         let queryObject = {
-          url: `/products/?query=${data.query}`,
+          url: `/products/search/?query=${data.query}`,
           headers: {
             accept: "application/json",
           },

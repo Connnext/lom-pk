@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
-import "./carousel.css";
 import Carousel from "nuka-carousel";
 import brand_teplodar from "./../../../img/brand_teplodar.jpg";
 import brand_aston from "./../../../img/brand_aston.jpg";
@@ -19,6 +18,7 @@ import brand_ecocamin from "./../../../img/brand_ecocamin.jpg";
 import brand_ermak from "./../../../img/brand_ermak.jpg";
 import leftArrowIcon from "./../../../img/left_galka.svg";
 import rightArrowIcon from "./../../../img/rigth_galka.svg";
+import "./carousel.css";
 
 export default function SliderBrands() {
   const CustomLeftArrow = ({ previousSlide }) => (
@@ -78,7 +78,6 @@ export default function SliderBrands() {
         >
           <Link to={"/"}>
             <img
-              style={{ height: "150px", width: "100px" }}
               src={brand_teplodar}
               alt="Teplodar"
               className="carousel-image carousel-slide"
@@ -86,7 +85,6 @@ export default function SliderBrands() {
           </Link>
           <Link to={"/"}>
             <img
-              style={{ height: "150px", width: "100px" }}
               src={brand_aston}
               alt="Aston"
               className="carousel-image carousel-slide"
@@ -94,7 +92,6 @@ export default function SliderBrands() {
           </Link>
           <Link to={"/"}>
             <img
-              style={{ height: "150px", width: "100px" }}
               src={brand_everest}
               alt="Everest"
               className="carousel-image carousel-slide"
@@ -102,7 +99,6 @@ export default function SliderBrands() {
           </Link>
           <Link to={"/"}>
             <img
-              style={{ height: "150px", width: "100px" }}
               src={brand_litkom}
               alt="Litkom"
               className="carousel-image carousel-slide"
@@ -110,7 +106,6 @@ export default function SliderBrands() {
           </Link>
           <Link to={"/"}>
             <img
-              style={{ height: "150px", width: "100px" }}
               src={brand_vezuviy}
               alt="Vezuviy"
               className="carousel-image carousel-slide"
@@ -118,7 +113,6 @@ export default function SliderBrands() {
           </Link>
           <Link to={"/"}>
             <img
-              style={{ height: "150px", width: "100px" }}
               src={brand_grilld}
               alt="Grilld"
               className="carousel-image carousel-slide"
@@ -126,7 +120,6 @@ export default function SliderBrands() {
           </Link>
           <Link to={"/"}>
             <img
-              style={{ height: "150px", width: "100px" }}
               src={brand_konvetika}
               alt="Konvetika"
               className="carousel-image carousel-slide"
@@ -134,7 +127,6 @@ export default function SliderBrands() {
           </Link>
           <Link to={"/"}>
             <img
-              style={{ height: "150px", width: "100px" }}
               src={brand_kratki}
               alt="Kratki"
               className="carousel-image carousel-slide"
@@ -142,7 +134,6 @@ export default function SliderBrands() {
           </Link>
           <Link to={"/"}>
             <img
-              style={{ height: "150px", width: "100px" }}
               src={brand_etna}
               alt="Etna"
               className="carousel-image carousel-slide"
@@ -150,7 +141,6 @@ export default function SliderBrands() {
           </Link>
           <Link to={"/"}>
             <img
-              style={{ height: "150px", width: "100px" }}
               src={brand_compact}
               alt="Compact"
               className="carousel-image carousel-slide"
@@ -158,7 +148,6 @@ export default function SliderBrands() {
           </Link>
           <Link to={"/"}>
             <img
-              style={{ height: "150px", width: "100px" }}
               src={brand_zota}
               alt="Zota"
               className="carousel-image carousel-slide"
@@ -166,7 +155,6 @@ export default function SliderBrands() {
           </Link>
           <Link to={"/"}>
             <img
-              style={{ height: "150px", width: "100px" }}
               src={brand_varvara}
               alt="Varvara"
               className="carousel-image carousel-slide"
@@ -174,7 +162,6 @@ export default function SliderBrands() {
           </Link>
           <Link to={"/"}>
             <img
-              style={{ height: "150px", width: "100px" }}
               src={brand_meta}
               alt="Meta"
               className="carousel-image carousel-slide"
@@ -182,7 +169,6 @@ export default function SliderBrands() {
           </Link>
           <Link to={"/"}>
             <img
-              style={{ height: "150px", width: "100px" }}
               src={brand_ecocamin}
               alt="Ecocamin"
               className="carousel-image carousel-slide"
@@ -190,7 +176,6 @@ export default function SliderBrands() {
           </Link>
           <Link to={"/"}>
             <img
-              style={{ height: "150px", width: "100px" }}
               src={brand_ermak}
               alt="Ermak"
               className="carousel-image carousel-slide"

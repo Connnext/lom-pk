@@ -8,14 +8,31 @@
 .show__more--button {
   color: black;
   transition: 0.5s color;
+  position: relative;
+  display: inline-block;
+  padding-right: 25px;
+  cursor: pointer;
 }
+
 .show__more--button:hover {
   color: #850a0a;
 }
-.show__more--button::after {
-  content: "→";
-  position: absolute;
+.show__more--button:hover::after {
+  /* fill: #850a0a; */
+  transform: translateY(-50%) translateX(50%);
+  filter: hue-rotate(180deg) brightness(0.5) saturate(200%);
+}
 
-  margin-left: 5px;
-  font-weight: bold;
+.show__more--button::after {
+  content: "";
+  transition: all 0.4s;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("./../../../../img/rigth_galka.svg");
 }

@@ -2,13 +2,17 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useGetProductsQuery } from "../../../../redux/services/productService";
 import Spinner from "../../spinners/Spinner";
+import { useDispatch } from "react-redux";
+import { setSortParams } from "./../../../../redux/store/slices/productSlice";
 import "./showMoreButton.css";
 
-const ShowMoreButton = ({ filter }) => {
+const ShowMoreButton = ({ feature }) => {
   const navigate = useNavigate();
-  const { data, isLoading } = useGetProductsQuery({ filter });
+  const dispatch = useDispatch();
+  const { data, isLoading } = useGetProductsQuery({ [feature]: true });
   const handleClick = () => {
-    navigate(`/shop?filter=${filter}`);
+    navigate(`/shop`);
+    dispatch(setSortParams({ [feature]: true }));
   };
 
   return (

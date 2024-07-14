@@ -33,3 +33,7 @@ export const TIME_WORK = (
     Суббота с 11:00 до 18:00
   </>
 );
+
+export const IS_HIT = "is_hit";
+export const IS_NEW = "is_new";
+export const IS_SALE = "is_sale";

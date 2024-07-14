@@ -95,6 +95,8 @@ export default function Basket() {
                   brand={item.brand}
                   old_price={item.old_price}
                   is_hit={item.is_hit}
+                  is_new={item?.is_new}
+                  is_sale={item?.is_sale}
                   article={item.article}
                   isSelected={selectedItems.some(
                     (selectedItem) =>

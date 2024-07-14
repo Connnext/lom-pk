@@ -12,17 +12,12 @@ import "./modalCatalog.css";
 export default function ModalCatalog({ children }) {
   const dispatch = useDispatch();
   const showCatalogModal = useSelector((state) => state.modal.showCatalogModal);
-  const [isClosing, setIsClosing] = useState(false);
 
   const handleCloseModal = (event) => {
     if (event) {
       event.stopPropagation();
     }
-    setIsClosing(true);
-    setTimeout(() => {
-      dispatch(setShowCatalogModal(false));
-      setIsClosing(false);
-    }, 500);
+    dispatch(setShowCatalogModal(false));
   };
 
   const handleClickOutside = useCallback((event) => {
@@ -56,14 +51,12 @@ export default function ModalCatalog({ children }) {
 
   return (
     <>
-      {(showCatalogModal || isClosing) && (
-        <div className="overlayCatalog"></div>
-      )}
+      {showCatalogModal && <div className="overlayCatalog"></div>}
       <div
         className={`${
-          showCatalogModal && !isClosing
+          showCatalogModal
             ? "modalCatalog active"
-            : isClosing
+            : !showCatalogModal
             ? "modalCatalog closing"
             : "modalCatalog"
         }`}

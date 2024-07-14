@@ -1,16 +1,49 @@
 .sort-products {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 24px;
+  padding: 10px;
 }
-
-.sort-products label {
-  font-size: 16px;
-  font-weight: bold;
+.sort__input {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  accent-color: #850a0a;
+  transition: all 0.4s;
 }
-
-.sort-products select {
+.sort__input:hover {
+  box-shadow: 0 4px 8px rgba(122, 122, 122, 0.2);
+  border-color: #850a0a;
+}
+.sort__input:checked {
+  background-color: #850a0a;
+  border-color: #850a0a;
+}
+.sort__select {
   padding: 5px;
-  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+}
+.sort__select:focus {
+  outline: none;
+  border-color: #850a0a;
+}
+.sort__select:hover {
+  outline: none;
+  box-shadow: 0 4px 8px rgba(122, 122, 122, 0.2);
+}
+.sort__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sort__features {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.sort__label {
+  cursor: default;
 }

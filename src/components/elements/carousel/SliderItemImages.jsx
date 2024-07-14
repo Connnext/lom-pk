@@ -90,12 +90,12 @@ const SliderItemImages = ({ data }) => {
           return (
             <div className="item__img--wrapper" key={index}>
               <ImageWithFallback
-                className="item__img"
                 src={modifiedUrl}
                 alt={image.alt}
                 style={style}
                 item={data}
                 isBig={true}
+                className="item__img"
               />
             </div>
           );

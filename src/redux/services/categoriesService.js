@@ -5,12 +5,28 @@ export const categoriesApi = api.injectEndpoints({
   tagTypes: ["Categories"],
   endpoints: (build) => ({
     getCategories: build.query({
-      query: (data) => ({
-        url: `/categories/?parent_id=${data.parent_id}&deep_level=${data.deep_level}`,
-        headers: {
-          accept: "application/json",
-        },
-      }),
+      query: (data) => {
+        let queryObject = {
+          url: "/categories/",
+          headers: {
+            accept: "application/json",
+          },
+        };
+        const appendParam = (param, value) => {
+          if (queryObject.url.includes("?")) {
+            queryObject.url += `&${param}=${value}`;
+          } else {
+            queryObject.url += `?${param}=${value}`;
+          }
+        };
+        if (data?.parent_id) {
+          appendParam("parent_id", data.parent_id);
+        }
+        if (data?.deep_level) {
+          appendParam("deep_level", data.deep_level);
+        }
+        return queryObject; // Возвращаем объект запроса
+      },
       providesTags: ["Categories"],
     }),
     createCategory: build.mutation({

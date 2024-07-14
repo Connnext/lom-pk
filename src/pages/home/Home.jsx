@@ -6,63 +6,62 @@ import ShowMoreButton from "components/elements/buttons/showMoreButton/ShowMoreB
 import Spinner from "components/elements/spinners/Spinner";
 import SliderStocks from "components/elements/carousel/SliderStocks";
 import Layout from "components/modules/layouts/Layout";
+import { IS_HIT, IS_NEW, IS_SALE } from "utils/constants";
+
+const getQueryParams = (feature) => {
+  const baseParams = {
+    min_price: 10_000,
+    max_price: 200_000_000,
+    page: 1,
+    page_limit: 4,
+    sort_by: "price",
+    sort_order: "asc",
+    categories: [],
+  };
+  switch (feature) {
+    case IS_HIT:
+      return { ...baseParams, is_hit: true };
+    case IS_NEW:
+      return { ...baseParams, is_new: true };
+    case IS_SALE:
+      return { ...baseParams, is_sale: true };
+    default:
+      return baseParams;
+  }
+};
+
+const ProductSection = ({ title, data, feature }) => (
+  <>
+    <InfoTitle title={title} />
+    <ItemCards data={data} />
+    <ShowMoreButton feature={feature} />
+  </>
+);
 
 export default function Home() {
-  // Ваши параметры для хитов
-  const bodyHits = {
-    min_price: 2,
-    max_price: 200_000,
-    page: 1,
-    page_limit: 4,
-    sort_by: "price",
-    sort_order: "asc",
-    is_hit: 1,
-  };
+  const { data: hitData, isLoading: isLoadingHit } = useGetProductsQuery(
+    getQueryParams(IS_HIT)
+  );
+  const { data: newData, isLoading: isLoadingNew } = useGetProductsQuery(
+    getQueryParams(IS_NEW)
+  );
+  const { data: saleData, isLoading: isLoadingSale } = useGetProductsQuery(
+    getQueryParams(IS_SALE)
+  );
 
-  // Ваши параметры для новинок
-  const bodyNews = {
-    min_price: 10000,
-    max_price: 1_000_000,
-    page: 1,
-    page_limit: 4,
-    sort_by: "price",
-    sort_order: "asc",
-    is_hit: 0,
-  };
+  const isLoading = isLoadingHit || isLoadingNew || isLoadingSale;
 
-  // Ваши параметры для акций
-  const bodyActions = {
-    // min_price: 10,
-    // max_price: 200_000,
-    page: 1,
-    page_limit: 4,
-    sort_by: "price",
-    sort_order: "asc",
-    is_hit: 0,
-  };
-  const { data: dataHits, isLoading: isLoadingHits } =
-    useGetProductsQuery(bodyHits);
-  const { data: dataNew, isLoading: isLoadingNew } =
-    useGetProductsQuery(bodyNews);
-  const { data: dataActions, isLoading: isLoadingActions } =
-    useGetProductsQuery(bodyActions);
   return (
     <Layout>
       <div className="container">
         <SliderStocks />
-        {isLoadingHits || isLoadingNew || isLoadingActions ? (
+        {isLoading ? (
           <Spinner />
         ) : (
           <>
-            <InfoTitle title="Хиты" />
-            <ItemCards data={dataHits} />
-            <ShowMoreButton filter="hits" />
-            <InfoTitle title="Новинки" />
-            <ItemCards data={dataNew} />
-            <ShowMoreButton filter="news" />
-            <InfoTitle title="Акции" />
-            <ItemCards data={dataActions} />
-            <ShowMoreButton filter="sales" />
+            <ProductSection title="Хиты" data={hitData} feature={IS_HIT} />
+            <ProductSection title="Новинки" data={newData} feature={IS_NEW} />
+            <ProductSection title="Акции" data={saleData} feature={IS_SALE} />
             {/* <SliderBrands /> */}
             <div>отзывы</div>
           </>

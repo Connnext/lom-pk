@@ -1,46 +1,76 @@
-.search-form {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
+:root {
+  --primary-color: rgb(133, 10, 10);
+  --text-color: #333;
+  --background-color: #f8f9fa;
+  --hover-color: #e9ecef;
+  --border-color: #dee2e6;
+  --shadow-color: rgba(0, 0, 0, 0.1);
 }
 
-.search-input {
-  width: 100%;
-  padding: 10px;
-  box-sizing: border-box;
-  border: 1px solid rgb(133, 10, 10);
-  border-radius: 8px;
-  background: rgb(255, 255, 255);
-  font-size: 16px;
-}
-
-.search-button {
-  margin-left: 10px;
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
-  background-color: rgb(133, 10, 10);
-  color: #fff;
-  cursor: pointer;
-}
-
-.search-button svg {
-  width: 24px;
-  height: 24px;
-  vertical-align: middle;
-}
-
-.search__img {
-  color: white;
-}
-/* styles/SearchBar.css */
 .search-bar {
   position: relative;
   width: 100%;
   max-width: 500px;
   margin: 0 auto;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  border: 2px solid #850a0a;
+  border-radius: 25px;
+  background: #ffffff;
+  overflow: hidden;
+  height: 50px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.search-form:focus-within {
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px 15px;
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  color: #333;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.search-button {
+  border: none;
+  height: 100%;
+  width: 50px;
+  background: #850a0a;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  position: relative;
+}
+
+.search-button:hover {
+  background: #6e0505;
+}
+
+.search-button::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("./../../../img/search.svg");
 }
 
 .search-results {
@@ -49,20 +79,36 @@
   left: 0;
   width: 100%;
   background: white;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  border-radius: 0 0 15px 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   list-style-type: none;
-  margin: 0;
+  margin: 5px 0 0;
   padding: 0;
+  max-height: 300px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color) var(--background-color);
+  box-shadow: 0 4px 6px var(--shadow-color);
 }
 
 .search-results li {
-  padding: 10px;
+  padding: 12px 15px;
   cursor: pointer;
+  transition: background-color 0.2s;
 }
 
 .search-results li:hover {
-  background-color: #f0f0f0;
+  background-color: #f5f5f5;
+}
+
+.search-results a {
+  color: #333;
+  text-decoration: none;
+  display: block;
+}
+
+.search-results a:hover {
+  color: #850a0a;
 }

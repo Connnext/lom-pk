@@ -86,10 +86,6 @@ export default function OrderCall() {
     validateForm();
   };
 
-  if (isLoading) {
-    return <Spinner />;
-  }
-
   return (
     <>
       <h2 className="form__title">Запрос звонка</h2>

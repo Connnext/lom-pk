@@ -1,28 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import zaglushka from "../../../../img/zaglushka.jpg";
 import "./imageWithFallback.css";
 
-const ImageWithFallback = ({ src, alt, style, item, isBig }) => {
+const ImageWithFallback = ({ src, alt, style, item, isBig, isBasket }) => {
+  const [className, setClassName] = useState("");
+  const [text, setText] = useState("");
+  useEffect(() => {
+    let classNames = "";
+    let displayText = "";
+
+    if (item?.is_hit) {
+      classNames = "sliderCard__is-hit";
+      displayText = "Хит";
+    } else if (item?.is_new) {
+      classNames = "sliderCard__is-new";
+      displayText = "Новинка";
+    } else if (item?.is_sale) {
+      classNames = "sliderCard__is-sale";
+      displayText = "Акция";
+    }
+    if (isBig) classNames += " big__Icon";
+    if (isBasket) classNames += " basket__Icon";
+
+    setClassName(classNames);
+    setText(displayText);
+  }, [item, isBig, isBasket]);
+
   const handleError = (event) => {
     event.target.src = zaglushka;
   };
-
-  let className = "";
-  let text = "";
-
-  if (item?.is_hit) {
-    className = "sliderCard__is-hit";
-    isBig ? (className += " big__Icon") : (className += "");
-    text = "Хит";
-  } else if (item?.is_new) {
-    className = "sliderCard__is-new";
-    isBig ? (className += " big__Icon") : (className += "");
-    text = "Новинка";
-  } else if (item?.is_sale) {
-    className = "sliderCard__is-promo";
-    isBig ? (className += " big__Icon") : (className += "");
-    text = "Акция";
-  }
 
   return (
     <div className="productItem__img--wrapper">

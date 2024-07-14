@@ -67,26 +67,32 @@ export default function BasketItem({
             style={style}
             item={item}
             isBig={false}
+            isBasket={true}
           />
         </div>
       </Link>
       <Link to={ITEM_ROUTE.replace(":id", product_id)}>
-        <h3 className="basket__item--title">
+        {/* <h3 className="basket__item--title">
           {category_name}
           {title ? `${title[0]?.toLowerCase() + title.slice(1)}` : ""}
           {brand ? `${brand[0]?.toLowerCase() + brand.slice(1)}` : ""}
+        </h3> */}
+        <h3 className="basket__item--title">
+          {category_name}
+          {title && ` ${title}`}
+          {brand && ` ${brand}`}
         </h3>
       </Link>
       <div className="basket__item--details">
         {old_price != null ? (
           <div className="basket__price--wrapper">
-            <p className="basket__item--price basket__price--new">{price}₽</p>
+            <p className="basket__item--price basket__price--new">{price} ₽</p>
             <p className="basket__item--price basket__price--old">
-              {old_price}₽
+              {old_price} ₽
             </p>
           </div>
         ) : (
-          <p className="basket__item--price">{price}₽</p>
+          <p className="basket__item--price">{price} ₽</p>
         )}
         <ControlButtons id={product_id} initialCount={count} />
         <button onClick={handleDeleteItem} className="basket__item--remove">

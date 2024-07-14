@@ -1,17 +1,44 @@
+:root {
+  --primary-color: #850a0a;
+  --primary-light: #a61111;
+  --background-color: #f8f9fa;
+  --border-color: #ccc;
+  --text-color: #333;
+  --hover-color: #f0f0f0;
+}
+
 .shop__button--wrapper {
   display: flex;
   justify-content: center;
+  margin: 20px 0;
 }
 
 .shop__button {
   background-color: white;
-  border-radius: 5px;
-  margin: 20px 0 10px 0;
-  padding: 10px;
-  border: 2px solid #ced4d7;
+  border-radius: 8px;
+  padding: 12px 20px;
+  border: 2px solid var(--border-color);
   transition: 0.3s all;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--primary-color);
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
 }
+
 .shop__button:hover {
-  background-color: #ced4d7;
-  border: 2px solid white;
+  background-color: var(--primary-color);
+  border-color: white;
+  color: white;
+  box-shadow: 0 6px 12px rgba(133, 10, 10, 0.2);
+}
+
+.shop__button:active {
+  transform: scale(0.98);
+  box-shadow: 0 3px 6px rgba(133, 10, 10, 0.2);
+}
+
+.shop__button:focus {
+  outline: none;
 }

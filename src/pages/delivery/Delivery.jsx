@@ -131,12 +131,12 @@ export default function Delivery() {
   );
   const textAdress = (
     <>
-      <p>
+      <p style={paragraphStyle}>
         Россия, Санкт-Петербург, г. Ломоносов, ул. Привокзальная, д. 2, стр. 3,
         2 этаж
       </p>
-      <p>Пн - Пт с 11:00 до 19:00</p>
-      <p>Суббота с 11:00 до 18:00</p>
+      <p style={paragraphStyle}>Пн - Пт с 11:00 до 19:00</p>
+      <p style={paragraphStyle}>Суббота с 11:00 до 18:00</p>
     </>
   );
 

@@ -10,12 +10,12 @@ import "./addToBasketButton.css";
 
 const AddToBasketButton = ({ id }) => {
   const items = useSelector((state) => state.user.items);
-  console.log(items);
+  // console.log(items);
   const dispatch = useDispatch();
   const { data, isLoading } = useGetBasketQuery();
-  console.log(data);
+  // console.log(data);
   const { count, added, handleIncrement } = useBasketItem(id, 0);
-  console.log(count);
+  // console.log(count);
   const is_auth_FromRedux = useSelector((state) => state.user.is_auth);
   const is_auth = localStorage.getItem("is_auth") || is_auth_FromRedux;
   useEffect(() => {
@@ -27,9 +27,9 @@ const AddToBasketButton = ({ id }) => {
     else errorWithText("Необходимо войти / зарегестрироваться!");
   };
   if (isLoading) return <Spinner />;
-  console.log("added", added);
-  console.log("is_auth", is_auth);
-  console.log("count", count);
+  // console.log("added", added);
+  // console.log("is_auth", is_auth);
+  // console.log("count", count);
   return (
     <div className="add-to-basket">
       {added && is_auth && count > 0 ? (

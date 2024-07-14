@@ -62,6 +62,7 @@ export const userApi = api.injectEndpoints({
       }),
       invalidatesTags: ["User"],
     }),
+    //изменить запрос на posy
     orderCall: build.query({
       query: (data) => ({
         url: `/order_call/?phone=${data?.phone}&name=${data?.name}`,

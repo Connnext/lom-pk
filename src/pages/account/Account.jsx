@@ -39,7 +39,7 @@ export default function Account() {
     console.log(userData);
     const dataToSubmit = { ...userData };
     const password = localStorage.getItem("password__new");
-    if (password.length > 0) {
+    if (password?.length > 0) {
       dataToSubmit.password = password;
     }
     patchCurrentUser({

@@ -1,41 +1,11 @@
 import React, { useState } from "react";
 import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
+import "./yaMap.css"; // импортируем CSS файл
+
 export default function YaMap({ width, height }) {
   const [isOverlayVisible, setIsOverlayVisible] = useState(true);
   const [isSvgVisible, setIsSvgVisible] = useState(false);
 
-  const mapContainerStyle = {
-    position: "relative",
-    width: width,
-    height: height,
-    borderRadius: "15px",
-    overflow: "hidden",
-  };
-
-  const overlayStyle = {
-    position: "absolute",
-    cursor: "pointer",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    zIndex: 1, // убедимся, что div находится поверх карты
-    display: isOverlayVisible ? "flex" : "none", // определяем видимость overlay'а
-    justifyContent: "center", // выравнивание по горизонтали
-    alignItems: "center", // выравнивание по вертикали
-    color: "#fff", // цвет текста
-    fontSize: "32px", // размер текста
-    fontWeight: "bold", // жирный шрифт
-    textAlign: "center", // центрирование текста
-    letterSpacing: "2px",
-    transition: "background-color 0.2s ease-in-out", // добавляем переход для изменения цвета фона
-  };
-  const svgStyle = {
-    width: "50px",
-    height: "50px",
-    transition: "opacity 0.3s",
-    opacity: isSvgVisible ? 1 : 0, // показываем svg только при isSvgVisible = true
-  };
   const handleOverlayClick = () => {
     setIsOverlayVisible(false); // скрываем overlay при клике
   };
@@ -51,16 +21,16 @@ export default function YaMap({ width, height }) {
   };
 
   return (
-    <div style={mapContainerStyle}>
+    <div className="map-container" style={{ width: width, height: height }}>
       <YMaps>
         <Map
           defaultState={{
-            center: [59.91778530140486, 29.76726127976224],
+            center: [59.91735973744972, 29.767717255294766],
             zoom: 17,
             controls: ["zoomControl", "fullscreenControl"],
           }}
           modules={["control.ZoomControl", "control.FullscreenControl"]}
-          style={{ ...mapContainerStyle, zIndex: 0 }} // убедимся, что карта находится под div
+          style={{ width: width, height: height, zIndex: 0 }} // убедимся, что карта находится под div
         >
           <Placemark
             modules={["geoObject.addon.balloon"]}
@@ -73,17 +43,16 @@ export default function YaMap({ width, height }) {
         </Map>
       </YMaps>
       <div
-        style={overlayStyle}
+        className="overlay"
         onClick={handleOverlayClick}
         onMouseEnter={handleOverlayHover}
         onMouseLeave={handleOverlayLeave}
+        style={{ display: isOverlayVisible ? "flex" : "none" }} // определяем видимость overlay'а
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
-          width="50"
-          height="50"
-          style={svgStyle}
+          className={`svg-icon ${isSvgVisible ? "visible" : ""}`} // показываем svg только при isSvgVisible = true
         >
           <g id="_01_align_center" data-name="01 align center">
             <path

@@ -1,0 +1,38 @@
+/* ProductFilters.css */
+.product-filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+/* .product-filters label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+  font-weight: 600;
+} */
+
+.product-filters input[type="number"],
+.product-filters input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.product-filters input[type="checkbox"] {
+  margin-right: 10px;
+  accent-color: maroon;
+  height: 18px;
+  width: 18px;
+}
+.filter__label {
+  font-size: 18px;
+  font-weight: 700;
+}

@@ -21,6 +21,9 @@ export const successAddGoods = () => {
 export const errorAddGoods = () => {
   message.error("Заполните все данные!", [1]);
 };
+export const errorGetSubcategories = () => {
+  message.error("Укажите категорию", [3]);
+};
 export const successConfirm = () => {
   message.success("Заказ успешно оформлен!", [3]);
 };

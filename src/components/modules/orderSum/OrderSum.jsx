@@ -44,7 +44,7 @@ export default function OrderSum({ selectedItems, handleSubmit }) {
               <p className="order__price--title">
                 {selectedItems.reduce((count, item) => count + item.amount, 0)}{" "}
                 товаров на сумму:{" "}
-                <span className="order__price--count">{totalAmount}</span>₽
+                <span className="order__price--count">{totalAmount}</span> ₽
               </p>
             </div>
             <FormButton

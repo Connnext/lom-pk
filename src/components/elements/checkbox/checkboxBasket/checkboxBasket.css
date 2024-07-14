@@ -5,44 +5,22 @@
 }
 
 .checkbox-input {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  width: 25px;
-  height: 25px;
+  accent-color: #850a0a;
+  width: 28px;
+  height: 28px;
   border: 2px solid #ccc;
   border-radius: 4px;
   cursor: pointer;
   outline: none;
-  position: relative; /* Добавляем относительное позиционирование для псевдоэлемента */
+  position: relative;
   transition: all 0.4s;
 }
 
 .checkbox-input:checked {
   background-color: #850a0a;
-  border-color: #850a0a; /* Цвет рамки при выбранном состоянии */
+  border-color: #850a0a;
 }
 
 .checkbox-input:hover {
-  box-shadow: 0 0 0 1px #0000002f;
-}
-
-.checkbox-input::before {
-  content: "";
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  transform: translate(-50%, -50%);
-  transform: rotateZ(-50deg);
-  width: 12px;
-  height: 6px;
-  border-left: 2px solid #fff;
-  border-bottom: 2px solid #fff;
-  transform-origin: bottom left;
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-
-.checkbox-input:checked::before {
-  opacity: 1;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

@@ -7,7 +7,9 @@
   height: 50px;
   text-align: center;
   transition: all 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .link__to-order:hover {
   background: #6e0505;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }

@@ -104,3 +104,39 @@
   flex-direction: column;
   gap: 12px;
 }
+
+.item__file {
+  position: relative;
+  margin-bottom: 10px;
+  transition: 0.3s;
+}
+.item__file:hover .item__file--link,
+.item__file:hover .item__file--link::before {
+  color: rgb(165, 8, 8);
+}
+
+.item__file--link {
+  position: relative;
+  padding-left: 24px;
+  text-decoration: none;
+  color: inherit;
+  font-size: 20px;
+  transition: 0.3s;
+  background-repeat: no-repeat;
+}
+
+.item__file--link::before {
+  position: absolute;
+  content: "";
+  width: 22px;
+  height: 21px;
+  background-image: url("./../../img/file.svg");
+  background-size: contain;
+  left: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-repeat: no-repeat;
+}
+.item__file--link:visited {
+  color: rgb(133, 10, 10);
+}
