@@ -1,11 +1,15 @@
 .carousel {
   max-width: 1400px;
   margin-bottom: 50px;
-  margin: 0 auto;
+  margin: 10px auto 40px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
 }
 .carousel-image {
   min-width: 100%;
   display: block;
+  border-radius: 20px;
+  object-fit: contain; /* Ensure images maintain aspect ratio */
 }
 .custom-arrow-button {
   background-color: transparent;
@@ -13,7 +17,6 @@
   cursor: pointer;
   position: relative;
 }
-
 .arrow-circle {
   background-color: white;
   border-radius: 50%;
@@ -24,30 +27,25 @@
   align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
-
 .custom-arrow-icon {
   width: 20px;
   height: 20px;
 }
-
 .custom-bottom-buttons {
   display: flex;
   justify-content: center;
   margin-bottom: 7px;
   gap: 7px;
 }
-
 .custom-bottom-button {
   cursor: pointer;
   font-size: 16px;
   transition: all 0.6s ease;
 }
-
 .custom-bottom-button.active {
   color: #fff;
   border-color: transparent;
 }
-
 .custom-dot {
   width: 10px;
   height: 10px;
@@ -56,74 +54,24 @@
   display: inline-block;
   transition: 0.5s;
 }
-
 .custom-bottom-button.active .custom-dot {
   background-color: #333;
 }
-
 .carousel__container {
   border-radius: 20px;
   position: relative;
   overflow: hidden;
 }
 .arrow__icon--right {
-  margin-right: 20px;
+  margin-right: 10px;
 }
 .arrow__icon--left {
-  margin-left: 20px;
-}
-.arrow__brandicon--right {
-  margin-right: 20px;
-  right: -60px;
-}
-.arrow__brandicon--left {
-  margin-left: 20px;
-  right: 60px;
-}
-.slider-container {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-.carousel__stocks {
-  margin-bottom: 40px;
-}
-.carousel__images {
-  max-width: 668px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-.dots__images {
-  background-color: #a9a9a9;
-}
-.buttons--images {
-  display: flex;
-  justify-content: center;
-  margin-bottom: -20px;
-  gap: 7px;
-}
-.item__main--wrapper {
-  display: flex;
-}
-.item__img {
-  width: 390px;
-  height: 390px;
-  margin: auto;
+  margin-left: 10px;
 }
 
-.item__img--wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  position: relative;
-}
 .carousel-slide {
   height: 150px;
-  width: 100px;
+  width: auto;
   transition: transform 0.4s;
 }
 .carousel-slide:hover {

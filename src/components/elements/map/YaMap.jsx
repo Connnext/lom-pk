@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
+import { useMediaQuery } from "react-responsive";
 import "./yaMap.css"; // импортируем CSS файл
 
-export default function YaMap({ width, height }) {
+export default function YaMap() {
   const [isOverlayVisible, setIsOverlayVisible] = useState(true);
   const [isSvgVisible, setIsSvgVisible] = useState(false);
 
@@ -20,8 +21,33 @@ export default function YaMap({ width, height }) {
     setIsSvgVisible(false); // скрываем SVG при уходе курсора
   };
 
+  const isBigScreen = useMediaQuery({ query: "(min-width: 1200px)" });
+  const isMediumScreen = useMediaQuery({ query: "(min-width: 992px)" });
+  const isSmallScreen = useMediaQuery({ query: "(min-width: 768px)" });
+  const isVerySmallScreen = useMediaQuery({ query: "(max-width: 767px)" });
+
+  let mapWidth = "100%";
+  let mapHeight = "300px";
+
+  if (isBigScreen) {
+    mapWidth = "100%";
+    mapHeight = "500px";
+  } else if (isMediumScreen) {
+    mapWidth = "100%";
+    mapHeight = "500px";
+  } else if (isSmallScreen) {
+    mapWidth = "100%";
+    mapHeight = "400px";
+  } else if (isVerySmallScreen) {
+    mapWidth = "100%";
+    mapHeight = "300px";
+  }
+
   return (
-    <div className="map-container" style={{ width: width, height: height }}>
+    <div
+      className="map-container"
+      style={{ width: mapWidth, height: mapHeight }}
+    >
       <YMaps>
         <Map
           defaultState={{
@@ -30,7 +56,7 @@ export default function YaMap({ width, height }) {
             controls: ["zoomControl", "fullscreenControl"],
           }}
           modules={["control.ZoomControl", "control.FullscreenControl"]}
-          style={{ width: width, height: height, zIndex: 0 }} // убедимся, что карта находится под div
+          style={{ width: "100%", height: "100%", zIndex: 0 }} // убедимся, что карта находится под div
         >
           <Placemark
             modules={["geoObject.addon.balloon"]}

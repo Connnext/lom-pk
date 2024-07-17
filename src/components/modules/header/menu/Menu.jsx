@@ -70,8 +70,8 @@ export default function Menu() {
               Каталог
             </button>
             {showModal && <Catalog />}
-            <SearchBar />
           </div>
+          <SearchBar />
           <div className="menu__actions">
             {/* <Link to={FAVORITES_ROUTE}>
               <img className="menu__image" src={favorites} alt="favorites" />
@@ -105,6 +105,7 @@ export default function Menu() {
                 <span className="menu__label">Войти</span>
               </div>
             )}
+
             {!is_auth || basket < 1 ? <Form /> : null}
           </div>
         </div>
