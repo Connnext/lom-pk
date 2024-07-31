@@ -6,14 +6,14 @@
 }
 .confirm-email__title {
   text-align: center;
-  color: #333;
+  color: var(--grey__dark-color);
   font-size: 24px;
   margin: 10px 0;
   font-weight: 600;
 }
 .confirm-email__text {
   text-align: center;
-  color: #777;
+  color: var(--dark__text-color);
   font-size: 20px;
   line-height: 1.5;
   font-weight: 500;

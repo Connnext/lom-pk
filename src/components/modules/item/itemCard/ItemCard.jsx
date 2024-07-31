@@ -3,7 +3,10 @@ import AddToBasketButton from "components/elements/buttons/addToBasketButton/Add
 import { Link } from "react-router-dom";
 import { ITEM_ROUTE } from "utils/constants";
 import ImageWithFallback from "../imageWithFallback/ImageWithFallback";
+import { getIconType } from "helpers/iconUtils";
 import "./itemCard.css";
+
+// В вашем компоненте
 
 const style = {
   width: "200px",
@@ -14,9 +17,9 @@ const style = {
 };
 
 export default function ItemCard(item) {
-  const isLongTitle = item.title.length > 23;
+  const iconType = getIconType(item);
   return (
-    <div className="card">
+    <div className={`card ${iconType}`}>
       <Link className="card__link" to={`${ITEM_ROUTE.replace(":id", item.id)}`}>
         <div className="img__wrapper">
           <ImageWithFallback
@@ -24,19 +27,14 @@ export default function ItemCard(item) {
             alt={item.title}
             style={style}
             item={item}
+            isItemCard={true}
             className="card__image"
           />
         </div>
         <div className="card__info--content">
           <div className="card__info--main">
             <h3 className="card__category">{item.category_name}</h3>
-            <h2
-              className={`card__title ${
-                isLongTitle ? "long-title" : "short-title"
-              }`}
-            >
-              {item.title}
-            </h2>
+            <h2 className="card__title">{item.title}</h2>
             <h3 className="card__brand">{item.brand}</h3>
           </div>
           <div className="card__price--wrapper">

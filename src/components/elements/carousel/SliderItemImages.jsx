@@ -62,7 +62,7 @@ const SliderItemImages = ({ data }) => {
   const hasMultipleImages = data?.images?.length >= 2;
 
   return (
-    <div className="carousel carousel__images">
+    <div className="carousel__images">
       <Carousel
         autoplay={hasMultipleImages}
         wrapAround={hasMultipleImages}

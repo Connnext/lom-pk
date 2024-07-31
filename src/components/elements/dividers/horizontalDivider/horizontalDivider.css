@@ -1,0 +1,6 @@
+.horizontal__divider {
+  border: none;
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 20px 0;
+}

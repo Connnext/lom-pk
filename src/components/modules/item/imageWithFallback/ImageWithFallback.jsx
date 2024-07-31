@@ -1,39 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import zaglushka from "../../../../img/zaglushka.jpg";
 import "./imageWithFallback.css";
+import { getIconType } from "helpers/iconUtils";
 
-const ImageWithFallback = ({ src, alt, style, item, isBig, isBasket }) => {
-  const [className, setClassName] = useState("");
-  const [text, setText] = useState("");
-  useEffect(() => {
-    let classNames = "";
-    let displayText = "";
-
-    if (item?.is_hit) {
-      classNames = "sliderCard__is-hit";
-      displayText = "Хит";
-    } else if (item?.is_new) {
-      classNames = "sliderCard__is-new";
-      displayText = "Новинка";
-    } else if (item?.is_sale) {
-      classNames = "sliderCard__is-sale";
-      displayText = "Акция";
-    }
-    if (isBig) classNames += " big__Icon";
-    if (isBasket) classNames += " basket__Icon";
-
-    setClassName(classNames);
-    setText(displayText);
-  }, [item, isBig, isBasket]);
+const ImageWithFallback = ({
+  src,
+  alt,
+  style,
+  item,
+  isBig,
+  isBasket,
+  isItemCard,
+}) => {
+  const iconType = isItemCard ? "" : getIconType(item);
 
   const handleError = (event) => {
     event.target.src = zaglushka;
   };
 
   return (
-    <div className="productItem__img--wrapper">
+    <div
+      className={`productItem__img--wrapper ${iconType} 
+      `}
+    >
       <img style={style} src={src} alt={alt} onError={handleError} />
-      {className && <div className={className}>{text}</div>}
     </div>
   );
 };

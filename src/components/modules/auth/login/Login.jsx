@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import {
+  errorBadCredentialsLogin,
   errorMessage,
+  errorNotVerifiedLogin,
   successMessageAdmin,
   successMessageCustomer,
 } from "utils/messages";
@@ -43,19 +45,21 @@ export default function Login() {
           ? successMessageAdmin()
           : successMessageCustomer();
         navigate("/");
-        console.log("Login successful");
       } catch (error) {
-        console.error("Ошибка при логине:", error);
         if (error.data.detail == "LOGIN_USER_NOT_VERIFIED") {
           dispatch(setShowModal(true));
           dispatch(setFormType("requestVerify"));
+          errorNotVerifiedLogin();
+        }
+        if (error.data.detail == "LOGIN_BAD_CREDENTIALS") {
+          dispatch(setShowModal(true));
+          dispatch(setFormType("register"));
+          errorBadCredentialsLogin();
         }
       }
     },
     [login, navigate, dispatch, refetch]
   );
-
-  console.log("Render dataUser:", dataUser);
 
   if (isLoading || isLoadingUser) return <Spinner />;
 

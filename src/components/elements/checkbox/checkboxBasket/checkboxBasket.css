@@ -5,10 +5,10 @@
 }
 
 .checkbox-input {
-  accent-color: #850a0a;
+  accent-color: var(--primary-color);
   width: 28px;
   height: 28px;
-  border: 2px solid #ccc;
+  border: 2px solid var(--border-color);
   border-radius: 4px;
   cursor: pointer;
   outline: none;
@@ -17,10 +17,10 @@
 }
 
 .checkbox-input:checked {
-  background-color: #850a0a;
-  border-color: #850a0a;
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
 }
 
 .checkbox-input:hover {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px var(--shadow-color);
 }

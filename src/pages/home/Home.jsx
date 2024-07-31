@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useGetProductsQuery } from "./../../redux/services/productService";
 import InfoTitle from "components/elements/titles/InfoTitle";
 import ItemCards from "components/modules/item/ItemCards";
@@ -6,6 +7,9 @@ import ShowMoreButton from "components/elements/buttons/showMoreButton/ShowMoreB
 import Spinner from "components/elements/spinners/Spinner";
 import SliderStocks from "components/elements/carousel/SliderStocks";
 import Layout from "components/modules/layouts/Layout";
+import SliderBrands from "components/elements/carousel/SliderBrands";
+import { useGetBasketQuery } from "./../../redux/services/basketService";
+import { setBasket } from "./../../redux/store/slices/userSlice";
 import { IS_HIT, IS_NEW, IS_SALE } from "utils/constants";
 
 const getQueryParams = (feature) => {
@@ -39,6 +43,22 @@ const ProductSection = ({ title, data, feature }) => (
 );
 
 export default function Home() {
+  const is_auth = useSelector((state) => state.user.is_auth);
+  const dispatch = useDispatch();
+  const { data: basketData, refetch } = useGetBasketQuery();
+
+  useEffect(() => {
+    if (is_auth) {
+      refetch();
+    }
+  }, [is_auth, refetch]);
+
+  useEffect(() => {
+    if (basketData) {
+      dispatch(setBasket(basketData));
+    }
+  }, [basketData, dispatch]);
+
   const { data: hitData, isLoading: isLoadingHit } = useGetProductsQuery(
     getQueryParams(IS_HIT)
   );
@@ -53,20 +73,18 @@ export default function Home() {
 
   return (
     <Layout>
-      <div className="container">
-        <SliderStocks />
-        {isLoading ? (
-          <Spinner />
-        ) : (
-          <>
-            <ProductSection title="Хиты" data={hitData} feature={IS_HIT} />
-            <ProductSection title="Новинки" data={newData} feature={IS_NEW} />
-            <ProductSection title="Акции" data={saleData} feature={IS_SALE} />
-            {/* <SliderBrands /> */}
-            <div>отзывы</div>
-          </>
-        )}
-      </div>
+      <SliderStocks />
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <ProductSection title="Хиты" data={hitData} feature={IS_HIT} />
+          <ProductSection title="Новинки" data={newData} feature={IS_NEW} />
+          <ProductSection title="Акции" data={saleData} feature={IS_SALE} />
+          <SliderBrands />
+          <div>отзывы</div>
+        </>
+      )}
     </Layout>
   );
 }

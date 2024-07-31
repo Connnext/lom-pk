@@ -1,55 +1,38 @@
-:root {
-  --hit-color: #ff3e3e;
-  --new-color: #11ff00;
-  --sale-color: #fffc45;
-  --text-color: #ffffff;
-  --shadow-color: rgba(0, 0, 0, 0.2);
+.productItem__img--wrapper {
+  position: relative;
 }
 
-.sliderCard__is-hit,
-.sliderCard__is-new,
-.sliderCard__is-sale {
+.productItem__img--wrapper.hit::after,
+.productItem__img--wrapper.new::after,
+.productItem__img--wrapper.sale::after {
+  content: attr(data-text);
   position: absolute;
-  top: 0px;
-  left: -70px;
+  top: 0;
+  left: 0;
   color: var(--text-color);
   padding: 4px 10px;
   border-radius: 5px;
   font-size: 14px;
   font-weight: bold;
-  transform: rotate(0deg);
   box-shadow: 0 2px 5px var(--shadow-color);
   text-transform: uppercase;
-}
-.sliderCard__is-hit {
-  background-color: var(--hit-color);
-  color: white;
-}
-
-.sliderCard__is-new {
-  background-color: var(--new-color);
-  color: #000000;
-}
-
-.sliderCard__is-sale {
-  background-color: var(--sale-color);
-  color: #000000;
-}
-.sliderCard__is-hit,
-.sliderCard__is-new,
-.sliderCard__is-sale {
   text-shadow: 1px 1px 2px var(--shadow-color);
 }
-.productItem__img--wrapper {
-  position: relative;
+
+.productItem__img--wrapper.hit::after {
+  content: "Хит";
+  background-color: var(--hit-color);
+  color: var(--third-color);
 }
-.big__Icon {
-  font-size: 18px;
-  font-size: 22px;
-  left: -122px;
-  height: 42px;
-  padding: 4px 14px;
+
+.productItem__img--wrapper.new::after {
+  content: "Новинка";
+  background-color: var(--new-color);
+  color: var(--text-color);
 }
-.basket__Icon {
-  left: -20px;
+
+.productItem__img--wrapper.sale::after {
+  content: "Акция";
+  background-color: var(--sale-color);
+  color: var(--text-color);
 }

@@ -1,7 +1,7 @@
 import React from "react";
 //import logo from "./../../../img/logo.png";
 import { Link } from "react-router-dom";
-import logo from "./../../../img/loggo.jpg";
+import logo from "./../../../img/полный цветной.png";
 
 export default function Logo() {
   return (

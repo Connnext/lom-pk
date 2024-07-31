@@ -4,15 +4,8 @@ import { Link } from "react-router-dom";
 import SearchBar from "../../searchBar/SearchBar";
 import Logo from "../../../elements/logo/Logo";
 import basketImg from "./../../../../img/basket.png";
-// import compare from "./../../../../img/compare.png";
-// import favorites from "./../../../../img/favorites.png";
 import account from "./../../../../img/account.png";
-import {
-  ACCOUNT_ROUTE,
-  BASKET_ROUTE,
-  // COMPARE_ROUTE,
-  // FAVORITES_ROUTE,
-} from "utils/constants";
+import { ACCOUNT_ROUTE, BASKET_ROUTE } from "utils/constants";
 import {
   setFormType,
   setShowCatalogModal,
@@ -21,6 +14,7 @@ import {
 import Form from "components/elements/forms/Form";
 import Catalog from "components/modules/catalog/Catalog";
 import { useGetBasketQuery } from "./../../../../redux/services/basketService";
+import Container from "components/modules/container/Container";
 import "./menu.css";
 
 export default function Menu() {
@@ -31,6 +25,7 @@ export default function Menu() {
   const is_auth_FromRedux = useSelector((state) => state.user.is_auth);
   const is_auth =
     localStorage.getItem("is_auth") == "true" || is_auth_FromRedux;
+  console.log(is_auth, dataBasket);
   const basket = (is_auth && dataBasket?.items.length) || 0;
   const [basketCount, setBasketcount] = useState(basket);
 
@@ -57,14 +52,11 @@ export default function Menu() {
 
   return (
     <div className="menu">
-      <div className="container">
+      <Container>
         <div className="menu__wrap">
           <div className="menu__main">
             <div className="menu__logo">
               <Logo />
-              <span className="menu__logo--text">
-                Ломоносовcкий <br /> печной клуб
-              </span>
             </div>
             <button onClick={handleCatalogClick} className="menu__catalog">
               Каталог
@@ -73,12 +65,6 @@ export default function Menu() {
           </div>
           <SearchBar />
           <div className="menu__actions">
-            {/* <Link to={FAVORITES_ROUTE}>
-              <img className="menu__image" src={favorites} alt="favorites" />
-            </Link>
-            <Link to={COMPARE_ROUTE}>
-              <img className="menu__image" src={compare} alt="compare" />
-            </Link> */}
             {console.log(basket)}
             {basket > 0 ? (
               <Link className="menu__link" to={BASKET_ROUTE}>
@@ -109,7 +95,7 @@ export default function Menu() {
             {!is_auth || basket < 1 ? <Form /> : null}
           </div>
         </div>
-      </div>
+      </Container>
     </div>
   );
 }

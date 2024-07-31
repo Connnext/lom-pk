@@ -1,8 +1,52 @@
 .order__call--text {
   text-align: center;
-  color: #777;
+  color: var(--dark__text-color);
   font-size: 16px;
   line-height: 1.5;
   font-weight: 500;
   margin-top: 20px;
+  max-width: 90%; /* Ограничиваем ширину текста */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Медиа-запросы для адаптивности */
+
+@media screen and (max-width: 1200px) {
+  .order__call--text {
+    font-size: 15px;
+    margin-top: 18px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .order__call--text {
+    font-size: 14px;
+    margin-top: 16px;
+    line-height: 1.4;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .order__call--text {
+    font-size: 13px;
+    margin-top: 14px;
+    max-width: 95%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .order__call--text {
+    font-size: 12px;
+    margin-top: 12px;
+    line-height: 1.3;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .order__call--text {
+    font-size: 11px;
+    margin-top: 10px;
+    max-width: 100%;
+  }
 }

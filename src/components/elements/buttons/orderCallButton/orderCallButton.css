@@ -1,7 +1,6 @@
 .order__call--button {
   border-radius: 5px;
   border: none;
-  color: black;
   font-size: 20px;
   font-weight: 500;
   line-height: 21px;
@@ -11,17 +10,31 @@
 }
 
 .order__button--red {
-  background-color: #850a0a;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--third-color);
 }
 .order__button--red:hover {
-  background-color: #6e0505;
+  background-color: var(--hover-color);
 }
 
 .order__button--white {
-  background-color: rgb(255, 255, 255);
-  color: black;
+  background-color: var(--third-color);
+  color: var(--text-color);
 }
 .order__button--white:hover {
-  background-color: #ced4d7;
+  background-color: var(--third__hover-color);
+}
+
+.order__call {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  .order__call--button {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px 16px;
+    font-style: 16px;
+  }
 }

@@ -1,0 +1,130 @@
+.price__filter {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.rc-slider {
+  max-width: 514px;
+}
+.price__title {
+  font-weight: 600;
+  font-size: 22px;
+  padding-left: 2px;
+  color: var(--primary-color);
+  text-shadow: 1px 1px 2px var(--shadow-color);
+}
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  position: relative;
+}
+
+.price-inputs {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.price__input {
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  padding: 12px 15px;
+  background-color: var(--background-color);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 5px var(--shadow-color);
+  color: var(--table-text);
+  font-size: 18px;
+}
+.price__input::placeholder {
+  color: var(--subtext-color);
+}
+.price__input:focus::placeholder {
+  color: transparent;
+}
+
+@media (max-width: 1200px) {
+  .price__filter {
+    max-width: 450px;
+  }
+
+  .price__title {
+    font-size: 20px;
+  }
+
+  .price__input {
+    padding: 10px 12px;
+  }
+}
+
+@media (max-width: 992px) {
+  .price__filter {
+    max-width: 400px;
+  }
+
+  .price__title {
+    font-size: 18px;
+  }
+
+  .price__input {
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .price__filter {
+    max-width: 350px;
+  }
+
+  .price__title {
+    font-size: 16px;
+  }
+
+  .price__input {
+    font-size: 16px;
+    padding: 6px 8px;
+  }
+}
+
+@media (max-width: 576px) {
+  .price__filter {
+    max-width: 300px;
+  }
+
+  .price__title {
+  }
+
+  .price__input {
+    padding: 4px 6px;
+  }
+
+  .slider::-webkit-slider-thumb,
+  .slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .price__filter {
+    max-width: 250px;
+  }
+
+  .price__title {
+  }
+
+  .price__input {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+
+  .slider::-webkit-slider-thumb,
+  .slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+  }
+}

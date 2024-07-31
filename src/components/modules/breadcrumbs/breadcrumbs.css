@@ -1,0 +1,73 @@
+.breadcrumb {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin: 10px 0 20px;
+  align-items: center;
+  flex-wrap: wrap; /* Позволяет переносить элементы на новую строку */
+}
+
+.breadcrumb__item {
+  position: relative;
+  padding-right: 34px;
+}
+
+.breadcrumb__item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  background: url("./../../../img/rigth_galka.svg") no-repeat center / contain;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease;
+}
+
+.breadcrumb__link {
+  text-decoration: none;
+  color: var(--primary-color);
+  transition: color 0.3s ease;
+}
+
+.breadcrumb__link:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb__link--home {
+  position: relative;
+  padding-left: 24px;
+}
+
+.breadcrumb__link--home::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  background: url("./../../../img/-home.svg") no-repeat center / contain;
+  transform: translateY(-50%);
+}
+
+/* Медиазапросы для мобильных устройств */
+@media (max-width: 768px) {
+  .breadcrumb {
+    gap: 10px; /* Уменьшение промежутков */
+  }
+
+  .breadcrumb__item {
+    padding-right: 20px; /* Уменьшение отступа */
+  }
+
+  .breadcrumb__item:not(:last-child)::after {
+    right: -4px;
+    width: 16px;
+    height: 10px;
+  }
+
+  .breadcrumb__link--home::before {
+    width: 14px;
+    height: 14px;
+  }
+}

@@ -1,15 +1,15 @@
 .clear__basket--button {
-  border: #850a0a 2px solid;
-  background: white;
-  color: black;
+  border: var(--primary-color) 2px solid;
+  background: var(--third-color);
+  color: var(--text-color);
   border-radius: 5px;
   width: 268px;
   height: 50px;
   text-align: center;
   transition: 0.4s all ease-in-out;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px var(--shadow-color);
 }
 .clear__basket--button:hover {
-  background: #850a0a;
-  color: white;
+  background: var(--primary-color);
+  color: var(--third-color);
 }

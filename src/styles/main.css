@@ -1,7 +1,23 @@
+@import url("styles/variables.css");
+
+/* * {
+  font-family: "Roboto Condensed", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+} */
+
 * {
-  font-family: "Poppins", sans-serif;
+  font-family: "Rubik", sans-serif;
+  font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+}
+html {
+  scrollbar-width: auto;
+  scrollbar-color: var(--table-text) var(--background-color);
+  height: 100%;
+  margin: 0;
 }
 .container {
   width: 100%;
@@ -20,18 +36,16 @@
 }
 body {
   height: 100%;
+  margin: 0;
+  padding-top: 176px;
 }
 
 body.no-scroll {
   overflow: hidden;
 }
 
-.content {
-  flex: 1 0 auto;
-  margin-bottom: 20px;
-}
+/* SPINNER */
 
-/* HTML: <div class="loader"></div> */
 .loader {
   width: 40px;
   aspect-ratio: 1;
@@ -41,7 +55,7 @@ body.no-scroll {
 .loader::after {
   content: "";
   grid-area: 1/1;
-  --c: no-repeat linear-gradient(#850a0a 0 0);
+  --c: no-repeat linear-gradient(var(--primary-color) 0 0);
   background: var(--c) 0 0, var(--c) 100% 0, var(--c) 100% 100%, var(--c) 0 100%;
   animation: l10-1 2s infinite linear, l10-2 2s infinite linear;
 }
@@ -49,6 +63,45 @@ body.no-scroll {
   margin: 25%;
   transform: scale(-1);
 }
+
+.paragraph {
+  font-size: 20px;
+  text-align: justify;
+  font-weight: 400;
+  text-indent: 30px;
+  margin: 0 0 10px 0;
+}
+@media (max-width: 1024px) {
+  .paragraph {
+    font-size: 18px;
+    text-indent: 20px;
+  }
+}
+@media (max-width: 975px) {
+  body {
+    padding-top: 260px;
+  }
+  .paragraph {
+    font-size: 18px;
+    text-indent: 16px;
+  }
+}
+@media (max-width: 610px) {
+  body {
+    padding-top: 0;
+  }
+  .paragraph {
+    font-size: 16px;
+    text-indent: 14px;
+  }
+}
+@media (max-width: 420px) {
+  .paragraph {
+    font-size: 14px;
+    text-indent: 12px;
+  }
+}
+
 @keyframes l10-1 {
   0% {
     background-size: 0 4px, 4px 0, 0 4px, 4px 0;

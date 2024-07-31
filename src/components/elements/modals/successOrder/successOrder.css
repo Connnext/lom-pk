@@ -1,6 +1,6 @@
 .success__order--text {
   text-align: center;
-  color: #777;
+  color: var(--dark__text-color);
   font-size: 18px;
   line-height: 1.5;
   font-weight: 500;

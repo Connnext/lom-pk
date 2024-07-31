@@ -1,15 +1,14 @@
 .carousel {
   max-width: 1400px;
-  margin-bottom: 50px;
-  margin: 10px auto 40px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  margin: 0 0 20px 0;
+  box-shadow: 0 10px 20px var(--shadow-color);
   border-radius: 20px;
 }
 .carousel-image {
   min-width: 100%;
   display: block;
   border-radius: 20px;
-  object-fit: contain; /* Ensure images maintain aspect ratio */
+  object-fit: contain;
 }
 .custom-arrow-button {
   background-color: transparent;
@@ -18,14 +17,14 @@
   position: relative;
 }
 .arrow-circle {
-  background-color: white;
+  background-color: var(--third-color);
   border-radius: 50%;
   width: 40px;
   height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px var(--shadow__hover-color);
 }
 .custom-arrow-icon {
   width: 20px;
@@ -43,19 +42,20 @@
   transition: all 0.6s ease;
 }
 .custom-bottom-button.active {
-  color: #fff;
+  color: var(--third-color);
   border-color: transparent;
 }
 .custom-dot {
   width: 10px;
   height: 10px;
-  background-color: #fff;
+  background-color: var(--third-color);
   border-radius: 50%;
   display: inline-block;
   transition: 0.5s;
+  background-color: var(--border-color);
 }
 .custom-bottom-button.active .custom-dot {
-  background-color: #333;
+  background-color: var(--grey__dark-color);
 }
 .carousel__container {
   border-radius: 20px;
@@ -63,10 +63,10 @@
   overflow: hidden;
 }
 .arrow__icon--right {
-  margin-right: 10px;
+  margin-right: 20px;
 }
 .arrow__icon--left {
-  margin-left: 10px;
+  margin-left: 20px;
 }
 
 .carousel-slide {
@@ -76,4 +76,15 @@
 }
 .carousel-slide:hover {
   transform: translateY(-10px) scale(1.1, 1.1);
+}
+
+@media (max-width: 768px) {
+  .carousel__stocks {
+    display: none;
+  }
+}
+.carousel__images {
+  box-shadow: rgba(17, 12, 46, 0.12) 0px 10px 30px 0px;
+  border-radius: 10px;
+  max-width: 800px;
 }

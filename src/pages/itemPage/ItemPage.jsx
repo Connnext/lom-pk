@@ -59,47 +59,40 @@ export default function ItemPage() {
 
   return (
     <Layout>
-      <div className="container">
-        <InfoTitle title={data?.title} />
-        <div className="item__details">
-          <div className="item__main--wrapper">
-            <div className="item__details--images">
-              <SliderItemImages data={data} />
-            </div>
-            <div className="item__main--info">
-              <div className="item__important--info">
-                {data?.article ? (
-                  <h2 className="item__article">
-                    Артикул производителя: {data?.article}
-                  </h2>
-                ) : (
-                  ""
-                )}
-
+      <InfoTitle title={data?.title} />
+      <div className="item__details">
+        <div className="item__main--wrapper">
+          <SliderItemImages data={data} />
+          <div className="item__main--info">
+            <div className="item__important--info">
+              {data?.article ? (
+                <h2 className="item__article">
+                  Артикул производителя: {data?.article}
+                </h2>
+              ) : (
+                ""
+              )}
+              {data?.brand ? (
                 <h3 className="item__brand">Бренд: {data?.brand}</h3>
-                {data?.old_price != null ? (
-                  <div className="item__price--wrapper">
-                    <p className="item__price price__new">{data?.price}₽</p>
-                    <p className="item__price price__old">{data?.old_price}₽</p>
-                  </div>
-                ) : (
-                  <p className="item__price">{data?.price}₽</p>
-                )}
-              </div>
-              <AddToBasketButton id={data?.id} />
+              ) : null}
+              {data?.old_price != null ? (
+                <div className="item__price--wrapper">
+                  <p className="item__price price__new">{data?.price}₽</p>
+                  <p className="item__price price__old">{data?.old_price}₽</p>
+                </div>
+              ) : (
+                <p className="item__price">{data?.price}₽</p>
+              )}
             </div>
+            <AddToBasketButton id={data?.id} />
           </div>
+        </div>
 
-          <div className="item__details--info">
-            <div style={{ marginBottom: "20px" }}></div>
-            <InfoText subtitle={"Описание"} text={text} />
-            <div style={{ marginBottom: "20px" }}></div>
-            <QuestionsOrderCall />
-            <div style={{ marginBottom: "20px" }}></div>
-            <InfoText subtitle={"Характеристики"} text={propertiesTable} />
-            <div style={{ marginBottom: "20px" }}></div>
-            <InfoText subtitle={"Документация"} text={filesList} />
-          </div>
+        <div className="item__details--info">
+          <InfoText subtitle={"Описание"} text={text} />
+          <QuestionsOrderCall />
+          <InfoText subtitle={"Характеристики"} text={propertiesTable} />
+          <InfoText subtitle={"Документация"} text={filesList} />
         </div>
       </div>
     </Layout>

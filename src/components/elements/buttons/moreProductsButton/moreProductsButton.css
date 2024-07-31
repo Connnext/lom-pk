@@ -1,12 +1,3 @@
-:root {
-  --primary-color: #850a0a;
-  --primary-light: #a61111;
-  --background-color: #f8f9fa;
-  --border-color: #ccc;
-  --text-color: #333;
-  --hover-color: #f0f0f0;
-}
-
 .shop__button--wrapper {
   display: flex;
   justify-content: center;
@@ -14,7 +5,7 @@
 }
 
 .shop__button {
-  background-color: white;
+  background-color: var(--third-color);
   border-radius: 8px;
   padding: 12px 20px;
   border: 2px solid var(--border-color);
@@ -23,14 +14,14 @@
   font-weight: 600;
   color: var(--primary-color);
   cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px var(--shadow-color);
   text-transform: uppercase;
 }
 
 .shop__button:hover {
   background-color: var(--primary-color);
-  border-color: white;
-  color: white;
+  border-color: var(--third-color);
+  color: var(--third-color);
   box-shadow: 0 6px 12px rgba(133, 10, 10, 0.2);
 }
 

@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from "react";
 import ModalCatalog from "components/elements/modals/modalCatalog/ModalCatalog";
 import { useGetCategoriesQuery } from "./../../../redux/services/categoriesService";
-import verticalDivider from "./../../elements/dividers/verticalDivider";
 import { Link } from "react-router-dom";
 import { categoriesInfo } from "utils/categoriesInfo";
 import { SHOP_ROUTE } from "utils/constants";
@@ -10,6 +9,7 @@ import { catalog_text, categories_text } from "utils/textDecorate";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilterParams } from "./../../../redux/store/slices/productSlice";
 import { setShowCatalogModal } from "./../../../redux/store/slices/modalSlice";
+import VerticalDivider from "components/elements/dividers/verticalDivider/VerticalDivider";
 import "./catalog.css";
 
 export default function Catalog() {
@@ -19,14 +19,13 @@ export default function Catalog() {
   });
   const dispatch = useDispatch();
   const [activeCategory, setActiveCategory] = useState(1);
-  const filterParams = useSelector((state) => state.product.filterParams);
-  console.log(filterParams);
+
   const handleCategoryHover = (categoryId) => {
     setActiveCategory(categoryId);
   };
 
-  const handleSetFilters = (categoryId) => {
-    dispatch(setFilterParams({ categories: [categoryId] }));
+  const handleSetFilters = (name, value) => {
+    dispatch(setFilterParams({ [name]: [value] }));
     dispatch(setShowCatalogModal(false));
   };
 
@@ -44,13 +43,15 @@ export default function Catalog() {
                 {categoriesData.map((category) => (
                   <li key={category.id}>
                     <Link
-                      onClick={() => handleSetFilters(category.id)}
+                      onClick={() =>
+                        handleSetFilters("categories", category.id)
+                      }
                       className="catalog__category--link"
                       style={{
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "center",
-                        color: "rgb(133, 10, 10)",
+                        color: "var(--primary-color)",
                       }}
                       to={SHOP_ROUTE}
                     >
@@ -67,8 +68,8 @@ export default function Catalog() {
                 ))}
               </ul>
             </div>
-            <div style={{ border: "1px solid #ced4d7", height: "auto" }}></div>
-            <div className="colum__category">
+            <VerticalDivider hideAt={1070} />
+            <div className="colum__category colum__subcategories">
               <h3 className="catalog__categories--title">Подкатегории:</h3>
               <div className="colum__category--info">
                 {categoriesData?.map(
@@ -78,7 +79,9 @@ export default function Catalog() {
                         {category.children.map((childCategory) => (
                           <li className="catalog__item" key={childCategory.id}>
                             <Link
-                              onClick={() => handleSetFilters(childCategory.id)}
+                              onClick={() =>
+                                handleSetFilters("categories", childCategory.id)
+                              }
                               className="catalog__item--link"
                               to={SHOP_ROUTE}
                             >
@@ -91,18 +94,24 @@ export default function Catalog() {
                 )}
               </div>
             </div>
-            <div style={{ border: "1px solid #ced4d7", height: "auto" }}></div>
-            <div className="colum__category">
+            <VerticalDivider hideAt={1070} />
+            <div className="colum__category colum__brands">
               <h3 className="catalog__categories--title">Бренды:</h3>
               <div className="colum__category--info">
-                {categoriesInfo.categories?.map(
+                {categoriesData?.map(
                   (category) =>
                     activeCategory === category.id && (
                       <ul className="catalog__subcategories" key={category.id}>
                         {category.brands.map((brand) => (
-                          <li className="catalog__item" key={brand}>
-                            <Link className="catalog__item--link" to="/">
-                              {brand}
+                          <li className="catalog__item" key={brand.id}>
+                            <Link
+                              onClick={() =>
+                                handleSetFilters("brands", brand.name)
+                              }
+                              className="catalog__item--link"
+                              to={SHOP_ROUTE}
+                            >
+                              {brand.name}
                             </Link>
                           </li>
                         ))}

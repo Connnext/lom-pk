@@ -1,18 +1,21 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useEffect, useCallback, useRef, useState } from "react";
 import { ITEM_ROUTE, SHOP_ROUTE } from "utils/constants";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setSearchName } from "./../../../redux/store/slices/productSlice";
-import "./searchBar.css";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { useSearchQuery } from "./../../../redux/services/productService";
-import Spinner from "components/elements/spinners/Spinner";
 import debounce from "lodash/debounce";
 import useOutsideClickAndEsc from "hooks/useOutsideClickAndEsc";
+import SearchForm from "components/elements/forms/searchForm/SearchForm";
+import { setSearchName } from "./../../../redux/store/slices/productSlice";
+import "./searchBar.css";
 
 const SearchBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [valueSearch, setValueSearch] = useState("");
+  const location = useLocation();
+
+  // Локальные состояния для управления поисковым запросом, результатами и отображением результатов
+  const [inputValue, setInputValue] = useState("");
   const [searchQuery, setSearchQuery] = useState({
     page: 1,
     page_limit: 8,
@@ -20,6 +23,8 @@ const SearchBar = () => {
   });
   const [results, setResults] = useState([]);
   const [showResults, setShowResults] = useState(false);
+
+  // Получение данных поиска из Redux-сервиса
   const {
     data: dataSearch,
     isLoading: isLoadingSearch,
@@ -27,13 +32,15 @@ const SearchBar = () => {
     refetch,
   } = useSearchQuery(searchQuery);
 
+  // Ссылка для отслеживания кликов вне компонента
   const wrapperRef = useRef(null);
 
-  // Хук для обработки клика вне элемента и нажатия Esc
+  // Хук для скрытия результатов поиска при клике вне компонента или нажатии ESC
   useOutsideClickAndEsc(wrapperRef, (isVisible) => {
     setShowResults(isVisible);
   });
 
+  // Дебаунс-функция для задержки выполнения поиска
   const debouncedSearch = useCallback(
     debounce((query) => {
       if (query.length >= 3) {
@@ -47,58 +54,72 @@ const SearchBar = () => {
     [refetch]
   );
 
+  // Обновление поиска при изменении значения searchName из Redux
   useEffect(() => {
-    debouncedSearch(valueSearch);
-  }, [valueSearch, debouncedSearch]);
+    debouncedSearch(inputValue);
+  }, [inputValue, debouncedSearch]);
 
+  // Обновление результатов при получении новых данных из поиска
   useEffect(() => {
     if (dataSearch) {
       setResults(dataSearch.products);
     }
   }, [dataSearch]);
 
+  // Обработчик изменения значения поля ввода
   const handleChange = (event) => {
-    setValueSearch(event.target.value);
-    if (event.target.value.length <= 3) {
+    const value = event.target.value;
+    dispatch(setSearchName(value));
+    setInputValue(value);
+    if (value.length <= 3) {
       setShowResults(false);
     }
   };
 
+  useEffect(() => {
+    if (location.pathname == SHOP_ROUTE) setShowResults(false);
+  }, [location.pathname, showResults]);
+
+  // Обработчик отправки формы поиска
   const handleSubmit = (event) => {
     event.preventDefault();
     navigate(SHOP_ROUTE);
-    if (valueSearch.split(" ").length >= 3) {
-      dispatch(setSearchName(valueSearch));
-    }
+    dispatch(setSearchName(inputValue));
   };
+
+  const correctSearch = results.length > 0;
 
   return (
     <div className="search-bar" ref={wrapperRef}>
-      <form className="search-form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          className="search-input"
-          placeholder="Введите название товара"
-          value={valueSearch}
-          onChange={handleChange}
-        />
-        <button type="submit" className="search-button"></button>
-      </form>
-      {isLoadingSearch && <Spinner />}
+      <SearchForm
+        correctSearch={correctSearch}
+        valueSearch={inputValue}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+      />
       {showResults && (
-        <ul className="search__items search-results">
-          {results.length > 0 ? (
-            results.map((item) => (
-              <li key={item.id} className="search__item">
-                <Link to={ITEM_ROUTE.replace(":id", item.id)}>
-                  {item.title}
-                </Link>
-              </li>
-            ))
-          ) : (
-            <li className="search__item">Нет результатов</li>
-          )}
-        </ul>
+        <div className="search__bar--wrapper">
+          <ul className="search__items search-results">
+            {correctSearch ? (
+              results.map((item) => (
+                <li key={item.id} className="search__item">
+                  <Link to={ITEM_ROUTE.replace(":id", item.id)}>
+                    {item.title}
+                  </Link>
+                </li>
+              ))
+            ) : (
+              <li className="search__item">Нет результатов</li>
+            )}
+          </ul>
+          {correctSearch ? (
+            <div className="show-all-container">
+              <button className="show-all-button" onClick={handleSubmit}>
+                Показать больше
+              </button>
+            </div>
+          ) : null}
+        </div>
       )}
     </div>
   );

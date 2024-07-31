@@ -26,14 +26,12 @@ export default function Shop() {
 
   return (
     <Layout>
-      <div className="container">
-        <SliderStocks />
-        <InfoTitle title={"Товары"} />
-        <ProductsFilters />
-        <SortProducts />
-        <ItemCards data={data} />
-        {allProductsLoaded && <MoreProductsButton />}
-      </div>
+      <SliderStocks />
+      <InfoTitle title={"Товары"} />
+      <ProductsFilters />
+      <SortProducts />
+      <ItemCards data={data} />
+      {allProductsLoaded && <MoreProductsButton />}
     </Layout>
   );
 }

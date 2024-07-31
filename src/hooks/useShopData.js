@@ -80,8 +80,11 @@ const useShopData = () => {
     dispatch(setFilterParams({ [name]: value }));
   };
 
+  const data =
+    searchName && searchName.length > 0 ? dataSearch : dataGetProducts;
+
   return {
-    data: dataSearch || dataGetProducts,
+    data,
     error: error || errorSearch,
     isLoading: isLoading || isLoadingSearch,
     handleMoreProductsClick,

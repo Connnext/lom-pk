@@ -1,6 +1,7 @@
 /* Form.css */
 .form-wrapper {
-  width: 496px;
+  width: 100%;
+  max-width: 496px;
   height: auto;
   margin: 0 auto;
   padding: 10px;
@@ -15,77 +16,110 @@
 .form__title {
   text-align: center;
   font-weight: 600;
-  font-size: 24px;
-  line-height: 35px;
+  font-size: 22px;
+  line-height: 32px;
   letter-spacing: -2%;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
+
 .close-btn {
   position: absolute;
   top: 10px;
   right: 10px;
-  font-size: 20px;
+  font-size: 18px;
   cursor: pointer;
 }
 
 .form-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
 }
 
 .form-input {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
+  padding: 8px;
+  border: 1px solid var(--border-color);
   border-radius: 5px;
-  font-size: 16px;
-  color: #000000;
-  /* color: #ced4d7; */
+  font-size: 14px;
+  color: var(--text-color);
 }
 
 .extra-links {
   text-align: right;
 }
+
 .extra__links--auth {
   display: flex;
   justify-content: space-between;
 }
 
-.extra-links span {
-  margin: 0px 3px;
-  text-decoration: none;
-  color: #000000;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 25px;
-  letter-spacing: -2%;
-  cursor: pointer;
-}
+.extra-links span,
 .extra__links--auth button {
   margin: 0px 3px;
   text-decoration: none;
-  color: #000000;
-  font-size: 18px;
+  color: var(--text-color);
+  font-size: 16px;
   font-weight: 500;
-  line-height: 25px;
+  line-height: 22px;
   letter-spacing: -2%;
+  cursor: pointer;
 }
+
 .extra__links--auth button:hover {
   text-decoration: underline;
 }
+
 .extra-links span:hover {
   text-decoration: underline;
 }
+
 .form__input--title {
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 14px;
+  line-height: 18px;
   letter-spacing: -2%;
   font-weight: 500;
   margin: 0px 3px 4px 5px;
-  color: #828b8d;
+  color: var(--dark__text-color);
 }
+
 .form-button[disabled] {
-  background-color: rgba(133, 10, 10, 0.676);
+  background-color: var(--hover-color);
   cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+  .form-wrapper {
+    padding: 5px;
+  }
+
+  .form__title {
+    font-size: 20px;
+    line-height: 28px;
+    margin-bottom: 10px;
+  }
+
+  .close-btn {
+    font-size: 16px;
+  }
+
+  .form-container {
+    gap: 12px;
+  }
+
+  .form-input {
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  .extra-links span,
+  .extra__links--auth button {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .form__input--title {
+    font-size: 12px;
+    line-height: 16px;
+  }
 }

@@ -23,7 +23,9 @@ export const ADDRESS = (
   <>
     Россия, Санкт-Петербург,
     <br />
-    г. Ломоносов, ул. Привокзальная, д. 2, стр. 3, 2 этаж
+    г. Ломоносов, ул. Привокзальная,
+    <br />
+    д. 2, стр. 3, 2 этаж
   </>
 );
 export const TIME_WORK = (
@@ -37,3 +39,24 @@ export const TIME_WORK = (
 export const IS_HIT = "is_hit";
 export const IS_NEW = "is_new";
 export const IS_SALE = "is_sale";
+
+export const breadcrumbNameMap = {
+  "/": "Главная",
+  "/admin": "Админ",
+  "/shop": "Магазин",
+  "/basket": "Корзина",
+  "/item": "Товары",
+  "/about": "О компании",
+  "/stocks": "Акции",
+  "/pay": "Оплата",
+  "/delivery": "Доставка",
+  "/favorites": "Избранное",
+  "/account": "Аккаунт",
+  "/compare": "Сравнение",
+  "/news": "Новости",
+  "/order": "Заказ",
+  "/contacts": "Контакты",
+  "/guarantees": "Гарантии",
+  "/confirm": "Подтверждение",
+  "/reset-password": "Сброс пароля",
+};

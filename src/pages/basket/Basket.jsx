@@ -12,6 +12,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { HOME_ROUTE } from "utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { setBasket } from "./../../redux/store/slices/userSlice";
+import VerticalDivider from "components/elements/dividers/verticalDivider/VerticalDivider";
 import "./basket.css";
 
 export default function Basket() {
@@ -62,61 +63,53 @@ export default function Basket() {
   if (isError) console.error("Error fetching basket:", isError);
   return (
     <Layout>
-      <div className="container">
-        <SliderStocks />
-        <InfoTitle title={"Корзина"} />
-        {isLoading ? (
-          <Spinner />
-        ) : basketCount < 1 ? (
-          <p>
-            Корзина пуста, посмотрите наш ассортимент на{" "}
-            <Link className="empty-basket-link" to={HOME_ROUTE}>
-              «Главной»
-            </Link>{" "}
-            странице
-          </p>
-        ) : (
-          <div className="basket__info">
-            <div className="basket__items--wrapper">
-              <div className="basket__select--actions">
-                <SelectAllButton onClick={handleSelectAll} />
-                <ClearAllButton onClick={handleUnselectAll} />
-              </div>
-              {console.log(`dataBasket`, dataBasket.items)}
-              {dataBasket?.items?.map((item) => (
-                <BasketItem
-                  key={item.product_id}
-                  product_id={item.product_id}
-                  amount={item.amount}
-                  price={item.price}
-                  preview_img={item.preview_img}
-                  title={item.title}
-                  category_name={item.category_name}
-                  brand={item.brand}
-                  old_price={item.old_price}
-                  is_hit={item.is_hit}
-                  is_new={item?.is_new}
-                  is_sale={item?.is_sale}
-                  article={item.article}
-                  isSelected={selectedItems.some(
-                    (selectedItem) =>
-                      selectedItem.product_id === item.product_id
-                  )}
-                  onSelect={() => handleItemSelect(item.product_id)}
-                  onUpdate={refetch}
-                />
-              ))}
+      <SliderStocks />
+      <InfoTitle title={"Корзина"} />
+      {isLoading ? (
+        <Spinner />
+      ) : basketCount < 1 ? (
+        <p>
+          Корзина пуста, посмотрите наш ассортимент на{" "}
+          <Link className="empty-basket-link" to={HOME_ROUTE}>
+            «Главной»
+          </Link>{" "}
+          странице
+        </p>
+      ) : (
+        <div className="basket__info">
+          <div className="basket__items--wrapper">
+            <div className="basket__select--actions">
+              <SelectAllButton onClick={handleSelectAll} />
+              <ClearAllButton onClick={handleUnselectAll} />
             </div>
-            <div
-              style={{
-                borderLeft: "1px solid rgb(206, 212, 215)",
-                height: "auto",
-              }}
-            />
-            <BasketSum data={dataBasket} selectedItems={selectedItems} />
+            {console.log(`dataBasket`, dataBasket.items)}
+            {dataBasket?.items?.map((item) => (
+              <BasketItem
+                key={item.product_id}
+                product_id={item.product_id}
+                amount={item.amount}
+                price={item.price}
+                preview_img={item.preview_img}
+                title={item.title}
+                category_name={item.category_name}
+                brand={item.brand}
+                old_price={item.old_price}
+                is_hit={item.is_hit}
+                is_new={item?.is_new}
+                is_sale={item?.is_sale}
+                article={item.article}
+                isSelected={selectedItems.some(
+                  (selectedItem) => selectedItem.product_id === item.product_id
+                )}
+                onSelect={() => handleItemSelect(item.product_id)}
+                onUpdate={refetch}
+              />
+            ))}
           </div>
-        )}
-      </div>
+          <VerticalDivider hideAt={768} />
+          <BasketSum data={dataBasket} selectedItems={selectedItems} />
+        </div>
+      )}
     </Layout>
   );
 }

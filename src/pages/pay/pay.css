@@ -1,0 +1,8 @@
+.pay__link {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+.pay__link:hover {
+  text-decoration: none;
+  color: var(--hover-color);
+}

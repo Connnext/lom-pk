@@ -16,7 +16,7 @@
 .loader::after {
   content: "";
   grid-area: 1/1;
-  --c: no-repeat linear-gradient(#850a0a 0 0);
+  --c: no-repeat linear-gradient(var(--primary-color) 0 0);
   background: var(--c) 0 0, var(--c) 100% 0, var(--c) 100% 100%, var(--c) 0 100%;
   animation: l10-1 2s infinite linear, l10-2 2s infinite linear;
 }

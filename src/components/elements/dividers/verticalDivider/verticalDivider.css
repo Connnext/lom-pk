@@ -1,0 +1,24 @@
+.vertical__divider {
+  border: 1px solid var(--third__hover-color);
+  height: auto;
+}
+
+/* Скрыть на 768px и меньше */
+@media (max-width: 768px) {
+  .hide-at-768 {
+    display: none;
+  }
+}
+
+/* Скрыть на 1070px и меньше */
+@media (max-width: 1070px) {
+  .hide-at-1070 {
+    display: none;
+  }
+}
+/* Скрыть на 1100px и меньше */
+@media (max-width: 1100px) {
+  .hide-at-1100 {
+    display: none;
+  }
+}

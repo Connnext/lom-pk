@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   setFormType,
   setShowModal,
-} from "./../../../../redux/store/slices/modalSlice";
-import { useRequestVerifyTokenMutation } from "./../../../../redux/services/authService";
-import { successRequestVerifyMessage } from "utils/messages";
-import confirmEmail from "./../../../../img/confirmEmail.png";
+} from "../../../../redux/store/slices/modalSlice";
+import { useRequestVerifyTokenMutation } from "../../../../redux/services/authService";
+import { successRequestVerifyMessage } from "../../../../utils/messages";
+import confirmEmail from "../../../../img/confirmEmail.png";
 import "./confirmEmail.css";
 
 export default function ConfirmEmail() {
@@ -15,9 +15,10 @@ export default function ConfirmEmail() {
   const navigate = useNavigate();
   const [requestVerifyToken] = useRequestVerifyTokenMutation();
   const email = localStorage.getItem("user_email_for_verify");
+
   const handleConfirm = async () => {
     try {
-      await requestVerifyToken({ email: email }).unwrap();
+      await requestVerifyToken({ email }).unwrap();
       setTimeout(() => {
         dispatch(setShowModal(false));
         dispatch(setFormType(null));
@@ -25,9 +26,14 @@ export default function ConfirmEmail() {
       successRequestVerifyMessage(email);
       navigate("/");
     } catch (err) {
-      console.log(err);
+      console.error("Error confirming email:", err);
     }
   };
+
+  useEffect(() => {
+    handleConfirm();
+  }, []);
+
   return (
     <>
       <img
@@ -41,7 +47,6 @@ export default function ConfirmEmail() {
           Перейдите на почту для подтверждения регистрации.
         </p>
       </div>
-      {handleConfirm()}
     </>
   );
 }

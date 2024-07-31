@@ -5,16 +5,13 @@ import "./sortProducts.css";
 
 const SortProducts = () => {
   const { handleSortChange } = useShopData();
-  const sortParams = useSelector((state) => state.product.sortParams);
+  const sortParams = useSelector((state) => state.product.sortParams || {});
   console.log(sortParams);
-  const handleSortChanges = (event) => {
-    const { name, value } = event.target;
-    handleSortChange(name, value);
-  };
 
-  const handleCheckboxChange = (e) => {
-    const { name, checked } = e.target;
-    handleSortChange(name, checked);
+  const handleSortChanges = (event) => {
+    const { name, type, value, checked } = event.target;
+    const sortValue = type === "checkbox" ? checked : value;
+    handleSortChange(name, sortValue);
   };
 
   return (
@@ -24,10 +21,11 @@ const SortProducts = () => {
           Сортировать по:{" "}
         </label>
         <select
+          value={sortParams.sort_by}
           className="sort__select"
           id="sort-by"
           name="sort_by"
-          onChange={handleSortChange}
+          onChange={handleSortChanges}
         >
           <option value="price">Цена</option>
         </select>
@@ -37,6 +35,7 @@ const SortProducts = () => {
           Порядок:{" "}
         </label>
         <select
+          value={sortParams.sort_order}
           className="sort__select"
           id="sort-order"
           name="sort_order"
@@ -52,8 +51,8 @@ const SortProducts = () => {
             className="sort__input"
             type="checkbox"
             name="is_hit"
-            checked={sortParams.is_hit}
-            onChange={handleCheckboxChange}
+            checked={sortParams.is_hit || false}
+            onChange={handleSortChanges}
           />
           Хиты
         </label>
@@ -62,8 +61,8 @@ const SortProducts = () => {
             className="sort__input"
             type="checkbox"
             name="is_new"
-            checked={sortParams.is_new}
-            onChange={handleCheckboxChange}
+            checked={sortParams.is_new || false}
+            onChange={handleSortChanges}
           />
           Новинки
         </label>
@@ -72,8 +71,8 @@ const SortProducts = () => {
             className="sort__input"
             type="checkbox"
             name="is_sale"
-            checked={sortParams.is_sale}
-            onChange={handleCheckboxChange}
+            checked={sortParams.is_sale || false}
+            onChange={handleSortChanges}
           />
           Акции
         </label>

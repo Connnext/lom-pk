@@ -1,33 +1,48 @@
 .properties-table {
   width: 100%;
   border-collapse: collapse;
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: var(--table-background);
+  box-shadow: 0 2px 5px var(--shadow-color);
 }
 
 .properties-table th,
 .properties-table td {
-  border: 1px solid #ddd;
+  border: 1px solid var(--table-border);
   padding: 12px 15px;
   text-align: left;
 }
 
 .properties-table th {
-  background-color: #f2f2f2;
+  background-color: var(--table-header-background);
   font-weight: bold;
-  color: #333;
+  color: var(--grey__dark-color);
   font-size: 26px;
+  font-weight: 600;
 }
 
 .properties-table tr:nth-child(even) {
-  background-color: #f1f1f1;
+  background-color: var(--table-row-even);
 }
 
 .properties-table tr:hover {
-  background-color: #ddd;
+  background-color: var(--table-border);
 }
 
 .properties-table td {
-  color: #555;
+  color: var(--table-text);
+}
+
+@media screen and (max-width: 768px) {
+  .properties-table {
+    font-size: 14px;
+  }
+
+  .properties-table th,
+  .properties-table td {
+    padding: 8px 10px;
+  }
+
+  .properties-table th {
+    font-size: 18px;
+  }
 }

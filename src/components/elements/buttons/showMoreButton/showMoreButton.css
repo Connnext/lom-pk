@@ -3,36 +3,101 @@
   justify-content: flex-end;
   padding-right: 95px;
   padding-top: 10px;
+  margin-bottom: 20px;
 }
 
 .show__more--button {
-  color: black;
-  transition: 0.5s color;
+  color: var(--grey__dark-color);
+  font-weight: 600;
   position: relative;
   display: inline-block;
-  padding-right: 25px;
+  padding: 8px 36px 8px 20px;
   cursor: pointer;
+  background-color: var(--third-color);
+  border-radius: 25px;
+  box-shadow: 0 2px 5px var(--shadow-color);
+  text-decoration: none;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  transition: all 0.3s ease-in;
 }
 
 .show__more--button:hover {
-  color: #850a0a;
+  color: var(--third-color);
+  background-color: var(--primary-color);
+  box-shadow: 0 4px 8px rgba(133, 10, 10, 0.3);
 }
 .show__more--button:hover::after {
-  /* fill: #850a0a; */
+  /* filter: brightness(0) invert(1); */
   transform: translateY(-50%) translateX(50%);
-  filter: hue-rotate(180deg) brightness(0.5) saturate(200%);
+  filter: hue-rotate(180deg) brightness(0) invert(1) saturate(200%);
 }
 
 .show__more--button::after {
   content: "";
-  transition: all 0.4s;
+  transition: all 0.4s ease-in;
   position: absolute;
   top: 50%;
-  right: 0;
+  right: 16px;
   transform: translateY(-50%);
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   background-size: contain;
   background-repeat: no-repeat;
   background-image: url("./../../../../img/rigth_galka.svg");
+}
+@media (max-width: 1200px) {
+  .show__more--wrapper {
+    padding-right: 75px;
+  }
+  .show__more--button {
+    font-size: 15px;
+    padding: 8px 32px 8px 18px;
+  }
+  .show__more--button::after {
+    display: none;
+  }
+}
+
+@media (max-width: 992px) {
+  .show__more--wrapper {
+    padding-right: 50px;
+  }
+  .show__more--button {
+    font-size: 14px;
+    padding: 7px 28px 7px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .show__more--wrapper {
+    padding-right: 30px;
+  }
+  .show__more--button {
+    font-size: 13px;
+    padding: 6px 24px 6px 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .show__more--wrapper {
+    padding-right: 15px;
+    justify-content: center;
+  }
+  .show__more--button {
+    font-size: 12px;
+    padding: 5px 20px 5px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .show__more--wrapper {
+    padding-right: 10px;
+    justify-content: center;
+  }
+  .show__more--button {
+    font-size: 11px;
+    padding: 4px 18px 4px 10px;
+  }
 }

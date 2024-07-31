@@ -57,6 +57,12 @@ export const successMessageAdmin = () => {
 export const successMessageCustomer = () => {
   message.success("Вы вошли как пользователь", [2]);
 };
+export const errorNotVerifiedLogin = () => {
+  message.error("Пользователь не подтвердил почту", [2]);
+};
+export const errorBadCredentialsLogin = () => {
+  message.error("Данного аккаунта не существует. Зарегестрируйтесь", [2]);
+};
 export const successMessageSaveUserData = () => {
   message.success("Ваши данные успешно сохранены", [4]);
 };

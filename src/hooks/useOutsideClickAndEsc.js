@@ -3,15 +3,12 @@ import { useEffect } from "react";
 const useOutsideClickAndEsc = (ref, callback) => {
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (ref.current && !ref.current.contains(event.target)) {
-        callback(false);
-      }
+      console.log(`${callback}`, ref.current.contains(event.target));
+      if (ref.current && !ref.current.contains(event.target)) callback(false);
     };
 
     const handleEscapeKey = (event) => {
-      if (event.key === "Escape") {
-        callback(false);
-      }
+      if (event.key === "Escape") callback(false);
     };
 
     document.addEventListener("mousedown", handleClickOutside);

@@ -9,7 +9,7 @@
 
 .empty__basket--title {
   text-align: center;
-  color: #333;
+  color: var(--grey__dark-color);
   font-size: 24px;
   margin: 10px 0;
   font-weight: 600;
@@ -17,21 +17,21 @@
 
 .empty__basket--text {
   text-align: center;
-  color: #777;
+  color: var(--dark__text-color);
   font-size: 18px;
   line-height: 1.5;
   font-weight: 500;
 }
 .empty__basket--button {
   margin-top: 30px;
-  border: black solid 1px;
+  border: var(--text-color) solid 1px;
   border-radius: 5px;
   padding: 2px 32px;
   transition: background-color 0.2s ease-out;
 }
 .empty__basket--button:hover {
-  background-color: #ced4d7;
-  border: 1px solid rgb(0, 0, 0);
+  background-color: var(--third__hover-color);
+  border: 1px solid var(--text-color);
 }
 .empty__basket--wrapper {
   display: flex;

@@ -1,18 +1,9 @@
-:root {
-  --primary-color: rgb(133, 10, 10);
-  --text-color: #333;
-  --background-color: #f8f9fa;
-  --hover-color: #e9ecef;
-  --border-color: #dee2e6;
-  --shadow-color: rgba(0, 0, 0, 0.1);
-}
-
 .catalog__title {
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 20px;
   text-align: center;
-  color: black;
+  color: var(--text-color);
   text-shadow: 2px 2px 4px var(--shadow-color);
 }
 
@@ -67,7 +58,7 @@
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 20px;
-  color: black;
+  color: var(--text-color);
   border-bottom: 2px solid var(--primary-color);
   padding-bottom: 10px;
 }
@@ -80,7 +71,7 @@
   border-radius: 5px;
   transition: all 0.3s ease;
   position: relative;
-  color: black;
+  color: var(--text-color);
 }
 
 .catalog__category:hover {
@@ -108,7 +99,7 @@
 
 .catalog__category.active {
   color: var(--primary-color);
-  background-color: var(--hover-color);
+  background-color: var(--background__hover-color);
   transform: translateY(-10%) translateX(1px);
 }
 .catalog__category.active::after {
@@ -139,10 +130,10 @@
 
 .catalog__item--link:hover {
   color: var(--primary-color);
-  background-color: var(--hover-color);
+  background-color: var(--background__hover-color);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1070px) {
   .colums__wrapper {
     flex-direction: column;
   }
@@ -161,5 +152,10 @@
 
   .catalog__item--link {
     font-size: 14px;
+  }
+  .colum__subcategories,
+  .colum__brands,
+  .catalog__divider {
+    display: none;
   }
 }

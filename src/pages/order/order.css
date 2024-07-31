@@ -1,8 +1,9 @@
 .cdek-map {
-  width: 800px;
+  width: 100%;
+  max-width: 800px;
   height: 400px;
   margin-top: 20px;
-  background-color: #e0e0e05a; /* Пример фона, чтобы контейнер был виден до загрузки виджета */
+  background-color: var(--dark__text-color);
 }
 
 .order__wrapper {
@@ -10,12 +11,13 @@
   flex-direction: column;
   gap: 10px;
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-color);
   border-radius: 5px;
 }
+
 .order__label {
   font-size: 18px;
-  color: #333;
+  color: var(--grey__dark-color);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -28,35 +30,98 @@
   -moz-appearance: none;
   width: 15px;
   height: 15px;
-  border: 2px solid #850a0a; /* Цвет рамки */
+  border: 2px solid var(--primary-color);
   border-radius: 50%;
-  background-color: #fff; /* Цвет фона */
+  background-color: var(--third-color);
   outline: none;
   cursor: pointer;
   position: relative;
 }
 
 .order__input:checked {
-  background-color: #850a0a; /* Цвет фона, когда инпут выбран */
+  background-color: var(--primary-color);
 }
 
-/* color: #850a0a; */
 .russian-post-form {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Расстояние между элементами формы */
-  padding: 20px; /* Внутренний отступ */
-  border: 1px solid #ccc; /* Рамка вокруг формы */
-  border-radius: 5px; /* Закругленные углы */
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  width: 600px;
 }
 
 .form-input {
-  padding: 10px; /* Внутренний отступ */
-  border: 1px solid #ccc; /* Рамка вокруг поля ввода */
-  border-radius: 5px; /* Закругленные углы */
-  font-size: 18px; /* Размер шрифта */
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  font-size: 20px;
 }
+
 .order__info {
   display: flex;
   gap: 45px;
+}
+
+@media (max-width: 1400px) {
+  .russian-post-form {
+    width: 100%;
+    padding: 15px;
+  }
+}
+@media (max-width: 768px) {
+  .cdek-map {
+    height: 300px;
+  }
+
+  .order__wrapper {
+    padding: 15px;
+  }
+  .russian-post-form {
+    padding: 15px;
+  }
+
+  .order__label {
+    font-size: 16px;
+  }
+
+  .form-input {
+    font-size: 16px;
+  }
+
+  .order__info {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .order__main {
+    width: 100%;
+  }
+  .order__sum {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .cdek-map {
+    height: 250px;
+  }
+
+  .order__wrapper,
+  .russian-post-form {
+    padding: 10px;
+  }
+
+  .order__label {
+    font-size: 14px;
+  }
+
+  .form-input {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .order__info {
+    gap: 15px;
+  }
 }

@@ -1,11 +1,24 @@
 .info__divider {
   border: none;
-  border-bottom: 2px solid rgb(133, 10, 10);
+  border-bottom: 2px solid var(--primary-color);
   margin: 7px 0 30px;
 }
 .info__title {
   font-size: 32px;
   font-weight: 600;
-  letter-spacing: 0px;
-  color: rgb(133, 10, 10);
+  color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+  .info__divider {
+    margin: 10px;
+  }
+  .info__title {
+    font-size: 28px;
+  }
+}
+@media (max-width: 450px) {
+  .info__title {
+    font-size: 24px;
+  }
 }

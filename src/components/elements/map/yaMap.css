@@ -1,9 +1,30 @@
-/* YaMap.css */
+/* yaMap.css */
+
 .map-container {
+  width: 100%;
+  height: 300px;
   position: relative;
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 20px var(--shadow-color);
+}
+
+@media (min-width: 768px) {
+  .map-container {
+    height: 400px;
+  }
+}
+
+@media (min-width: 992px) {
+  .map-container {
+    height: 500px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .map-container {
+    height: 500px;
+  }
 }
 
 .overlay {
@@ -17,7 +38,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  color: var(--third-color);
   font-size: 32px;
   font-weight: bold;
   text-align: center;
@@ -25,13 +46,18 @@
   transition: background-color 0.2s ease-in-out;
 }
 
+.overlay:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
 .svg-icon {
+  fill: white;
   width: 50px;
   height: 50px;
   transition: opacity 0.3s;
   opacity: 0; /* initial state */
 }
 
-.svg-icon.visible {
+.overlay:hover .svg-icon {
   opacity: 1;
 }

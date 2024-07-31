@@ -21,6 +21,7 @@ import "./order.css";
 import { updateBasketItem } from "./../../redux/store/slices/userSlice";
 import Spinner from "components/elements/spinners/Spinner";
 import useBasketItem from "hooks/useBasketItem";
+import VerticalDivider from "components/elements/dividers/verticalDivider/VerticalDivider";
 
 export default function Order() {
   const navigate = useNavigate();
@@ -84,35 +85,25 @@ export default function Order() {
   };
   return (
     <Layout>
-      <div className="container">
-        <InfoTitle title={"Оформление заказа"} />
-        {isLoading ? (
-          <Spinner />
-        ) : (
-          <div className="order__info">
-            <div className="order__main">
-              <OrderSelectForm
-                selectedOption={selectedOption}
-                setSelectedOption={setSelectedOption}
-              />
-              {selectedOption === "СДЭК" && <OrderCdek />}
-              {selectedOption === "Почта России" && <OrderPochta />}
-              {selectedOption === "Наша доставка" && <OrderPochta />}
-              {selectedOption === "Самовывоз" && <OrderPickup />}
-            </div>
-            <div
-              style={{
-                borderLeft: "1px solid rgb(206, 212, 215)",
-                height: "auto",
-              }}
+      <InfoTitle title={"Оформление заказа"} />
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div className="order__info">
+          <div className="order__main">
+            <OrderSelectForm
+              selectedOption={selectedOption}
+              setSelectedOption={setSelectedOption}
             />
-            <OrderSum
-              selectedItems={selectedItems}
-              handleSubmit={handleSubmit}
-            />
+            {selectedOption === "СДЭК" && <OrderCdek />}
+            {selectedOption === "Почта России" && <OrderPochta />}
+            {selectedOption === "Наша доставка" && <OrderPochta />}
+            {selectedOption === "Самовывоз" && <OrderPickup />}
           </div>
-        )}
-      </div>
+          <VerticalDivider hideAt={768} />
+          <OrderSum selectedItems={selectedItems} handleSubmit={handleSubmit} />
+        </div>
+      )}
       {showModal ? <Form /> : ""}
     </Layout>
   );

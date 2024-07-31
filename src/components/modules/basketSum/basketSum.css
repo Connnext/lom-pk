@@ -2,29 +2,115 @@
   font-size: 28px;
   font-weight: 600;
 }
+
 .basket__sum--subtitle {
   font-size: 24px;
   font-weight: 500;
   line-height: 19px;
-  color: #3d3c3c;
+  color: var(--grey__dark-color);
   word-wrap: break-word;
 }
+
 .basket__sum--price {
   font-size: 26px;
   font-weight: 500;
   line-height: 35px;
   word-wrap: break-word;
 }
+
 .basket__sum {
   display: flex;
   flex-direction: column;
-  width: 268px;
-  gap: 20px;
+  max-width: 268px;
+  gap: 25px;
 }
+
 .basket__sum--info {
   font-size: 20px;
   font-weight: 300;
   line-height: 25px;
-  color: #7a7a7a;
+  color: var(--dark__text-color);
   word-wrap: break-word;
+}
+
+@media (max-width: 1024px) {
+  .basket__sum--title {
+    font-size: 24px;
+  }
+
+  .basket__sum--subtitle {
+    font-size: 20px;
+    line-height: 16px;
+  }
+
+  .basket__sum--price {
+    font-size: 22px;
+    line-height: 30px;
+  }
+
+  .basket__sum {
+    max-width: 240px;
+    gap: 20px;
+  }
+
+  .basket__sum--info {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .basket__sum--title {
+    font-size: 22px;
+  }
+
+  .basket__sum--subtitle {
+    font-size: 18px;
+    line-height: 14px;
+  }
+
+  .basket__sum--price {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .basket__sum {
+    max-width: 220px;
+    gap: 15px;
+  }
+
+  .basket__sum--info {
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+@media (max-width: 590px) {
+  .basket__sum {
+    max-width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .basket__sum--title {
+    font-size: 20px;
+  }
+
+  .basket__sum--subtitle {
+    font-size: 22px;
+    line-height: 22px;
+    font-weight: 400;
+  }
+
+  .basket__sum--price {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .basket__sum {
+    gap: 10px;
+  }
+
+  .basket__sum--info {
+    font-size: 14px;
+    line-height: 18px;
+  }
 }

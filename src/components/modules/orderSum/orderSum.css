@@ -2,55 +2,122 @@
   font-size: 28px;
   font-weight: 600;
 }
+
 .order__price--title {
   font-size: 24px;
   font-weight: 500;
   line-height: 19px;
-  color: #3d3c3c;
+  color: var(--secondary-color);
   word-wrap: break-word;
 }
+
 .order__price--count {
   font-size: 26px;
   font-weight: 500;
   line-height: 35px;
   word-wrap: break-word;
 }
+
 .order__sum {
-  /* display: flex;
-  flex-direction: column;
-  gap: 20px; */
   width: 500px;
 }
+
 .order__sum--info {
   font-size: 20px;
   font-weight: 300;
   line-height: 25px;
-  color: #7a7a7a;
+  color: var(--subtext-color);
   word-wrap: break-word;
 }
+
 .order__main {
   width: 827px;
 }
+
 .order__main--info {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
+
 .order__item--title {
   font-size: 20px;
-  width: 400px;
+  max-width: 400px;
   word-break: break-all;
-  color: #7a7a7a;
+  color: var(--subtext-color);
 }
+
 .order__item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--border-color);
   padding: 10px 0;
 }
-.order__item__total {
-  margin: 0;
-  font-size: 16px;
-  color: #888;
+
+.order__item--total {
+  padding-left: 20px;
+}
+
+/* Медиа-запросы для адаптивности */
+
+@media (max-width: 768px) {
+  .order__sum {
+    width: 100%;
+  }
+
+  .order__main {
+    width: 100%;
+  }
+
+  .order__sum--title {
+    font-size: 24px;
+  }
+
+  .order__price--title {
+    font-size: 20px;
+  }
+
+  .order__price--count {
+    font-size: 22px;
+  }
+
+  .order__sum--info {
+    font-size: 18px;
+  }
+
+  .order__item--title {
+    font-size: 18px;
+    max-width: 400px;
+  }
+
+  .order__item--total {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .order__sum--title {
+    font-size: 20px;
+  }
+
+  .order__price--title {
+    font-size: 18px;
+  }
+
+  .order__price--count {
+    font-size: 20px;
+  }
+
+  .order__sum--info {
+    font-size: 14px;
+  }
+
+  .order__item--title {
+    font-size: 14px;
+  }
+
+  .order__item--total {
+    font-size: 14px;
+  }
 }

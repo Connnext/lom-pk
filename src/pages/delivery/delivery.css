@@ -1,0 +1,17 @@
+.sub-text {
+  color: var(--subtext-color);
+  font-size: 16px;
+  margin: 20px 0 10px;
+}
+@media (max-width: 975px) {
+  .sub-text {
+    font-size: 14px;
+    margin: 18px 0 10px;
+  }
+}
+@media (max-width: 420px) {
+  .sub-text {
+    font-size: 12px;
+    margin: 16px 0 10px;
+  }
+}

@@ -1,26 +1,23 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutUser, setUserData } from "./../../redux/store/slices/userSlice";
+import { logoutUser } from "./../../redux/store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
 import {
   successMessageLogout,
   successMessageSaveUserData,
-  successSaveChanges,
 } from "utils/messages";
 import { useLogoutMutation } from "./../../redux/services/authService";
-import FormInput from "components/elements/inputs/FormInput";
-import InfoText from "components/elements/text/InfoText";
 import InfoTitle from "components/elements/titles/InfoTitle";
 import Layout from "components/modules/layouts/Layout";
-import {
-  useCurrentUserQuery,
-  usePatchCurrentUserMutation,
-} from "./../../redux/services/userService";
+import { usePatchCurrentUserMutation } from "./../../redux/services/userService";
 import FormButton from "components/elements/buttons/formButton/FormButton";
 import PersonalData from "components/elements/forms/PersonalData";
-import "./account.css";
 import DeliveryData from "components/elements/forms/DeliveryData";
 import Spinner from "components/elements/spinners/Spinner";
+import "./account.css";
+import SliderStocks from "components/elements/carousel/SliderStocks";
+import SliderBrands from "components/elements/carousel/SliderBrands";
+import VerticalDivider from "components/elements/dividers/verticalDivider/VerticalDivider";
 
 export default function Account() {
   const dispatch = useDispatch();
@@ -71,41 +68,35 @@ export default function Account() {
   };
   return (
     <Layout>
-      <div className="container">
-        <InfoTitle title={"Настройки профиля"} />
-        {isLoadingUserLogout ? (
-          <Spinner />
-        ) : (
-          <div className="account">
-            <div className="account__info">
-              <div className="account__forms">
-                <PersonalData />
-                <div
-                  style={{
-                    borderLeft: "1px solid rgb(206, 212, 215)",
-                    height: "auto",
-                  }}
-                />
-                <DeliveryData />
-              </div>
-            </div>
-
-            <div className="account__buttons">
-              <FormButton
-                onClick={handleFormSubmit}
-                disabled={!isValidPersonal}
-                text="Сохранить данные"
-              />
-              <button
-                className="account__button--exit"
-                onClick={() => hadleLogout()}
-              >
-                Выйти
-              </button>
+      <SliderStocks />
+      <InfoTitle title={"Настройки профиля"} />
+      {isLoadingUserLogout ? (
+        <Spinner />
+      ) : (
+        <div className="account">
+          <div className="account__info">
+            <div className="account__forms">
+              <PersonalData />
+              <VerticalDivider hideAt={768} />
+              <DeliveryData />
             </div>
           </div>
-        )}
-      </div>
+
+          <div className="account__buttons">
+            <FormButton
+              onClick={handleFormSubmit}
+              disabled={!isValidPersonal}
+              text="Сохранить данные"
+            />
+            <button
+              className="account__button--exit"
+              onClick={() => hadleLogout()}
+            >
+              Выйти
+            </button>
+          </div>
+        </div>
+      )}
     </Layout>
   );
 }

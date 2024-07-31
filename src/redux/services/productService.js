@@ -58,9 +58,9 @@ export const productsApi = api.injectEndpoints({
         if (data.page) {
           appendParam("page", data.page);
         }
-        // if (data.brands) {
-        //   appendParam("brands", data.brands);
-        // }
+        if (data.brands) {
+          data.brands.forEach((brand) => appendParam("brands", brand));
+        }
         if (data.categories) {
           data.categories.forEach((category) =>
             appendParam("categories", category)

@@ -1,15 +1,23 @@
+.account {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
 .account__button--exit {
-  color: #a50808;
+  color: var(--primary-color);
   padding: 2px 35px;
-  border: 2px solid #a50808;
-  background-color: white;
+  border: 2px solid var(--primary-color);
+  background-color: var(--third-color);
   border-radius: 5px;
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 12px var(--shadow-color);
   transition: 0.3s all;
 }
+
 .account__button--exit:hover {
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
 }
+
 .account__buttons {
   display: flex;
   justify-content: space-between;
@@ -19,5 +27,37 @@
 .account__forms {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 30px;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .account__button--exit {
+    padding: 2px 25px;
+    font-size: 16px;
+  }
+
+  .account__buttons {
+    gap: 20px;
+  }
+
+  .account__forms {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .account__button--exit {
+    padding: 2px 15px;
+  }
+
+  .account__buttons {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+  }
+
+  .account__forms {
+    gap: 15px;
+  }
 }

@@ -1,10 +1,10 @@
 import React from "react";
 import Spinner from "components/elements/spinners/Spinner";
 import OrderItem from "../item/orderItem/OrderItem";
-import "./orderSum.css";
 import InfoText from "components/elements/text/InfoText";
 import { useSelector } from "react-redux";
 import FormButton from "components/elements/buttons/formButton/FormButton";
+import "./orderSum.css";
 
 export default function OrderSum({ selectedItems, handleSubmit }) {
   const isValidDelivery = useSelector((state) => state.user.isValidDelivery);

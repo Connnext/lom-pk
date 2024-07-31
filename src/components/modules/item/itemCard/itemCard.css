@@ -1,21 +1,33 @@
-:root {
-  --primary-color: #850a0a;
-  --primary-dark: #6e0505;
-  --primary-light: #a61111;
-  --background-color: #f8f9fa;
-  --card-background: #ffffff;
-  --text-color: #333;
-  --text-light: #828b8d;
-  --border-radius: 12px;
-  --transition: all 0.3s ease;
-}
 .cards__wrapper {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
   padding: 20px;
+  align-items: center;
 }
+
+.no-products-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #555;
+  font-size: 18px;
+  padding: 20px;
+}
+
+.no-products-image {
+  max-width: 200px;
+  margin-bottom: 10px;
+}
+
+.no-products-text {
+  font-size: 16px;
+  color: #999;
+}
+
 .img__wrapper {
   display: flex;
   align-items: center;
@@ -25,7 +37,9 @@
   margin-bottom: 16px;
 }
 .card {
+  position: relative;
   gap: 20px;
+  justify-content: space-between;
   transition: 0.3s ease-in-out all;
   display: flex;
   flex-direction: column;
@@ -33,28 +47,46 @@
   margin: 10px;
   padding-bottom: 20px;
   border-radius: 16px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  background-color: var(--card-background);
+  box-shadow: 0 10px 20px var(--shadow-color);
+  background-color: var(--third-color);
+  padding: 15px 18px 15px 18px;
 }
-/* .card__is-hit {
+.card.hit::after,
+.card.new::after,
+.card.sale::after {
+  content: attr(data-text);
   position: absolute;
-  top: 0px;
-  left: 0px;
-  background-color: red;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 50%;
+  top: 20px;
+  left: -20px;
+  padding: 4px 10px;
+  border-radius: 5px;
   font-size: 14px;
   font-weight: bold;
-} */
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 5px var(--shadow-color);
+  text-transform: uppercase;
+  text-shadow: 1px 1px 2px var(--shadow-color);
 }
 
-.link {
-  text-decoration: none;
-  color: #333;
+.card.hit::after {
+  content: "Хит";
+  background-color: var(--hit-color);
+  color: var(--third-color);
+}
+
+.card.new::after {
+  content: "Новинка";
+  background-color: var(--new-color);
+  color: var(--text-color);
+}
+
+.card.sale::after {
+  content: "Акция";
+  background-color: var(--sale-color);
+  color: var(--text-color);
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px var(--shadow__hover-color);
 }
 
 .card__image {
@@ -65,22 +97,16 @@
 }
 
 .card__title {
-  color: #333;
+  color: var(--grey__dark-color);
   text-decoration: none;
   font-size: 1.25rem;
   font-weight: 600;
   line-height: 1.4;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-height: 70px;
 }
 
-.card__title.long-title {
-  height: 70px;
-}
-
-.card__title.short-title {
-  height: 30px;
-}
 .card__info--main {
   display: flex;
   flex-direction: column;
@@ -88,7 +114,7 @@
 }
 .card__category {
   font-size: 0.705rem;
-  color: #828b8d;
+  color: var(--subtext-color);
   text-transform: uppercase;
   font-weight: 500;
 }
@@ -103,24 +129,20 @@
 .card__price {
   font-size: 1.12rem;
   text-decoration: none;
-  color: #333;
+  color: var(--grey__dark-color);
 }
 
 .card__price {
-  color: black;
+  color: var(--text-color);
   font-size: 1.5rem;
   font-weight: 500;
 }
 .card__oldprice {
-  font-size: 1rem;
   text-decoration: line-through;
-  color: #999;
+  font-size: 24px;
+  color: var(--border-color);
 }
-.card__newprice {
-  text-decoration: line-through;
-  font-size: 1.5rem;
-  color: #999;
-}
+
 .card__brand {
   font-size: 0.9rem;
   color: var(--text-light);
@@ -133,6 +155,87 @@
 }
 .card__link {
   text-decoration: none;
-  padding: 15px 18px 0px 18px;
   color: var(--text-color);
+}
+
+@media (max-width: 1200px) {
+  .card {
+    width: 250px;
+  }
+  .card__image {
+    width: 180px;
+    height: 180px;
+  }
+  .card__title {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .cards__wrapper {
+    padding: 10px;
+  }
+  .card {
+    width: 250px;
+  }
+  .card__image {
+    width: 100%;
+    height: auto;
+  }
+  .card__title {
+    font-size: 0.8rem;
+  }
+  .card__info--content {
+    height: 130px;
+  }
+  .card__price {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 615px) {
+  .card {
+    width: 200px;
+  }
+  .card__image {
+    width: 100px;
+    height: auto;
+  }
+  .card__title {
+    font-size: 0.9rem;
+  }
+  .card__price {
+    font-size: 1rem;
+  }
+  .card__brand {
+    font-size: 0.7rem;
+  }
+}
+/* @media (max-width: 595px) {
+  .card {
+    width: 180px;
+  }
+} */
+
+@media (max-width: 480px) {
+  .card {
+    width: 100%;
+    margin: 10px 0;
+    gap: 10px;
+  }
+  .card__image {
+    width: 60%;
+    height: auto;
+  }
+  .card__title {
+    font-size: 1rem;
+    height: 54px;
+  }
+  .card__price {
+    font-size: 1.3rem;
+  }
+  .card__info--content {
+    height: 150px;
+    gap: 20px;
+  }
 }

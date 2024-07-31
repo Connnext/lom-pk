@@ -1,0 +1,35 @@
+.list {
+  padding-left: 25px;
+}
+
+.list-item {
+  list-style-type: disc;
+  font-size: 20px;
+  margin-bottom: 5px;
+  text-indent: 10px;
+}
+
+@media (max-width: 1024px) {
+  .list-item {
+    font-size: 18px;
+    text-indent: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .list {
+    padding-left: 20px;
+  }
+
+  .list-item {
+    font-size: 16px;
+    text-indent: 5px;
+  }
+}
+
+@media (max-width: 576px) {
+  .list-item {
+    font-size: 14px;
+    text-indent: 0;
+  }
+}

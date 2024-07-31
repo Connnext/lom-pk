@@ -1,6 +1,6 @@
 import React from "react";
 import Carousel from "nuka-carousel";
-import image from "./../../../img/1440_440.jpg";
+import image from "img/oblozhka_1.jpg";
 
 import CustomRightArrow from "../buttons/sliderButtons/CustomRightArrow";
 import CustomBottomButtons from "../buttons/sliderButtons/CustomBottomButtons";
@@ -9,7 +9,7 @@ import "./carousel.css";
 
 const SliderStocks = () => {
   return (
-    <div className="carousel">
+    <div className="carousel carousel__stocks">
       <Carousel
         autoplay
         wrapAround

@@ -4,8 +4,8 @@ import {
   setFormType,
   setShowModal,
 } from "./../../../../redux/store/slices/modalSlice";
-import "./orderCallButton.css";
 import Form from "components/elements/forms/Form";
+import "./orderCallButton.css";
 
 const OrderCallButton = ({ additionalClass }) => {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const OrderCallButton = ({ additionalClass }) => {
     dispatch(setFormType("orderCall"));
   };
   return (
-    <>
+    <div className="order__call">
       {showModal ? <Form /> : ""}
       <button
         onClick={handleOrderCallClick}
@@ -24,7 +24,7 @@ const OrderCallButton = ({ additionalClass }) => {
       >
         Заказать звонок
       </button>
-    </>
+    </div>
   );
 };
 
