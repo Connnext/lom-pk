@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import useShopData from "hooks/useShopData";
 import Slider from "rc-slider";
@@ -10,13 +10,15 @@ const PriceRangeSlider = () => {
   const { handleFilterChange } = useShopData();
   const filterParams = useSelector((state) => state.product.filterParams);
   const MAX_PRICE = 700_000;
-  // Состояние для хранения фокуса полей ввода
   const [focus, setFocus] = useState({ min: false, max: false });
-
   const [priceRange, setPriceRange] = useState([
     filterParams.min_price || "",
     filterParams.max_price || MAX_PRICE,
   ]);
+  const [maxInputValue, setMaxInputValue] = useState("");
+  const [minInputValue, setMinInputValue] = useState("");
+  const maxInputRef = useRef(null);
+  const minInputRef = useRef(null);
 
   useEffect(() => {
     setPriceRange([
@@ -26,29 +28,70 @@ const PriceRangeSlider = () => {
   }, [filterParams]);
 
   const handlePriceChange = (type, value) => {
-    const minValue = type === "min" ? value : priceRange[0];
-    const maxValue = type === "max" ? value : priceRange[1];
+    let minValue = type === "min" ? value : priceRange[0];
+    let maxValue = type === "max" ? value : priceRange[1];
 
-    if (minValue !== "" && maxValue !== "" && minValue > maxValue) {
-      if (type === "min") {
-        setPriceRange([maxValue - 1, maxValue]);
-        handleFilterChange("min_price", maxValue - 1);
-      } else {
-        setPriceRange([minValue, minValue + 1]);
-        handleFilterChange("max_price", minValue + 1);
+    if (type === "min") {
+      setMinInputValue(value);
+      if (value !== "" && value >= (maxValue || MAX_PRICE)) {
+        minValue = (maxValue || MAX_PRICE) - 1;
       }
+    }
+
+    if (type === "max") {
+      setMaxInputValue(value);
+      if (value !== "" && value <= (minValue || 0)) {
+        maxValue = (minValue || 0) + 1;
+      }
+    }
+
+    setPriceRange([minValue, maxValue]);
+    handleFilterChange(`${type}_price`, value);
+  };
+
+  const handleMinInputBlur = () => {
+    setFocus({ ...focus, min: false });
+    if (minInputValue === "") {
+      setPriceRange([0, priceRange[1]]);
+      handleFilterChange("min_price", 0);
     } else {
-      setPriceRange([minValue, maxValue]);
-      handleFilterChange(`${type}_price`, value);
+      const numValue = Number(minInputValue);
+      if (numValue >= (priceRange[1] || MAX_PRICE)) {
+        setPriceRange([priceRange[1] - 1, priceRange[1]]);
+        handleFilterChange("min_price", priceRange[1] - 1);
+      } else {
+        setPriceRange([numValue, priceRange[1]]);
+        handleFilterChange("min_price", numValue);
+      }
     }
   };
+
+  const handleMaxInputBlur = () => {
+    setFocus({ ...focus, max: false });
+    if (maxInputValue === "") {
+      setPriceRange([priceRange[0], MAX_PRICE]);
+      handleFilterChange("max_price", MAX_PRICE);
+    } else {
+      const numValue = Number(maxInputValue);
+      if (numValue <= (priceRange[0] || 0)) {
+        setPriceRange([priceRange[0], priceRange[0] + 1]);
+        handleFilterChange("max_price", priceRange[0] + 1);
+      } else {
+        setPriceRange([priceRange[0], numValue]);
+        handleFilterChange("max_price", numValue);
+      }
+    }
+  };
+
   const handleChange = (newRange) => {
     setPriceRange(newRange);
   };
+
   const handleAfterChange = (newRange) => {
     handleFilterChange("min_price", newRange[0]);
     handleFilterChange("max_price", newRange[1]);
   };
+
   return (
     <div className="price__filter">
       <div className="price__title">Цена:</div>
@@ -82,13 +125,17 @@ const PriceRangeSlider = () => {
         />
         <div className="price-inputs">
           <input
+            ref={minInputRef}
             type="number"
-            value={priceRange[0] || ""}
+            value={focus.min ? minInputValue : priceRange[0]}
             placeholder={
               !focus.min && priceRange[0] === "" ? placeholderMin : ""
             }
-            onFocus={() => setFocus({ ...focus, min: true })}
-            onBlur={() => setFocus({ ...focus, min: false })}
+            onFocus={() => {
+              setFocus({ ...focus, min: true });
+              setMinInputValue(priceRange[0]);
+            }}
+            onBlur={handleMinInputBlur}
             onChange={(e) =>
               handlePriceChange("min", Number(e.target.value) || "")
             }
@@ -96,13 +143,28 @@ const PriceRangeSlider = () => {
           />
           <span> - </span>
           <input
+            ref={maxInputRef}
             type="number"
-            value={priceRange[1] || ""}
-            placeholder={
-              !focus.max && priceRange[1] === "" ? placeholderMax : ""
+            value={
+              focus.max
+                ? maxInputValue
+                : priceRange[1] === MAX_PRICE
+                ? ""
+                : priceRange[1]
             }
-            onFocus={() => setFocus({ ...focus, max: true })}
-            onBlur={() => setFocus({ ...focus, max: false })}
+            placeholder={
+              !focus.max &&
+              (priceRange[1] === MAX_PRICE || priceRange[1] === "")
+                ? `Максимальная цена`
+                : ""
+            }
+            onFocus={() => {
+              setFocus({ ...focus, max: true });
+              setMaxInputValue(
+                priceRange[1] === MAX_PRICE ? "" : priceRange[1]
+              );
+            }}
+            onBlur={handleMaxInputBlur}
             onChange={(e) =>
               handlePriceChange("max", Number(e.target.value) || "")
             }

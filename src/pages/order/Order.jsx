@@ -32,9 +32,6 @@ export default function Order() {
   const [selectedItems, setSelectedItems] = useState([]);
   const [orderSubmitted, setOrderSubmitted] = useState(false);
   const is_auth_FromRedux = useSelector((state) => state.user.is_auth);
-  const items = useSelector((state) => state.user.items);
-  console.log(items);
-  console.log(selectedItems);
 
   useEffect(() => {
     const is_auth = localStorage.getItem("is_auth") || is_auth_FromRedux;

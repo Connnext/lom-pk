@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "./../../redux/store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
 import {
+  errorWithText,
   successMessageLogout,
   successMessageSaveUserData,
 } from "utils/messages";
@@ -33,7 +34,6 @@ export default function Account() {
   const [patchCurrentUser] = usePatchCurrentUserMutation();
 
   const handleSubmit = (userData) => {
-    console.log(userData);
     const dataToSubmit = { ...userData };
     const password = localStorage.getItem("password__new");
     if (password?.length > 0) {
@@ -49,7 +49,7 @@ export default function Account() {
       handleSubmit(userData);
       successMessageSaveUserData();
     } else {
-      console.log("Форма не валидна");
+      errorWithText("Форма не валидна");
     }
   };
   const hadleLogout = () => {

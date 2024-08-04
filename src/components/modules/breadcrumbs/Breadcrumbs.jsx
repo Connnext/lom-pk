@@ -7,7 +7,7 @@ import "./breadcrumbs.css";
 const Breadcrumbs = () => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
-
+  const breadcrumb = localStorage.getItem("breadcrumb");
   return (
     <Container>
       <nav>
@@ -20,6 +20,8 @@ const Breadcrumbs = () => {
           {pathnames.map((value, index) => {
             const to = `/${pathnames.slice(0, index + 1).join("/")}`;
             const isLast = index === pathnames.length - 1;
+
+            if (value == Number(value)) value = breadcrumb;
 
             return isLast ? (
               <li className="breadcrumb__item" key={to}>

@@ -25,7 +25,7 @@ export default function Menu() {
   const is_auth_FromRedux = useSelector((state) => state.user.is_auth);
   const is_auth =
     localStorage.getItem("is_auth") == "true" || is_auth_FromRedux;
-  console.log(is_auth, dataBasket);
+
   const basket = (is_auth && dataBasket?.items.length) || 0;
   const [basketCount, setBasketcount] = useState(basket);
 
@@ -63,9 +63,9 @@ export default function Menu() {
             </button>
             {showModal && <Catalog />}
           </div>
+
           <SearchBar />
           <div className="menu__actions">
-            {console.log(basket)}
             {basket > 0 ? (
               <Link className="menu__link" to={BASKET_ROUTE}>
                 <div className="basket-icon">

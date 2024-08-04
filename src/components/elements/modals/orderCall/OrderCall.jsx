@@ -1,25 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import emptyBasket from "./../../../../img/empty_basket.png";
+import { useNavigate } from "react-router-dom";
 import {
   setFormType,
   setShowModal,
 } from "./../../../../redux/store/slices/modalSlice";
-import { useNavigate } from "react-router-dom";
-// import "./successOrder.css";
 import FormButton from "components/elements/buttons/formButton/FormButton";
 import FormInput from "components/elements/inputs/FormInput";
-import Spinner from "components/elements/spinners/Spinner";
-import { useOrderCallQuery } from "./../../../../redux/services/userService";
-import { successOrderCall } from "utils/messages";
+import { useOrderCallMutation } from "./../../../../redux/services/userService";
+import { errorOrderCall, successOrderCall } from "utils/messages";
 import "./orderCall.css";
 
 export default function OrderCall() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [queryData, setQueryData] = useState();
-  const { data, isLoading, error } = useOrderCallQuery(queryData);
-
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -36,6 +30,8 @@ export default function OrderCall() {
     phone: false,
   });
 
+  const [orderCall, { data, isLoading, error }] = useOrderCallMutation();
+
   useEffect(() => {
     validateForm();
   }, [form]);
@@ -47,13 +43,17 @@ export default function OrderCall() {
     navigate("/");
   };
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
     validateForm();
     if (formValid) {
-      setQueryData({ name: form.name, phone: form.phone });
-      handleToHome();
-      successOrderCall();
+      try {
+        await orderCall({ name: form.name, phone: form.phone }).unwrap();
+        handleToHome();
+        successOrderCall();
+      } catch (err) {
+        errorOrderCall();
+      }
     }
   };
 

@@ -22,7 +22,6 @@ const useShopData = () => {
   const searchName = useSelector((state) => state.product.searchName);
   const sortParams = useSelector((state) => state.product.sortParams);
   const filterParams = useSelector((state) => state.product.filterParams);
-
   const productObj = {
     limit,
     searchName,
@@ -40,32 +39,15 @@ const useShopData = () => {
     () => ({
       page: 1,
       page_limit: limit,
+      query: searchName.length > 3 ? searchName : undefined,
       ...sortParams,
       ...filterParams,
     }),
-    [limit, sortParams, filterParams]
+    [limit, sortParams, filterParams, searchName]
   );
 
-  const search = useMemo(
-    () => ({
-      page: 1,
-      page_limit: limit,
-      query: searchName,
-    }),
-    [limit, searchName]
-  );
-
-  // Запросы
-  const {
-    data: dataGetProducts,
-    error,
-    isLoading,
-  } = useGetProductsQuery(filters);
-  const {
-    data: dataSearch,
-    isLoading: isLoadingSearch,
-    error: errorSearch,
-  } = useSearchQuery(search);
+  // Запрос
+  const { data, error, isLoading } = useGetProductsQuery(filters);
 
   // Xендлеры
   const handleMoreProductsClick = () => {
@@ -80,13 +62,10 @@ const useShopData = () => {
     dispatch(setFilterParams({ [name]: value }));
   };
 
-  const data =
-    searchName && searchName.length > 0 ? dataSearch : dataGetProducts;
-
   return {
     data,
-    error: error || errorSearch,
-    isLoading: isLoading || isLoadingSearch,
+    error,
+    isLoading,
     handleMoreProductsClick,
     handleSortChange,
     handleFilterChange,

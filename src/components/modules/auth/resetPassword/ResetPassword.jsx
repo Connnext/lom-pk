@@ -1,7 +1,7 @@
 import React from "react";
 import ResetPasswordForm from "components/elements/forms/ResetPasswordForm";
 import { useResetPasswordMutation } from "./../../../../redux/services/authService";
-import { successMessageResetPassword } from "utils/messages";
+import { errorWithText, successMessageResetPassword } from "utils/messages";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
@@ -22,7 +22,7 @@ export default function ResetPassword() {
       successMessageResetPassword();
       navigate("/");
     } catch (error) {
-      console.log(error);
+      errorWithText(error);
     }
   };
   return <ResetPasswordForm handleSubmit={handleResetPassword} />;

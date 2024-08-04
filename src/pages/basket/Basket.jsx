@@ -19,7 +19,6 @@ export default function Basket() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { data: dataBasket, isError, isLoading, refetch } = useGetBasketQuery();
-  console.log(`Наш баскет`, dataBasket);
   const [selectedItems, setSelectedItems] = useState([]);
   const is_auth_FromRedux = useSelector((state) => state.user.is_auth);
   useEffect(() => {
@@ -82,7 +81,6 @@ export default function Basket() {
               <SelectAllButton onClick={handleSelectAll} />
               <ClearAllButton onClick={handleUnselectAll} />
             </div>
-            {console.log(`dataBasket`, dataBasket.items)}
             {dataBasket?.items?.map((item) => (
               <BasketItem
                 key={item.product_id}

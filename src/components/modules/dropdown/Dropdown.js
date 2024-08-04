@@ -1,11 +1,11 @@
 import React, { useState, useRef } from "react";
 import useOutsideClickAndEsc from "hooks/useOutsideClickAndEsc";
-import "./dropdown.css";
 import {
   getSelectedLabels,
   renderOptions,
   updateParents,
 } from "helpers/updateParents";
+import "./dropdown.css";
 
 const Dropdown = ({
   options,
@@ -63,14 +63,12 @@ const DropdownOptions = ({ options, selectedOptions, onSelect }) => {
 
   // Проверка, выбрана ли опция
   const handleChecked = (optionId) => {
-    console.log(optionId);
     return selectedOptions.includes(optionId.toString());
   };
 
   // Обработка изменения выбора опции
   const handleChange = (e) => {
     const { value, checked } = e.target;
-    console.log(value, checked);
     let newSelectedOptions = checked
       ? [...selectedOptions, value]
       : selectedOptions.filter((option) => option !== value);

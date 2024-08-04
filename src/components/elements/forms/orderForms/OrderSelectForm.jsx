@@ -34,8 +34,6 @@ export default function OrderSelectForm({ selectedOption, setSelectedOption }) {
     setSelectedOption(value);
   };
 
-  console.log(userData);
-
   return (
     <div>
       <InfoText subtitle="Выберете способ получения товара" />

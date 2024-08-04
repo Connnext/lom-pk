@@ -10,7 +10,7 @@ import deleteItem from "img/deleteItem.svg";
 import "./basketItem.css";
 
 const style = {
-  width: "200px",
+  minWidth: "200px",
   height: "200px",
   objectFit: "cover",
   borderRadius: "5px",

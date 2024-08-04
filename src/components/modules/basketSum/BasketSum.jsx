@@ -9,7 +9,7 @@ export default function BasketSum({ data, selectedItems }) {
     0
   );
   const totalCount = selectedItems.reduce((sum, item) => sum + item.amount, 0);
-  console.log(totalAmount);
+
   return (
     <div className="basket__sum">
       <div className="basket__sum--main">

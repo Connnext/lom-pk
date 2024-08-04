@@ -21,12 +21,20 @@ import CustomRightArrow from "../buttons/sliderButtons/CustomRightArrow";
 import "./carousel.css";
 
 import { useMediaQuery } from "react-responsive";
+import { SHOP_ROUTE } from "utils/constants";
+import useShopData from "hooks/useShopData";
 
 const SliderBrands = () => {
+  const { handleFilterChange } = useShopData();
+
   const isBigScreen = useMediaQuery({ query: "(min-width: 1200px)" });
   const isMediumScreen = useMediaQuery({ query: "(min-width: 992px)" });
   const isSmallScreen = useMediaQuery({ query: "(min-width: 768px)" });
   const isVerySmallScreen = useMediaQuery({ query: "(min-width: 576px)" });
+
+  const handleCategoryChange = (selectedBrand) => () => {
+    handleFilterChange("brands", [selectedBrand]);
+  };
 
   let slidesToShow = 1;
   if (isBigScreen) slidesToShow = 5;
@@ -56,108 +64,111 @@ const SliderBrands = () => {
         renderBottomCenterControls={() => null}
         className="carousel__container carousel__images--wrapper"
       >
-        <Link to={"/"}>
+        <Link onClick={handleCategoryChange("Теплодар")} to={SHOP_ROUTE}>
           <img
             src={brand_teplodar}
-            alt="Teplodar"
+            alt="Теплодар"
             className="carousel-image carousel-slide"
           />
         </Link>
-        <Link to={"/"}>
+        <Link onClick={handleCategoryChange("ASTON")} to={SHOP_ROUTE}>
           <img
             src={brand_aston}
-            alt="Aston"
+            alt="ASTON"
             className="carousel-image carousel-slide"
           />
         </Link>
-        <Link to={"/"}>
+        <Link onClick={handleCategoryChange("Эверест")} to={SHOP_ROUTE}>
           <img
             src={brand_everest}
-            alt="Everest"
+            alt="Эверест"
             className="carousel-image carousel-slide"
           />
         </Link>
-        <Link to={"/"}>
+        <Link onClick={handleCategoryChange("Литком")} to={SHOP_ROUTE}>
           <img
             src={brand_litkom}
-            alt="Litkom"
+            alt="Литком"
             className="carousel-image carousel-slide"
           />
         </Link>
-        <Link to={"/"}>
+        <Link onClick={handleCategoryChange("Везувий")} to={SHOP_ROUTE}>
           <img
             src={brand_vezuviy}
-            alt="Vezuviy"
+            alt="Везувий"
             className="carousel-image carousel-slide"
           />
         </Link>
-        <Link to={"/"}>
+        <Link onClick={handleCategoryChange("GRILL'D")} to={SHOP_ROUTE}>
           <img
             src={brand_grilld}
-            alt="Grilld"
+            alt="GRILL'D"
             className="carousel-image carousel-slide"
           />
         </Link>
-        <Link to={"/"}>
+        <Link
+          onClick={handleCategoryChange("Термофор (Конвектика)")}
+          to={SHOP_ROUTE}
+        >
           <img
             src={brand_konvetika}
-            alt="Konvetika"
+            alt="Термофор (Конвектика)"
             className="carousel-image carousel-slide"
           />
         </Link>
-        <Link to={"/"}>
+        <Link onClick={handleCategoryChange("Kratki")} to={SHOP_ROUTE}>
           <img
             src={brand_kratki}
             alt="Kratki"
             className="carousel-image carousel-slide"
           />
         </Link>
-        <Link to={"/"}>
+        <Link onClick={handleCategoryChange("Этна")} to={SHOP_ROUTE}>
           <img
             src={brand_etna}
-            alt="Etna"
+            alt="Этна"
             className="carousel-image carousel-slide"
           />
         </Link>
-        <Link to={"/"}>
+        <Link onClick={handleCategoryChange("Компакт")} to={SHOP_ROUTE}>
           <img
             src={brand_compact}
-            alt="Compact"
+            alt="Компакт"
             className="carousel-image carousel-slide"
           />
         </Link>
-        <Link to={"/"}>
+        <Link onClick={handleCategoryChange("ZOTA")} to={SHOP_ROUTE}>
           <img
             src={brand_zota}
-            alt="Zota"
+            alt="ZOTA"
             className="carousel-image carousel-slide"
           />
         </Link>
-        <Link to={"/"}>
+        <Link onClick={handleCategoryChange("Варвара")} to={SHOP_ROUTE}>
           <img
             src={brand_varvara}
-            alt="Varvara"
+            alt="Варвара"
             className="carousel-image carousel-slide"
           />
         </Link>
-        <Link to={"/"}>
+        <Link onClick={handleCategoryChange("Мета")} to={SHOP_ROUTE}>
           <img
             src={brand_meta}
-            alt="Meta"
+            alt="Мета"
             className="carousel-image carousel-slide"
           />
         </Link>
-        <Link to={"/"}>
+        <Link onClick={handleCategoryChange("Экокамин")} to={SHOP_ROUTE}>
           <img
             src={brand_ecocamin}
-            alt="Ecocamin"
+            alt="Экокамин"
             className="carousel-image carousel-slide"
           />
         </Link>
-        <Link to={"/"}>
+        <Link onClick={handleCategoryChange("Ермак")} to={SHOP_ROUTE}>
           <img
             src={brand_ermak}
-            alt="Ermak"
+            alt="Ермак"
             className="carousel-image carousel-slide"
           />
         </Link>

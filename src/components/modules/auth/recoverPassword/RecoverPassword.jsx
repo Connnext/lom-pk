@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import RecoverPasswordForm from "components/elements/forms/RecoverPasswordForm";
 import { useForgotPasswordMutation } from "./../../../../redux/services/authService";
-import { successRecoverPasswordMessage } from "utils/messages";
+import { errorWithText, successRecoverPasswordMessage } from "utils/messages";
 import { useDispatch } from "react-redux";
 import {
   setFormType,
@@ -23,7 +23,7 @@ export default function RecoverPassword() {
       successRecoverPasswordMessage(email);
       navigate("/");
     } catch (error) {
-      console.log(error);
+      errorWithText(error);
     }
   };
 

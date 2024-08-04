@@ -61,7 +61,9 @@ export const errorNotVerifiedLogin = () => {
   message.error("Пользователь не подтвердил почту", [2]);
 };
 export const errorBadCredentialsLogin = () => {
-  message.error("Данного аккаунта не существует. Зарегестрируйтесь", [2]);
+  message.error("Неверный логин/пароль или данного аккаунта не существует", [
+    4,
+  ]);
 };
 export const successMessageSaveUserData = () => {
   message.success("Ваши данные успешно сохранены", [4]);
@@ -94,6 +96,9 @@ export const successRecoverPasswordMessage = (email) => {
 };
 export const errorMessageAddToBasket = () => {
   message.error("Количество не может быть меньше 1", [3]);
+};
+export const errorOrderCall = () => {
+  message.error("Ошибка при отправке запроса", [3]);
 };
 export const errorWithText = (string) => {
   message.error(`${string}`, [1]);

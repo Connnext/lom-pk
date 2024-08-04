@@ -6,7 +6,6 @@ import "./sortProducts.css";
 const SortProducts = () => {
   const { handleSortChange } = useShopData();
   const sortParams = useSelector((state) => state.product.sortParams || {});
-  console.log(sortParams);
 
   const handleSortChanges = (event) => {
     const { name, type, value, checked } = event.target;

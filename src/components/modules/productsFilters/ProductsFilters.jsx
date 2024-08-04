@@ -8,8 +8,8 @@ const ProductsFilters = () => {
   return (
     <div className="product-filters">
       <CategoriesDropdown />
-      <PriceRangeSlider />
       <BrandsDropdown />
+      <PriceRangeSlider />
     </div>
   );
 };

@@ -46,7 +46,7 @@ export const useFormData = (currentUserData, initialFieldsToValidate) => {
           city: currentUserData.city || "",
           street: currentUserData.street || "",
           num_of_house: currentUserData.num_of_house || "",
-          postcode: currentUserData.postcode || "",
+          postcode: currentUserData.postcode || null,
         })
       );
     }
@@ -120,7 +120,6 @@ export const useFormData = (currentUserData, initialFieldsToValidate) => {
         newErrors.confirmPassword = "";
       }
       setErrors(newErrors);
-      console.log("Password in useFormData:", value);
     },
     [confirmPassword, errors]
   );

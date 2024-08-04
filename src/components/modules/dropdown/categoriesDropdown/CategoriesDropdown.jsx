@@ -11,7 +11,6 @@ const CategoriesDropdown = () => {
   const { data: categories } = useGetCategoriesQuery();
 
   const handleCategoryChange = (selectedCategories) => {
-    console.log("selected categories", selectedCategories);
     handleFilterChange(
       "categories",
       selectedCategories.map((id) => parseInt(id))

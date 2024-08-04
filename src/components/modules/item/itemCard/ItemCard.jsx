@@ -18,9 +18,18 @@ const style = {
 
 export default function ItemCard(item) {
   const iconType = getIconType(item);
+
+  const handleClickLink = () => {
+    localStorage.setItem("breadcrumb", item.title);
+  };
+
   return (
     <div className={`card ${iconType}`}>
-      <Link className="card__link" to={`${ITEM_ROUTE.replace(":id", item.id)}`}>
+      <Link
+        onClick={handleClickLink}
+        className="card__link"
+        to={`${ITEM_ROUTE.replace(":id", item.id)}`}
+      >
         <div className="img__wrapper">
           <ImageWithFallback
             src={item.preview_img}

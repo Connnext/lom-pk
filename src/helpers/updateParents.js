@@ -1,9 +1,7 @@
 import React from "react";
 
 export const getSelectedLabels = (options, selectedOptions) => {
-  console.log(options, selectedOptions);
   const getLabel = (id) => {
-    console.log(id);
     for (const option of options) {
       if (option.id.toString() === id) return option.name;
       if (option.children) {
@@ -16,7 +14,34 @@ export const getSelectedLabels = (options, selectedOptions) => {
   };
   return selectedOptions.map(getLabel).filter(Boolean).join(", ");
 };
+export const getSelectedLabelsBrands = (options, selectedOptions) => {
+  return options
+    .filter((option) => selectedOptions.includes(option))
+    .join(", ");
+};
 
+export const renderOptionsBrands = (
+  options,
+  level,
+  handleChecked,
+  handleChange
+) => {
+  return options.map((option) => (
+    <div key={option} className={`dropdown-item level-${level}`}>
+      <input
+        className="filter__checkbox"
+        type="checkbox"
+        id={`option-${option}`}
+        value={option}
+        checked={handleChecked(option)}
+        onChange={handleChange}
+      />
+      <label className="dropdown__brands--label" htmlFor={`option-${option}`}>
+        {option}
+      </label>
+    </div>
+  ));
+};
 export const renderOptions = (
   optionsToRender,
   level,
@@ -26,28 +51,20 @@ export const renderOptions = (
   expandedCategories,
   selectedOptions
 ) => {
-  console.log(
-    optionsToRender,
-    "-------------------",
-    level,
-    "-------------------",
-    expandedCategories,
-    "-------------------",
-    selectedOptions
-  );
   return optionsToRender.map((option) => (
     <React.Fragment key={option.id}>
       <div
         className={`dropdown-item level-${level}`}
         onClick={() => toggleCategory(option.id)}
       >
-        <label>
+        <label className="dropdown__categories--label">
           <input
             className="filter__checkbox"
             type="checkbox"
             value={option.id}
             checked={handleChecked(option.id)}
             onChange={handleChange}
+            onClick={(e) => e.stopPropagation()}
           />
           {option.name}
 

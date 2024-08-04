@@ -63,14 +63,20 @@ export const userApi = api.injectEndpoints({
       invalidatesTags: ["User"],
     }),
     //изменить запрос на posy
-    orderCall: build.query({
+    orderCall: build.mutation({
       query: (data) => ({
-        url: `/order_call/?phone=${data?.phone}&name=${data?.name}`,
+        url: `/order_call/`,
+        method: "POST",
+        body: {
+          phone: data.phone,
+          name: data.name,
+        },
         headers: {
           accept: "application/json",
+          "Content-Type": "application/json",
         },
       }),
-      providesTags: ["User"],
+      invalidatesTags: ["User"],
     }),
   }),
 });
@@ -81,5 +87,5 @@ export const {
   useUserQuery,
   usePatchUserMutation,
   useDeleteUserMutation,
-  useOrderCallQuery,
+  useOrderCallMutation,
 } = userApi;

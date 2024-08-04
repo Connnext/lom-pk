@@ -6,18 +6,23 @@ import {
   resetCategories,
   resetPrice,
   resetProductState,
+  resetSearchName,
 } from "./../redux/store/slices/productSlice";
 import { SHOP_ROUTE } from "utils/constants";
 
 const useCleanupOnRouteChange = () => {
   const location = useLocation();
   const dispatch = useDispatch();
+
   useEffect(() => {
-    if (location.pathname !== SHOP_ROUTE) {
+    const isShopPath = location.pathname.startsWith(SHOP_ROUTE);
+
+    if (!isShopPath) {
       localStorage.removeItem("product");
       dispatch(resetProductState());
       dispatch(resetPrice());
       dispatch(resetCategories());
+      dispatch(resetSearchName());
       dispatch(resetBrands());
     }
   }, [location.pathname, dispatch]);

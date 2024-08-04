@@ -16,3 +16,9 @@
   background-color: var(--hover-color);
   box-shadow: 0 8px 12px var(--shadow__hover-color);
 }
+
+@media (max-width: 480px) {
+  .select-all-button {
+    font-size: 14px;
+  }
+}

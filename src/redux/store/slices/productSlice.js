@@ -35,7 +35,9 @@ const productSlice = createSlice({
     setSearchName: (state, action) => {
       state.searchName = action.payload;
     },
-
+    setLimit: (state, action) => {
+      state.limit = action.payload;
+    },
     setSortParams: (state, action) => {
       state.sortParams = { ...state.sortParams, ...action.payload };
       state.limit = 24;
@@ -63,6 +65,9 @@ const productSlice = createSlice({
     resetCategories: (state) => {
       state.filterParams.categories = [];
     },
+    resetSearchName: (state) => {
+      state.searchName = "";
+    },
     resetBrands: (state) => {
       state.filterParams.brands = [];
     },
@@ -71,6 +76,7 @@ const productSlice = createSlice({
 
 export const {
   addProducts,
+  setLimit,
   setSearchName,
   setSortParams,
   setFilterParams,
@@ -78,5 +84,6 @@ export const {
   resetPrice,
   resetCategories,
   resetBrands,
+  resetSearchName,
 } = productSlice.actions;
 export default productSlice.reducer;

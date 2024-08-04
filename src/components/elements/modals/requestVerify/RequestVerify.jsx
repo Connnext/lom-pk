@@ -6,7 +6,7 @@ import {
   setShowModal,
 } from "./../../../../redux/store/slices/modalSlice";
 import { useRequestVerifyTokenMutation } from "./../../../../redux/services/authService";
-import { successRequestVerifyMessage } from "utils/messages";
+import { errorWithText, successRequestVerifyMessage } from "utils/messages";
 import request__verify from "./../../../../img/confirmEmail.png";
 import "./requestVerify.css";
 
@@ -25,7 +25,7 @@ export default function RequestVerify() {
       successRequestVerifyMessage(email);
       navigate("/");
     } catch (error) {
-      console.log(error);
+      errorWithText(error);
     }
   };
 

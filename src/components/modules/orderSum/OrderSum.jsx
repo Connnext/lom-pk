@@ -5,6 +5,7 @@ import InfoText from "components/elements/text/InfoText";
 import { useSelector } from "react-redux";
 import FormButton from "components/elements/buttons/formButton/FormButton";
 import "./orderSum.css";
+import { errorWithText } from "utils/messages";
 
 export default function OrderSum({ selectedItems, handleSubmit }) {
   const isValidDelivery = useSelector((state) => state.user.isValidDelivery);
@@ -13,13 +14,12 @@ export default function OrderSum({ selectedItems, handleSubmit }) {
   const totalAmount =
     selectedItems?.reduce((sum, item) => sum + item.amount * item.price, 0) ||
     0;
-  console.log(isValidDelivery);
-  console.log(isValidPersonal);
+
   const handleFormSubmit = () => {
     if (isValidDelivery && isValidPersonal) {
       handleSubmit(userData);
     } else {
-      console.log("Форма не валидна");
+      errorWithText("Форма не валидна");
     }
   };
   return (

@@ -10,9 +10,12 @@ import Spinner from "components/elements/spinners/Spinner";
 import ProductsFilters from "components/modules/productsFilters/ProductsFilters";
 import useShopData from "hooks/useShopData";
 import { HOME_ROUTE } from "utils/constants";
+import useScrollPosition from "hooks/useScrollPosition";
 
 export default function Shop() {
   const { data, error, isLoading, limit } = useShopData();
+
+  useScrollPosition();
   const allProductsLoaded = limit < data?.total_count;
 
   if (isLoading) return <Spinner />;

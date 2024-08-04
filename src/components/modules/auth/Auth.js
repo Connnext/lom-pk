@@ -14,9 +14,7 @@ export default function Auth() {
   const { data: dataUser, isLoading, isError } = useCurrentUserQuery();
 
   useEffect(() => {
-    console.log("Auth component rendered, dataUser:", dataUser);
     if (dataUser) {
-      console.log("Успешный вход");
       localStorage.setItem("is_verified", dataUser.is_verified);
       localStorage.setItem("is_superuser", dataUser.is_superuser);
       localStorage.setItem("is_active", dataUser.is_active);

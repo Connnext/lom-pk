@@ -52,20 +52,20 @@
 }
 
 .basket__item--price {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 600;
   word-wrap: break-word;
 }
 
 .basket__price--new {
   color: red;
-  font-size: 26px;
+  font-size: 24px;
   font-weight: bold;
 }
 
 .basket__price--old {
   text-decoration: line-through;
-  font-size: 24px;
+  font-size: 22px;
   color: var(--border-color);
 }
 

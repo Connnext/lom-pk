@@ -3,7 +3,6 @@ import { useEffect } from "react";
 const useOutsideClickAndEsc = (ref, callback) => {
   useEffect(() => {
     const handleClickOutside = (event) => {
-      console.log(`${callback}`, ref.current.contains(event.target));
       if (ref.current && !ref.current.contains(event.target)) callback(false);
     };
 

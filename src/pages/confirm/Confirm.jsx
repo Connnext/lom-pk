@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { successMessageSignUp } from "utils/messages";
+import { errorWithText, successMessageSignUp } from "utils/messages";
 import { useVerifyMutation } from "../../redux/services/authService";
 import {
   setFormType,
@@ -24,7 +24,7 @@ export default function Confirm() {
           successMessageSignUp();
           navigate("/");
         } catch (error) {
-          console.log(error);
+          errorWithText(error);
         }
       }
     };

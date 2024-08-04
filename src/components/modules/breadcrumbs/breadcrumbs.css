@@ -10,6 +10,7 @@
 .breadcrumb__item {
   position: relative;
   padding-right: 34px;
+  font-size: 20px;
 }
 
 .breadcrumb__item:not(:last-child)::after {
@@ -44,8 +45,8 @@
   position: absolute;
   left: 0;
   top: 50%;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   background: url("./../../../img/-home.svg") no-repeat center / contain;
   transform: translateY(-50%);
 }
@@ -58,6 +59,7 @@
 
   .breadcrumb__item {
     padding-right: 20px; /* Уменьшение отступа */
+    font-size: 16px;
   }
 
   .breadcrumb__item:not(:last-child)::after {
@@ -67,7 +69,7 @@
   }
 
   .breadcrumb__link--home::before {
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
   }
 }

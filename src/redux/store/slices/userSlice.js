@@ -21,7 +21,7 @@ const initialState = {
     city: "",
     street: "",
     num_of_house: "",
-    postcode: 0,
+    postcode: null,
     ids: [],
   },
 };
@@ -37,6 +37,7 @@ const userSlice = createSlice({
     },
     logoutUser(state) {
       state.is_auth = false;
+      state.items = [];
     },
     setUserData(state, action) {
       state.userData = {

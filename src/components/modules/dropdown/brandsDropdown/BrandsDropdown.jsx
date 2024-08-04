@@ -1,9 +1,9 @@
 import { Dropdown } from "antd";
 import useShopData from "hooks/useShopData";
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useGetCategoriesQuery } from "./../../../../redux/services/categoriesService";
-import { categories_text } from "utils/textDecorate";
+import { brands_text, categories_text } from "utils/textDecorate";
 import DropdownBrands from "./DropdownBrands";
 
 const getUniqueBrandsFromCategories = (categories) => {
@@ -20,37 +20,54 @@ export default function BrandsDropdown() {
   const { handleFilterChange } = useShopData();
   const filterParams = useSelector((state) => state.product.filterParams);
   const { data: categories } = useGetCategoriesQuery();
+
   const categoriesEmpty = filterParams.categories.length < 1;
+
   // Извлечение брендов из категорий
   const brandsFromCategories = useMemo(
     () => getUniqueBrandsFromCategories(categories || []),
     [categories]
   );
-  console.log(brandsFromCategories);
 
   // Функция для обработки выбора брендов
-  const handleCategoryChange = (selectedBrands) => {
+  const handleBrandChange = (selectedBrands) => {
     handleFilterChange(
       "brands",
       selectedBrands.map((name) => name)
     );
   };
 
-  // Подготовка списка брендов для отображения
+  // Сброс брендов при изменении категорий
+  const prevCategoriesRef = useRef(filterParams.categories);
+
+  useEffect(() => {
+    if (prevCategoriesRef.current !== filterParams.categories) {
+      handleFilterChange("brands", []);
+      prevCategoriesRef.current = filterParams.categories;
+    }
+  }, [filterParams.categories, handleFilterChange]);
+
   const brandsToDisplay = useMemo(() => {
     if (categoriesEmpty) {
+      // Если категории пусты, возвращаем все бренды
       return brandsFromCategories;
     }
 
-    // Отфильтровать бренды по выбранным категориям
-    const selectedCategoryIds = filterParams.categories.map((cat) => cat.id);
-    return brandsFromCategories.filter((brand) =>
-      categories.some(
-        (cat) =>
-          cat.id === brand.categoryId &&
-          selectedCategoryIds.includes(brand.categoryId)
-      )
-    );
+    // Получаем идентификаторы выбранных категорий
+    const selectedCategoryIds = filterParams.categories;
+
+    // Защита от `undefined` для `categories`
+    if (!categories) {
+      return [];
+    }
+
+    // Находим выбранные категории и собираем бренды из них
+    const filteredBrands = (categories || [])
+      .filter((category) => selectedCategoryIds.includes(category.id)) // Фильтруем категории по выбранным ID
+      .flatMap((category) => category.brands || []) // Объединяем бренды из всех выбранных категорий
+      .map((brand) => brand.name); // Извлекаем имена брендов
+
+    return filteredBrands;
   }, [
     categoriesEmpty,
     brandsFromCategories,
@@ -62,15 +79,14 @@ export default function BrandsDropdown() {
     () => filterParams.brands?.map((name) => name) || [],
     [filterParams.brands]
   );
-  console.log("select", selectedBrands);
-  console.log("brandsToDisplay", brandsToDisplay);
+
   return (
     <DropdownBrands
       options={brandsToDisplay}
       selectedOptions={selectedBrands}
-      onSelect={handleCategoryChange}
+      onSelect={handleBrandChange}
       placeholder="Выбрать бренды"
-      label={categories_text}
+      label={brands_text}
     />
   );
 }

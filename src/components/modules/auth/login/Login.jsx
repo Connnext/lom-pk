@@ -53,7 +53,6 @@ export default function Login() {
         }
         if (error.data.detail == "LOGIN_BAD_CREDENTIALS") {
           dispatch(setShowModal(true));
-          dispatch(setFormType("register"));
           errorBadCredentialsLogin();
         }
       }

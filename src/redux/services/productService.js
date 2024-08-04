@@ -38,6 +38,7 @@ export const productsApi = api.injectEndpoints({
             accept: "application/json",
           },
         };
+
         const appendParam = (param, value) => {
           if (queryObject.url.includes("?")) {
             queryObject.url += `&${param}=${value}`;
@@ -46,43 +47,30 @@ export const productsApi = api.injectEndpoints({
           }
         };
 
-        if (data.page_limit) {
-          appendParam("page_limit", data.page_limit);
-        }
-        if (data.min_price) {
-          appendParam("min_price", data.min_price);
-        }
-        if (data.max_price) {
-          appendParam("max_price", data.max_price);
-        }
-        if (data.page) {
-          appendParam("page", data.page);
-        }
-        if (data.brands) {
+        if (data.page_limit) appendParam("page_limit", data.page_limit);
+        if (data.min_price) appendParam("min_price", data.min_price);
+        if (data.max_price) appendParam("max_price", data.max_price);
+        if (data.page) appendParam("page", data.page);
+        if (data.brands)
           data.brands.forEach((brand) => appendParam("brands", brand));
-        }
-        if (data.categories) {
+        if (data.categories)
           data.categories.forEach((category) =>
             appendParam("categories", category)
           );
-        }
-        if (data.is_hit) {
-          appendParam("is_hit", data.is_hit);
-        }
-        if (data.is_new) {
-          appendParam("is_new", data.is_new);
-        }
-        if (data.is_sale) {
-          appendParam("is_sale", data.is_sale);
-        }
+        if (data.is_hit) appendParam("is_hit", data.is_hit);
+        if (data.is_new) appendParam("is_new", data.is_new);
+        if (data.is_sale) appendParam("is_sale", data.is_sale);
+        if (data.query) appendParam("query", data.query);
         if (data.sort_by && data.sort_order) {
           appendParam("sort_by", data.sort_by);
           appendParam("sort_order", data.sort_order);
         }
+
         return queryObject;
       },
       providesTags: ["Products"],
     }),
+
     updateProduct: build.mutation({
       query: (data) => ({
         url: `/products/${data.id}`,
@@ -135,24 +123,6 @@ export const productsApi = api.injectEndpoints({
       }),
       providesTags: ["Products"],
     }),
-    search: build.query({
-      query: (data) => {
-        let queryObject = {
-          url: `/products/search/?query=${data.query}`,
-          headers: {
-            accept: "application/json",
-          },
-        };
-        if (data.page_limit) {
-          queryObject.url += `&page_limit=${data.page_limit}`;
-        }
-        if (data.page) {
-          queryObject.url += `&page=${data.page}`;
-        }
-        return queryObject;
-      },
-      providesTags: ["Products"],
-    }),
   }),
 });
 
@@ -162,5 +132,4 @@ export const {
   useUpdateProductMutation,
   useDeleteProductMutation,
   useGetSingleProductQuery,
-  useSearchQuery,
 } = productsApi;

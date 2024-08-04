@@ -43,7 +43,7 @@ export const userApi = api.injectEndpoints({
           city: data.city || "-",
           street: data.street || "-",
           num_of_house: data.num_of_house || "-",
-          postcode: data.postcode || 0,
+          postcode: data.postcode || null,
           ids: data.ids || [],
         },
         headers: {

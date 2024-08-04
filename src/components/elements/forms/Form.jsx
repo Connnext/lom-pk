@@ -14,7 +14,7 @@ import "./form.css";
 
 export default function Form() {
   const formType = useSelector((state) => state.modal.formType);
-  console.log(formType);
+
   return (
     <Modal>
       <div className="form-wrapper">

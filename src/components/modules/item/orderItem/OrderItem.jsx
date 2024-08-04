@@ -3,7 +3,7 @@ import { useGetSingleProductQuery } from "./../../../../redux/services/productSe
 
 export default function OrderItem({ product_id, amount, price }) {
   const { data: item } = useGetSingleProductQuery(product_id);
-  console.log(item);
+
   const totalPrice = price * amount;
 
   return (
