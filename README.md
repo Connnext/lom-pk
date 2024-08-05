@@ -12,12 +12,13 @@ Welcome to Pechi eStore! This project is an e-commerce platform built using the 
 - 📦 **Nuka Carousel**
 - 🎨 **Ant Design**
 - 🎚 **RC Slider**
+- 🍪 **Cookies**
 
 ## 📖 About the Project
 
 Pechi eStore is a modern e-commerce application with features including:
 
-- Registration and authorization
+- Registration and authorization with email and cookies
 - Advanced product filtering and sorting capabilities
 - Integrated maps for store locations
 - Responsive design for various devices
