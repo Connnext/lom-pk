@@ -27,6 +27,10 @@ input[type="text"]::first-letter {
   box-shadow: 0 8px 12px var(--shadow__hover-color);
   border-color: var(--hover-color);
 }
+.search-form:focus-within .search-button {
+  box-shadow: 0 8px 12px var(--shadow__hover-color);
+  border-color: var(--hover-color);
+}
 
 .search-input {
   flex: 1;
@@ -52,10 +56,7 @@ input[type="text"]::first-letter {
   transition: 0.3s;
   position: relative;
 }
-.search-button:disabled {
-  background-color: var(--hover-color);
-  cursor: not-allowed;
-}
+
 .search-button:hover {
   background: var(--hover-color);
 }

@@ -3,6 +3,7 @@ import CategoriesDropdown from "../dropdown/categoriesDropdown/CategoriesDropdow
 import PriceRangeSlider from "../priceRangeSlider/PriceRangeSlider";
 import BrandsDropdown from "../dropdown/brandsDropdown/BrandsDropdown";
 import "./productsFilters.css";
+import ClearAllFiltersButtom from "components/elements/buttons/clearAllFiltersButton/ClearAllFiltersButtom";
 
 const ProductsFilters = () => {
   return (
@@ -10,6 +11,7 @@ const ProductsFilters = () => {
       <CategoriesDropdown />
       <BrandsDropdown />
       <PriceRangeSlider />
+      <ClearAllFiltersButtom />
     </div>
   );
 };

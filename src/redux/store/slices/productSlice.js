@@ -65,11 +65,11 @@ const productSlice = createSlice({
     resetCategories: (state) => {
       state.filterParams.categories = [];
     },
-    resetSearchName: (state) => {
-      state.searchName = "";
-    },
     resetBrands: (state) => {
       state.filterParams.brands = [];
+    },
+    resetSearchName: (state) => {
+      state.searchName = "";
     },
   },
 });

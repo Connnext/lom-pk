@@ -1,0 +1,27 @@
+.clear__all--filter {
+  border-radius: 10px;
+  border: var(--search__bar--hover-color);
+  font-size: 18px;
+  max-width: 84px;
+  transition: all 0.3s;
+}
+.clear__all--filter:hover {
+  color: var(--primary-color);
+}
+
+@media (max-width: 1403px) {
+  .clear__all--filter {
+    max-width: 170px;
+  }
+}
+@media (max-width: 768px) {
+  .clear__all--filter {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .clear__all--filter {
+    font-size: 14px;
+  }
+}
