@@ -10,6 +10,7 @@ import FormInput from "components/elements/inputs/FormInput";
 import { useOrderCallMutation } from "./../../../../redux/services/userService";
 import { errorOrderCall, successOrderCall } from "utils/messages";
 import "./orderCall.css";
+import Spinner from "components/elements/spinners/Spinner";
 
 export default function OrderCall() {
   const dispatch = useDispatch();
@@ -85,7 +86,7 @@ export default function OrderCall() {
     setTouched({ ...touched, [name]: true });
     validateForm();
   };
-
+  if (isLoading) return <Spinner />;
   return (
     <>
       <h2 className="form__title">Запрос звонка</h2>

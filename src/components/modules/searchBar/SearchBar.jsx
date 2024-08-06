@@ -60,10 +60,10 @@ const SearchBar = () => {
   }, [dataSearch]);
 
   useEffect(() => {
-    if (location.pathname === SHOP_ROUTE) {
+    if (location.pathname == SHOP_ROUTE) {
       setShowResults(false);
     }
-  }, [location.pathname]);
+  }, [location.pathname, showResults]);
 
   const handleChange = (event) => {
     const value = event.target.value;

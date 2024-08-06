@@ -9,6 +9,10 @@
   transition: all 0.3s;
   box-shadow: 0 4px 8px var(--shadow-color);
 }
+.link__to-order:disabled {
+  background-color: var(--hover-color);
+  cursor: not-allowed;
+}
 .link__to-order:hover {
   background: var(--hover-color);
   box-shadow: 0 8px 12px var(--shadow__hover-color);
